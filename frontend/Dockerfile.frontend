@@ -1,0 +1,25 @@
+FROM node:18
+
+# Установка рабочей директории
+WORKDIR /app
+
+# Копируем только package.json и lockfile для оптимизации слоёв
+COPY frontend/package*.json ./
+
+# Установка зависимостей
+RUN npm install
+
+# Установка простого http-сервера
+RUN npm install -g serve
+
+# Копируем весь исходный код
+COPY frontend/ .
+
+# Сборка проекта
+RUN npm run build
+
+# Порт, который будет прослушиваться
+EXPOSE 3000
+
+# Команда запуска (обслуживаем dist/ через `serve`)
+CMD ["serve", "-s", "dist", "-l", "3000"]
