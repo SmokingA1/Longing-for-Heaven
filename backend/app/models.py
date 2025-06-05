@@ -13,7 +13,7 @@ class Admin(Base, TimestampMixin):
     name: Mapped[str] = mapped_column(String(50), nullable=False)
     email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
-    phone_number: Mapped[str] = mapped_column(String(15), nullable=True, unique=True)
+    phone_number: Mapped[str] = mapped_column(String(15), nullable=False, unique=True)
     avatar_url: Mapped[str] = mapped_column(String(255), nullable=False)
     
 
@@ -24,11 +24,11 @@ class User(Base, TimestampMixin):
     name: Mapped[str] = mapped_column(String(50), nullable=False, index=True)
     email: Mapped[str] = mapped_column(String(255), nullable=False, index=True, unique=True)
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
-    phone_number: Mapped[str] = mapped_column(String(15), nullable=True, index=True, unique=True)
+    phone_number: Mapped[str | None] = mapped_column(String(15), default=None, nullable=True, index=True, unique=True)
     avatar_url: Mapped[str] = mapped_column(String(255), nullable=False)
-    country: Mapped[str] = mapped_column(String(50), nullable=True)
-    city: Mapped[str] = mapped_column(String(100), nullable=True)
-    street: Mapped[str] = mapped_column(String(100), nullable=True)
+    country: Mapped[str| None] = mapped_column(String(50), nullable=True)
+    city: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    street: Mapped[str | None] = mapped_column(String(100), nullable=True)
 
     productcs: Mapped[list["Product"]] = relationship(back_populates="user", cascade="all, delete-orphan")
 
