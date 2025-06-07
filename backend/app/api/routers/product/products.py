@@ -3,7 +3,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, status
 
-from app.schemas import ProductCreate, ProductPublic, ProductUpdate
+from app.schemas import ProductCreate, ProductPublic, ProductUpdate, Message
 from app.services.product import (
     get_product_by_id,
     get_user_products_by_id,
@@ -35,7 +35,7 @@ async def read_products(
 
 
 @router.get("/{product_id}", response_model=ProductPublic)
-async def read_product_by_id(db: SessionDep, product_id: int) -> Any:
+async def read_product_by_id(db: SessionDep, product_id: UUID) -> Any:
     """
     Retrieve a specific products by id.
     """
@@ -59,5 +59,41 @@ async def create_new_product(db: SessionDep, product_create: ProductCreate) -> A
     if not new_product:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Something went wrong whilte creating new product."
+            detail="Something went wrong while creating new product."
         )
+    
+    return new_product
+
+
+@router.put("/update/{product_id}", response_model=ProductPublic)
+async def update_product(db: SessionDep, product_id: UUID, product_update: ProductUpdate) -> Any:
+    """
+    Updating existing product by product_id.
+    """
+
+    updated_product = await update_product_by_id(db=db, product_id=product_id, product_update=product_update)
+
+    if not updated_product:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Product not found."
+        )
+    
+    return updated_product
+
+
+@router.delete("/delete/{product_id}", response_model=Message)
+async def delete_product(db: SessionDep, product_id: UUID) -> Any:
+    """
+    Deleting product by id.
+    """
+
+    deleted_product = await delete_product_by_id(db=db, product_id=product_id)
+
+    if not deleted_product:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Product not found!"
+        )
+    
+    return deleted_product
