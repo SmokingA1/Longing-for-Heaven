@@ -49,7 +49,7 @@ class UserUpdate(BaseModel):
 
 
 class ProductBase(BaseModel):
-    user_id: UUID = Field(...)
+    # user_id: UUID = Field(...)
     name: str = Field(..., min_length=1, max_length=100)
     price: int = Field(...)
     stock: int = Field(0)

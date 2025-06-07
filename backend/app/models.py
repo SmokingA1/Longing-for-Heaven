@@ -37,13 +37,13 @@ class Product(Base, TimestampMixin):
     __tablename__ = "products"
 
     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
-    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    # user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     name: Mapped[str] = mapped_column(String(100), nullable=False, unique=True, index=True)
     description: Mapped[str] = mapped_column(String(255), nullable=False)
     price: Mapped[int] = mapped_column(Integer, nullable=False)
     stock: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
-    user: Mapped["User"] = relationship(back_populates="products")
+    # user: Mapped["User"] = relationship(back_populates="products")
     images: Mapped["ProductImage"] = relationship(back_populates="product", cascade="all, delete-orphan")
 
 

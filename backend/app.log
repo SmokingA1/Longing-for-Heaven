@@ -251,3 +251,179 @@ FROM users
 WHERE users.id = $1::UUID
 [2025-06-07 16:36:29,932] INFO in base: [generated in 0.00104s] (UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'),)
 [2025-06-07 16:36:29,945] INFO in base: ROLLBACK
+[2025-06-07 16:37:10,174] INFO in base: select pg_catalog.version()
+[2025-06-07 16:37:10,174] INFO in base: [raw sql] ()
+[2025-06-07 16:37:10,176] INFO in base: select current_schema()
+[2025-06-07 16:37:10,177] INFO in base: [raw sql] ()
+[2025-06-07 16:37:10,178] INFO in base: show standard_conforming_strings
+[2025-06-07 16:37:10,179] INFO in base: [raw sql] ()
+[2025-06-07 16:37:10,181] INFO in base: BEGIN (implicit)
+[2025-06-07 16:37:10,191] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-06-07 16:37:10,192] INFO in base: [generated in 0.00091s] ('denisshookolad1221@gmail.com',)
+[2025-06-07 16:37:10,204] INFO in base: ROLLBACK
+[2025-06-07 16:37:19,569] INFO in base: BEGIN (implicit)
+[2025-06-07 16:37:19,571] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.phone_number = $1::VARCHAR
+[2025-06-07 16:37:19,571] INFO in base: [generated in 0.00080s] ('0661360680',)
+[2025-06-07 16:37:19,575] INFO in base: ROLLBACK
+[2025-06-07 16:38:09,867] INFO in base: BEGIN (implicit)
+[2025-06-07 16:38:09,869] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:38:09,870] INFO in base: [generated in 0.00060s] ('77a3ee8f-1251-4c88-9889-ff132cf8c944',)
+[2025-06-07 16:38:09,878] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email IS NULL
+[2025-06-07 16:38:09,879] INFO in base: [generated in 0.00071s] ()
+[2025-06-07 16:38:09,882] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.phone_number IS NULL
+[2025-06-07 16:38:09,882] INFO in base: [generated in 0.00081s] ()
+[2025-06-07 16:38:09,885] INFO in base: COMMIT
+[2025-06-07 16:38:09,886] INFO in base: BEGIN (implicit)
+[2025-06-07 16:38:09,888] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:38:09,889] INFO in base: [generated in 0.00071s] (UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'),)
+[2025-06-07 16:38:09,891] INFO in base: ROLLBACK
+[2025-06-07 16:38:30,115] INFO in base: BEGIN (implicit)
+[2025-06-07 16:38:30,116] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:38:30,116] INFO in base: [cached since 20.25s ago] ('77a3ee8f-1251-4c88-9889-ff132cf8c944',)
+[2025-06-07 16:38:30,118] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email IS NULL
+[2025-06-07 16:38:30,121] INFO in base: [cached since 20.24s ago] ()
+[2025-06-07 16:38:30,122] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.phone_number IS NULL
+[2025-06-07 16:38:30,123] INFO in base: [cached since 20.24s ago] ()
+[2025-06-07 16:38:30,128] INFO in base: UPDATE users SET name=$1::VARCHAR, updated_at=$2::TIMESTAMP WITHOUT TIME ZONE WHERE users.id = $3::UUID
+[2025-06-07 16:38:30,129] INFO in base: [generated in 0.00066s] ('Deniiiis', datetime.datetime(2025, 6, 7, 13, 38, 30, 128821), UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'))
+[2025-06-07 16:38:30,173] INFO in base: COMMIT
+[2025-06-07 16:38:30,179] INFO in base: BEGIN (implicit)
+[2025-06-07 16:38:30,180] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:38:30,180] INFO in base: [cached since 20.29s ago] (UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'),)
+[2025-06-07 16:38:30,182] INFO in base: ROLLBACK
+[2025-06-07 16:38:55,696] INFO in base: BEGIN (implicit)
+[2025-06-07 16:38:55,697] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:38:55,698] INFO in base: [cached since 45.83s ago] ('77a3ee8f-1251-4c88-9889-ff132cf8c944',)
+[2025-06-07 16:38:55,700] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-06-07 16:38:55,700] INFO in base: [cached since 105.5s ago] ('denisshokolad1221@gmail.com',)
+[2025-06-07 16:38:55,701] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.phone_number IS NULL
+[2025-06-07 16:38:55,702] INFO in base: [cached since 45.82s ago] ()
+[2025-06-07 16:38:55,704] INFO in base: UPDATE users SET email=$1::VARCHAR, updated_at=$2::TIMESTAMP WITHOUT TIME ZONE WHERE users.id = $3::UUID
+[2025-06-07 16:38:55,704] INFO in base: [generated in 0.00054s] ('denisshokolad1221@gmail.com', datetime.datetime(2025, 6, 7, 13, 38, 55, 704273), UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'))
+[2025-06-07 16:38:55,706] INFO in base: COMMIT
+[2025-06-07 16:38:55,712] INFO in base: BEGIN (implicit)
+[2025-06-07 16:38:55,713] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:38:55,713] INFO in base: [cached since 45.83s ago] (UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'),)
+[2025-06-07 16:38:55,715] INFO in base: ROLLBACK
+[2025-06-07 16:39:01,459] INFO in base: BEGIN (implicit)
+[2025-06-07 16:39:01,460] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:39:01,461] INFO in base: [cached since 51.59s ago] ('77a3ee8f-1251-4c88-9889-ff132cf8c944',)
+[2025-06-07 16:39:01,463] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-06-07 16:39:01,465] INFO in base: [cached since 111.3s ago] ('denisshokolad1221@gmail.com',)
+[2025-06-07 16:39:01,470] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.phone_number IS NULL
+[2025-06-07 16:39:01,473] INFO in base: [cached since 51.59s ago] ()
+[2025-06-07 16:39:01,476] INFO in base: COMMIT
+[2025-06-07 16:39:01,478] INFO in base: BEGIN (implicit)
+[2025-06-07 16:39:01,480] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:39:01,485] INFO in base: [cached since 51.6s ago] (UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'),)
+[2025-06-07 16:39:01,487] INFO in base: ROLLBACK
+[2025-06-07 16:39:15,857] INFO in base: BEGIN (implicit)
+[2025-06-07 16:39:15,857] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:39:15,858] INFO in base: [cached since 65.99s ago] ('77a3ee8f-1251-4c88-9889-ff132cf8c944',)
+[2025-06-07 16:39:15,861] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-06-07 16:39:15,861] INFO in base: [cached since 125.7s ago] ('denisshokolad1221@gmail.com',)
+[2025-06-07 16:39:15,863] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.phone_number IS NULL
+[2025-06-07 16:39:15,864] INFO in base: [cached since 65.98s ago] ()
+[2025-06-07 16:39:15,866] INFO in base: UPDATE users SET country=$1::VARCHAR, updated_at=$2::TIMESTAMP WITHOUT TIME ZONE WHERE users.id = $3::UUID
+[2025-06-07 16:39:15,867] INFO in base: [generated in 0.00092s] ('Ukranian', datetime.datetime(2025, 6, 7, 13, 39, 15, 866478), UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'))
+[2025-06-07 16:39:15,870] INFO in base: COMMIT
+[2025-06-07 16:39:15,910] INFO in base: BEGIN (implicit)
+[2025-06-07 16:39:15,911] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:39:15,912] INFO in base: [cached since 66.02s ago] (UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'),)
+[2025-06-07 16:39:15,914] INFO in base: ROLLBACK
+[2025-06-07 16:39:56,663] INFO in base: BEGIN (implicit)
+[2025-06-07 16:39:56,664] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:39:56,665] INFO in base: [cached since 106.8s ago] ('77a3ee8f-1251-4c88-9889-ff132cf8c944',)
+[2025-06-07 16:39:56,705] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-06-07 16:39:56,706] INFO in base: [cached since 166.5s ago] ('denisshokolad1221@gmail.com',)
+[2025-06-07 16:39:56,708] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.phone_number IS NULL
+[2025-06-07 16:39:56,709] INFO in base: [cached since 106.8s ago] ()
+[2025-06-07 16:39:56,712] INFO in base: UPDATE users SET country=$1::VARCHAR, city=$2::VARCHAR, street=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE users.id = $5::UUID
+[2025-06-07 16:39:56,713] INFO in base: [generated in 0.00085s] ('Ukrainian', 'Hlukhiv', 'Geroev nebesnoi sotni', datetime.datetime(2025, 6, 7, 13, 39, 56, 712584), UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'))
+[2025-06-07 16:39:56,714] INFO in base: COMMIT
+[2025-06-07 16:39:56,716] INFO in base: BEGIN (implicit)
+[2025-06-07 16:39:56,717] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:39:56,718] INFO in base: [cached since 106.8s ago] (UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'),)
+[2025-06-07 16:39:56,720] INFO in base: ROLLBACK
+[2025-06-07 16:40:46,846] INFO in base: BEGIN (implicit)
+[2025-06-07 16:40:46,847] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-06-07 16:40:46,847] INFO in base: [cached since 216.7s ago] ('denis@gmail.com',)
+[2025-06-07 16:40:46,849] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.phone_number = $1::VARCHAR
+[2025-06-07 16:40:46,850] INFO in base: [cached since 207.3s ago] ('0661360680',)
+[2025-06-07 16:40:46,853] INFO in base: UPDATE users SET name=$1::VARCHAR, email=$2::VARCHAR, country=$3::VARCHAR, city=$4::VARCHAR, street=$5::VARCHAR, updated_at=$6::TIMESTAMP WITHOUT TIME ZONE WHERE users.id = $7::UUID
+[2025-06-07 16:40:46,854] INFO in base: [generated in 0.00070s] ('Denis', 'denis@gmail.com', 'Russian', 'somesity', 'Some street', datetime.datetime(2025, 6, 7, 13, 40, 46, 853451), UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'))
+[2025-06-07 16:40:46,856] INFO in base: COMMIT
+[2025-06-07 16:40:46,897] INFO in base: BEGIN (implicit)
+[2025-06-07 16:40:46,898] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:40:46,898] INFO in base: [cached since 157s ago] (UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'),)
+[2025-06-07 16:40:46,900] INFO in base: ROLLBACK
+[2025-06-07 16:40:52,470] INFO in base: BEGIN (implicit)
+[2025-06-07 16:40:52,471] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-07 16:40:52,472] INFO in base: [cached since 162.6s ago] (UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'),)
+[2025-06-07 16:40:52,477] INFO in base: SELECT products.id AS products_id, products.user_id AS products_user_id, products.name AS products_name, products.description AS products_description, products.price AS products_price, products.stock AS products_stock, products.created_at AS products_created_at, products.updated_at AS products_updated_at 
+FROM products 
+WHERE $1::UUID = products.user_id
+[2025-06-07 16:40:52,479] INFO in base: [generated in 0.00180s] (UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'),)
+[2025-06-07 16:40:52,486] INFO in base: DELETE FROM users WHERE users.id = $1::UUID
+[2025-06-07 16:40:52,487] INFO in base: [generated in 0.00096s] (UUID('77a3ee8f-1251-4c88-9889-ff132cf8c944'),)
+[2025-06-07 16:40:52,529] INFO in base: COMMIT
