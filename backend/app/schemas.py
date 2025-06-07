@@ -87,6 +87,30 @@ class ProductImagePublic(ProductImageBase):
     model_config = {"from_attributes": True}
 
 
+class OrderBase(BaseModel):
+    user_id: UUID
+    product_id: UUID
+    quantity: int = Field(1, ge=1)
+    total_price: int = Field(..., ge=0)
+    status: str = Field("pending", max_length=20)
+
+
+class OrderCreate(OrderBase):
+    pass
+
+
+class OrderPublic(OrderBase):
+    id: UUID
+
+    model_config = {"from_attributes": True}
+
+
+class OrderUpdate(BaseModel):
+    quantity: int | None = Field(None, ge=1)
+    total_price: int | None = Field(None, ge=0)
+    status: str | None = Field(None, max_length=20)
+
+
 class TokenPayload(BaseModel):
     sub: str
     exp: float
