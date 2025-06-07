@@ -30,7 +30,7 @@ class User(Base, TimestampMixin):
     city: Mapped[str | None] = mapped_column(String(100), nullable=True)
     street: Mapped[str | None] = mapped_column(String(100), nullable=True)
 
-    productcs: Mapped[list["Product"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    products: Mapped[list["Product"]] = relationship(back_populates="user", cascade="all, delete-orphan")
 
 
 class Product(Base, TimestampMixin):
@@ -54,4 +54,4 @@ class ProductImage(Base, TimestampMixin):
     product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"), nullable=False)
     photo_url: Mapped[str] = mapped_column(String(255), nullable=False)
     
-    product: Mapped["User"] = relationship(back_populates="images")
+    product: Mapped["Product"] = relationship(back_populates="images")

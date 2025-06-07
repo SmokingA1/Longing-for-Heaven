@@ -22,7 +22,7 @@ class UserBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=50)
     email: EmailStr = Field(...)
     phone_number: str | None = Field(None, min_length=8, max_length=15)
-    avatar_url: str =Field("static/avatars/d-avatar.jpg", min_length=1)
+    avatar_url: str = Field("static/avatars/d-avatar.jpg", min_length=1)
     country: str | None = Field(None, min_length=2, max_length=50)
     city: str | None = Field(None, min_length=2, max_length=100)
     street: str | None = Field(None, min_length=2, max_length=100)
@@ -85,3 +85,12 @@ class ProductImagePublic(ProductImageBase):
     id: UUID
 
     model_config = {"from_attributes": True}
+
+
+class TokenPayload(BaseModel):
+    sub: str
+    exp: float
+    
+
+class Message(BaseModel):
+    data: str

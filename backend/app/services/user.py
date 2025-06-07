@@ -7,15 +7,15 @@ from sqlalchemy import select
 from app.models import User
 from app.schemas import UserUpdate, UserCreate
 from app.core.security import hash_password
-
+from app.core.security import verify_password
 
 async def get_user_by_id(*, db: AsyncSession, user_id: UUID) -> User:
     db_user = await db.get(User, user_id)
     return db_user
 
 
-async def get_user_by_email(*, db: AsyncSession, email: str) -> User:
-    query = await db.execute(select(User).where(User.email == email))
+async def get_user_by_email(*, db: AsyncSession, user_email: str) -> User:
+    query = await db.execute(select(User).where(User.email == user_email))
     db_user = query.scalars().first()
     return db_user
 
@@ -60,7 +60,7 @@ async def create_user(*, db: AsyncSession, user_create: UserCreate) -> User:
     return new_user
 
 
-async def update_user_by_id(*, db: AsyncSession, user_id: UUID, user_update: UserUpdate) -> User:
+async def update_user_by_id(*, db: AsyncSession, user_id: UUID, user_update: UserUpdate) -> User | None:
     db_user = await get_user_by_id(db=db, user_id=user_id)
 
     if not db_user: 
@@ -76,7 +76,7 @@ async def update_user_by_id(*, db: AsyncSession, user_id: UUID, user_update: Use
     return db_user
 
 
-async def delete_user_by_id(*, db: AsyncSession, user_id: UUID) -> User:
+async def delete_user_by_id(*, db: AsyncSession, user_id: UUID) -> User | None:
     db_user = await get_user_by_id(db=db, user_id=user_id)
 
     if not db_user: 
@@ -85,4 +85,13 @@ async def delete_user_by_id(*, db: AsyncSession, user_id: UUID) -> User:
     await db.delete(db_user)
     await db.commit()
 
+    return db_user
+
+
+async def authenticate(db: AsyncSession, user_email: str, password: str) -> User | None:
+    db_user = await get_user_by_email(db=db, user_email=user_email)
+
+    if not db_user or not verify_password(password, db_user.hashed_password):
+        return None
+    
     return db_user

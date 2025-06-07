@@ -24,9 +24,9 @@ class Settings(BaseSettings):
         return f"postgresql+asyncpg://{self.DATABASE_USER}:{self.DATABASE_PASSWORD}@{self.DATABASE_HOST}:{self.DATABASE_PORT}/{self.DATABASE_DB}"
     
     # Security
-    ALGORITHM: str = "H256"
+    ALGORITHM: str = "HS256"
     SECRET_KEY: str
-    ACCESS_TOKEN_EPXIRE_MINUTES: int = 60 * 24 * 7 
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7 
 
     
 settings = Settings()
