@@ -4,9 +4,8 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, Query, status
 
 from app.schemas import ProductCreate, ProductPublic, ProductUpdate, Message
-from app.services.product import (
+from backend.app.services.product.product import (
     get_product_by_id,
-    get_user_products_by_id,
     get_products,
     create_product,
     update_product_by_id,

@@ -4,7 +4,7 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, Query, status
 
 from app.schemas import ProductImageCreate, ProductImagePublic, Message
-from app.services.productimage import (
+from app.services.product.image import (
     get_product_im_by_id,
     get_product_ims,
     get_product_ims_by_product_id,
