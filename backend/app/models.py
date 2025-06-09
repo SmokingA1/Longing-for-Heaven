@@ -45,7 +45,7 @@ class Product(Base, TimestampMixin):
     stock: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
     images: Mapped[list["ProductImage"]] = relationship(back_populates="product", cascade="all, delete-orphan")
-    product_items: Mapped[list["OrderItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
+    order_items: Mapped[list["OrderItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
     cart_items: Mapped[list["CartItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
 
 class ProductImage(Base, TimestampMixin):
@@ -91,7 +91,7 @@ class OrderItem(Base, TimestampMixin):
     price: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
     order: Mapped["Order"] = relationship(back_populates="order_items")
-    product: Mapped["Product"] = relationship(back_populates="product_items")
+    product: Mapped["Product"] = relationship(back_populates="order_items")
 
 
 class Cart(Base, TimestampMixin):

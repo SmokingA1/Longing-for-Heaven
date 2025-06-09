@@ -2,6 +2,7 @@ from pydantic import Field, EmailStr, BaseModel
 from uuid import UUID
 from enum import Enum as PyEnum
 
+
 class AdminBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=50, description="Admin name")
     email: EmailStr = Field(..., description="Admin email adress")
@@ -100,7 +101,7 @@ class OrderStatus(PyEnum):
 class OrderBase(BaseModel):
     user_id: UUID
     total_price: int = Field(..., ge=0)
-    status: OrderStatus = Field(OrderStatus.PENDING, max_length=20)
+    status: OrderStatus = Field(OrderStatus.PENDING)
 
 
 class OrderCreate(OrderBase):
@@ -115,9 +116,15 @@ class OrderPublic(OrderBase):
     model_config = {"from_attributes": True}
 
 
+class OrderRead(OrderBase):
+    id: UUID
+    
+    model_config = {"from_attributes": True}
+
+
 class OrderUpdate(BaseModel):
     total_price: int | None = Field(None, ge=0)
-    status: OrderStatus | None = Field(None, max_length=20)
+    status: OrderStatus | None = Field(None)
 
 
 class OrderItemBase(BaseModel):
@@ -187,3 +194,9 @@ class TokenPayload(BaseModel):
 
 class Message(BaseModel):
     data: str
+
+
+OrderPublic.model_rebuild()
+OrderItemPublic.model_rebuild()
+CartPublic.model_rebuild()
+CartItemPublic.model_rebuild()
