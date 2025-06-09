@@ -1,10 +1,11 @@
 from pydantic import Field, EmailStr, BaseModel
 from uuid import UUID
+from enum import Enum as PyEnum
 
 class AdminBase(BaseModel):
-    name: str = Field(..., min_length=1, max_length=50)
-    email: EmailStr = Field(...)
-    phone_number: str = Field(..., min_length=8, max_length=15)
+    name: str = Field(..., min_length=1, max_length=50, description="Admin name")
+    email: EmailStr = Field(..., description="Admin email adress")
+    phone_number: str = Field(..., min_length=8, max_length=15, description="Admin phone number")
     avatar_url: str = Field("static/avatars/d-avatar.jpg", min_length=1)
 
 
@@ -23,9 +24,9 @@ class UserBase(BaseModel):
     email: EmailStr = Field(...)
     phone_number: str | None = Field(None, min_length=8, max_length=15)
     avatar_url: str = Field("static/avatars/d-avatar.jpg", min_length=1)
-    country: str | None = Field(None, min_length=2, max_length=50)
-    city: str | None = Field(None, min_length=2, max_length=100)
-    street: str | None = Field(None, min_length=2, max_length=100)
+    country: str | None = Field(None, min_length=2, max_length=50, description="User country for shipping")
+    city: str | None = Field(None, min_length=2, max_length=100, description="User city for shipping")
+    street: str | None = Field(None, min_length=2, max_length=100, description="User street for shipping")
 
     
 class UserCreate(UserBase):
@@ -49,14 +50,14 @@ class UserUpdate(BaseModel):
 
 
 class ProductBase(BaseModel):
-    # user_id: UUID = Field(...)
     name: str = Field(..., min_length=1, max_length=100)
+    description: str = Field(..., min_length=1, max_length=255)
     price: int = Field(...)
     stock: int = Field(0)
 
 
 class ProductCreate(ProductBase):
-    password: str = Field(..., min_length=8, max_length=50)
+    pass
 
 
 class ProductPublic(ProductBase):
@@ -87,12 +88,19 @@ class ProductImagePublic(ProductImageBase):
     model_config = {"from_attributes": True}
 
 
+class OrderStatus(PyEnum):
+    PENDING = "pending"
+    PAID = "paid"
+    PROCESSING = "processing"
+    SHIPPED = "shipped"
+    CANCELLED = "cancelled"
+    RETURNED = "returned"
+
+
 class OrderBase(BaseModel):
     user_id: UUID
-    product_id: UUID
-    quantity: int = Field(1, ge=1)
     total_price: int = Field(..., ge=0)
-    status: str = Field("pending", max_length=20)
+    status: OrderStatus = Field(OrderStatus.PENDING, max_length=20)
 
 
 class OrderCreate(OrderBase):
@@ -102,13 +110,74 @@ class OrderCreate(OrderBase):
 class OrderPublic(OrderBase):
     id: UUID
 
+    order_items: list["OrderItemPublic"]
+
     model_config = {"from_attributes": True}
 
 
 class OrderUpdate(BaseModel):
-    quantity: int | None = Field(None, ge=1)
     total_price: int | None = Field(None, ge=0)
-    status: str | None = Field(None, max_length=20)
+    status: OrderStatus | None = Field(None, max_length=20)
+
+
+class OrderItemBase(BaseModel):
+    order_id: UUID
+    product_id: UUID
+    quantity: int = Field(default=1, ge=1)
+    price: int = Field(default=0)
+
+
+class OrderItemCreate(OrderItemBase):
+    pass
+
+
+class OrderItemPublic(OrderItemBase):
+    id: UUID
+
+    product: "ProductPublic"
+
+    model_config = {"from_attributes": True}
+
+
+class OrderItemUpdate(BaseModel):
+    quantity: int | None = Field(None, ge=1)
+    price: int | None = Field(None)
+
+
+class CartBase(BaseModel):
+    user_id: UUID
+
+
+class CartPublic(CartBase):
+    id: UUID
+
+    cart_items: list["CartItemPublic"]
+
+    model_config = {"from_attributes": True}
+
+
+class CartItemBase(BaseModel):
+    cart_id: UUID
+    product_id: UUID
+    quantity: int = Field(default=1, ge=1)
+    price: int = Field(default=0)
+
+
+class CartItemCreate(CartItemBase):
+    pass
+
+
+class CartItemPublic(CartItemBase):
+    id: UUID
+
+    product: "ProductPublic"
+
+    model_config = {"from_attributes": True}
+
+
+class CartItemUpdate(BaseModel):
+    quantity: int | None = Field(None, ge=1)
+    price: int | None = Field(None)
 
 
 class TokenPayload(BaseModel):

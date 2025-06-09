@@ -87,7 +87,6 @@ class OrderItem(Base, TimestampMixin):
     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     order_id: Mapped[UUID] = mapped_column(ForeignKey("orders.id", ondelete="CASCADE"), nullable=False)
     product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"), nullable=False)
-
     quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
     price: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
@@ -111,7 +110,6 @@ class CartItem(Base, TimestampMixin):
     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     cart_id: Mapped[UUID] = mapped_column(ForeignKey("carts.id", ondelete="CASCADE"), nullable=False)
     product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"), nullable=False)
-
     quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
     price: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
