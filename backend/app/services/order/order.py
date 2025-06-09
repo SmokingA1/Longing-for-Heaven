@@ -5,13 +5,14 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 
-from app.models import Order
+from app.models import Order, OrderItem
 from app.schemas import OrderCreate, OrderUpdate
 
 
 async def get_order_by_id(*, db: AsyncSession, order_id: UUID) -> Order:
-    query = select(Order).where(Order.id == order_id)
-    query = query.options(joinedload(Order.order_items))
+    query = select(Order).options(
+        joinedload(Order.order_items).joinedload(OrderItem.product)
+    ).where(Order.id == order_id)
 
     db_order = await db.execute(query)
     return db_order.scalars().first()
@@ -26,7 +27,7 @@ async def get_orders(
     query = select(Order)
 
     query = query.offset(offset=offset).limit(limit=limit)
-    query.options(joinedload(Order.order_items))
+    query = query.options(joinedload(Order.order_items).joinedload(OrderItem.product))
 
     result = await db.execute(query)
     db_orders = result.scalars().all()
@@ -40,6 +41,7 @@ async def get_orders_by_user_id(
     user_id: UUID,
 ) -> List[Order]:
     query = select(Order).where(Order.user_id == user_id)
+    query = query.options(joinedload(Order.order_items).joinedload(OrderItem.product))
 
     result = await db.execute(query)
     db_orders = result.scalars().all()
@@ -48,11 +50,8 @@ async def get_orders_by_user_id(
 
 
 async def create_order(*, db: AsyncSession, order_create: OrderCreate) -> Order:
-    new_order = Order(**order_create)
+    new_order = Order(**order_create.model_dump())
 
-    if not new_order:
-        return None
-    
     db.add(new_order)
     await db.commit()
     await db.refresh(new_order)

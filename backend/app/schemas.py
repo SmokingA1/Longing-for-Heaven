@@ -155,6 +155,10 @@ class CartBase(BaseModel):
     user_id: UUID
 
 
+class CartCreate(CartBase):
+    pass
+
+
 class CartPublic(CartBase):
     id: UUID
 
