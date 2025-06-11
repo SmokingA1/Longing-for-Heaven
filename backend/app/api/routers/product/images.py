@@ -63,6 +63,8 @@ async def read_product_im_by_product_id(db: SessionDep, product_id: UUID) -> Any
     return db_product_ims
 
 
+
+# reorganizate create function with receiving file and seving it in static proudcts/images
 @router.post("/create", response_model=ProductImagePublic)
 async def create_new_product_im(db: SessionDep, product_im_create: ProductImageCreate) -> Any:
     """

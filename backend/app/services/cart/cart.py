@@ -62,12 +62,6 @@ async def create_cart(
     db: AsyncSession,
     cart_create: CartCreate,
 ) -> Cart:
-
-    db_user_cart = await get_cart_by_user_id(db=db, user_id=cart_create.user_id)
-
-    if db_user_cart:
-        return None
-
     new_cart = Cart(**cart_create.model_dump())
 
     db.add(new_cart)
