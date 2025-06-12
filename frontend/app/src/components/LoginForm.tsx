@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import googleIcon from "../assets/google.svg"
 import facebookIcon from "../assets/facebook.svg"
+import { Link } from "react-router";
+
+interface UserLoginInterface {
+    username: string;
+    password: string;
+}
 
 const LoginForm: React.FC = () => {
     const [isVisiblePassword, setIsVisiblePassword] = useState<boolean>(false);
+    const [userLogin, setUserLogin] = useState<UserLoginInterface>({
+        username: "",
+        password: "",
+    })
 
     return(
-        <form className="w-120 h-140 bg-white border-0 border-black rounded-xl shadow-md shadow-gray-300 flex flex-col items-center gap-6 px-10 py-15 " onSubmit={() => console.log("Hello")}>
+        <form className="w-120 h-150 bg-white border-0 border-black rounded-xl shadow-md shadow-gray-300 flex flex-col items-center gap-6 px-10 py-15 " onSubmit={() => console.log("Hello")}>
             <h2 className="font-normal text-3xl pb-5" >Login</h2>
             <div className="w-full flex flex-row gap-0 items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-6">
@@ -14,11 +24,17 @@ const LoginForm: React.FC = () => {
                 </svg>
 
                 <input 
-                    className="px-2 border-b-1 border-dotted border-black w-full text-lg outline-0"
-                    type="text" 
-                    placeholder="Username"
-                
-                
+                    className="px-2 border-b-1 border-dotted border-black w-full text-lg outline-0 rounded-t-md"
+                    type="email" 
+                    placeholder="Email"
+                    name="email"
+                    autoComplete="email"
+                    required
+                    value={userLogin.username}
+                    maxLength={255}
+                    onChange={(e) => {
+                        setUserLogin({...userLogin, username: e.target.value})
+                    }}
                 />
             </div>
             <div className="w-full flex flex-row gap-0 items-center relative mt-2">
@@ -26,13 +42,24 @@ const LoginForm: React.FC = () => {
                     <path fillRule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clipRule="evenodd" />
                 </svg>
                 <input 
-                    className="px-2 border-b-1 border-dotted border-black w-full text-lg outline-0"
+                    className="px-2 border-b-1 border-dotted border-black w-full text-lg outline-0 rounded-t-md"
                     type={isVisiblePassword ? "text" : "password"}
                     placeholder="Password"
-                
+                    name="current-password"
+                    autoComplete="current-password"
+                    required
+                    maxLength={50}
+                    value={userLogin.password}
+                    onChange={(e) =>{
+                        setUserLogin({ ...userLogin, password: e.target.value})
+                    }}
                 
                 />
-                <button className="absolute right-0" onClick={() => setIsVisiblePassword(!isVisiblePassword)}>    
+                <button 
+                    type="button"
+                    className="absolute right-0" 
+                    onClick={() => setIsVisiblePassword(!isVisiblePassword)}
+                >    
                     {isVisiblePassword ? (
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
                         <path fillRule="evenodd" d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l14.5 14.5a.75.75 0 1 0 1.06-1.06l-1.745-1.745a10.029 10.029 0 0 0 3.3-4.38 1.651 1.651 0 0 0 0-1.185A10.004 10.004 0 0 0 9.999 3a9.956 9.956 0 0 0-4.744 1.194L3.28 2.22ZM7.752 6.69l1.092 1.092a2.5 2.5 0 0 1 3.374 3.373l1.091 1.092a4 4 0 0 0-5.557-5.557Z" clipRule="evenodd" />
@@ -59,27 +86,32 @@ const LoginForm: React.FC = () => {
                 />
                 <label htmlFor="remember-me">Remember me </label>
 
-                <a href="#" className="ml-auto text-blue-400 hover:text-blue-700">
+                <Link to="/sign-up" className="ml-auto text-blue-400 hover:text-blue-700">
                     Forgot password?
-                </a>
+                </Link>
 
             </div>
-            <button className="w-full px-8 py-2 my-2 bg-indigo-300 rounded-xl ease-in duration-120 cursor-pointer text-white hover:bg-indigo-400">
-                Login
-
+            <button className="w-full px-8 py-2 my-1 bg-indigo-300 rounded-xl ease-in duration-120 cursor-pointer text-white hover:bg-indigo-400">
+                SIGN IN
             </button>
-            <span>Don't have an account yet?
-                <a href="#" className="text-blue-400 ml-1 hover:text-blue-700">
-                    Sign up
-                </a>
-            </span>
+
+            <div className="w-full flex items-center justify-center">
+                <div className="h-1 w-2/5 border-b-1 border-gray-500 inline-block"></div>
+                <span className="text-lg mx-4 flex justify-center">OR</span>
+                <div className="h-1 w-2/5 border-b-1 border-gray-500 inline-block"></div>
+
+            </div>
 
             <div className="flex w-full justify-center gap-3 my-auto">
-                <img src={googleIcon} alt="Google" className="size-10"/>
-                <img src={facebookIcon} alt="Facebook" className="size-10"/>
+                <img src={googleIcon} alt="Google" className="size-10 cursor-pointer"/>
+                <img src={facebookIcon} alt="Facebook" className="size-10 cursor-pointer"/>
 
             </div>
-            
+            <span className="mt-3">Don't have an account yet?
+                <Link to="/sign-up" className="text-blue-400 ml-1 hover:text-blue-700">
+                    Sign up
+                </Link>
+            </span>
         </form>
     )
 }
