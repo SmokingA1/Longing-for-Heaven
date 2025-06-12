@@ -35,7 +35,7 @@ async def read_carts(
     return db_carts
 
 
-@router.get("/{cart_id}", CartPublic)
+@router.get("/{cart_id}", response_model=CartPublic)
 async def read_cart_by_id(db: SessionDep, cart_id: UUID) -> Any:
     """
     Retrieve a specific cart by id.
@@ -46,23 +46,7 @@ async def read_cart_by_id(db: SessionDep, cart_id: UUID) -> Any:
     if not db_cart:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cart not found!")
     
-
-
-@router.get("/user/{user_id}", response_model=CartPublic)
-async def read_cart_by_user_id(
-    db: SessionDep,
-    user_id: UUID,
-) -> Any:
-    """
-    Retrieve user cart by his id.
-    """
-
-    db_user_cart = await get_cart_by_user_id(db=db, user_id=user_id)
-
-    if not db_user_cart:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cart not found!")
-    
-    return db_user_cart
+    return db_cart
 
 
 @router.get("/user/me", response_model=CartPublic)
@@ -76,6 +60,23 @@ async def read_my_cart(
 
     db_user_cart = await get_cart_by_user_id(db=db, user_id=current_user.id)
     
+    if not db_user_cart:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cart not found!")
+    
+    return db_user_cart
+
+
+@router.get("/user/{user_id}", response_model=CartPublic)
+async def read_cart_by_user_id(
+    db: SessionDep,
+    user_id: UUID,
+) -> Any:
+    """
+    Retrieve user cart by his id.
+    """
+
+    db_user_cart = await get_cart_by_user_id(db=db, user_id=user_id)
+
     if not db_user_cart:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cart not found!")
     
@@ -132,4 +133,4 @@ async def delete_existing_cart(
     if not deleted_cart:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cart not found!")
     
-    return deleted_cart
+    return Message(data="Cart deleted successfully!")

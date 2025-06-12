@@ -16,7 +16,7 @@ async def get_cart_by_id(
 ) -> Cart:
     query = select(Cart).where(Cart.id == cart_id).options(joinedload(Cart.cart_items).joinedload(CartItem.product))
     result = await db.execute(query)
-    db_cart = result.scalars().first()
+    db_cart = result.unique().scalars().first()
     return db_cart
 
 
@@ -27,7 +27,7 @@ async def get_cart_by_user_id(
 ) -> Cart:
     query = select(Cart).where(Cart.user_id == user_id).options(joinedload(Cart.cart_items).joinedload(CartItem.product))
     result = await db.execute(query)
-    db_cart = result.scalars().first()
+    db_cart = result.unique().scalars().first()
     return db_cart
 
 
@@ -40,6 +40,13 @@ async def get_or_create_cart_by_user_id(*, db: AsyncSession, user_id: UUID) -> C
     db.add(new_cart)
     await db.commit()
     await db.refresh(new_cart)
+
+    query = select(Cart).where(Cart.id == new_cart.id).options(
+        joinedload(Cart.cart_items).joinedload(CartItem.product)
+    )
+    result = await db.execute(query)
+    new_cart = result.scalars().first()
+
     return new_cart
 
 
@@ -52,7 +59,7 @@ async def get_carts(
     query = select(Cart).options(joinedload(Cart.cart_items).joinedload(CartItem.product)).offset(offset=offset).limit(limit=limit)
 
     result = await db.execute(query)
-    db_carts = result.scalars().all()
+    db_carts = result.unique().scalars().all()
 
     return db_carts
 
@@ -67,6 +74,13 @@ async def create_cart(
     db.add(new_cart)
     await db.commit()
     await db.refresh(new_cart)
+
+
+    query = select(Cart).where(Cart.id == new_cart.id).options(
+        joinedload(Cart.cart_items).joinedload(CartItem.product)
+    )
+    result = await db.execute(query)
+    new_cart = result.scalars().first()
 
     return new_cart
 

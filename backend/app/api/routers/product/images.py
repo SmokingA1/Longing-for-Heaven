@@ -50,7 +50,7 @@ async def read_product_im_by_id(db: SessionDep, product_im_id: UUID) -> Any:
 
 
 @router.get("/product/{product_id}", response_model=List[ProductImagePublic])
-async def read_product_im_by_product_id(db: SessionDep, product_id: UUID) -> Any:
+async def read_product_images_by_product_id(db: SessionDep, product_id: UUID) -> Any:
     """
     Retrieve product images by product id.
     """
@@ -61,7 +61,6 @@ async def read_product_im_by_product_id(db: SessionDep, product_id: UUID) -> Any
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Product images were not found!")
 
     return db_product_ims
-
 
 
 # reorganizate create function with receiving file and seving it in static proudcts/images
@@ -89,17 +88,9 @@ async def delete_product_image_by_id(db: SessionDep, product_im_id: UUID) -> Any
     Deleting product image by his id
     """
 
-    db_product_im = await get_product_im_by_id(db=db, product_im_id=product_im_id)
-
-    if not db_product_im:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Product image was not found!")
-
     deleted_product_im = await delete_product_im(db=db, product_im_id=product_im_id)
 
-    if not delete_product_im:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Something went wrong while deleting product image."
-        )
+    if not deleted_product_im:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Product image was not found!")
     
     return Message(data="Product image deleted successfully!")

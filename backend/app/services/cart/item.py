@@ -63,6 +63,12 @@ async def create_cart_item(
     await db.commit()
     await db.refresh(new_cart_item)
 
+    query = select(CartItem).where(CartItem.id == new_cart_item.id).options(
+        joinedload(CartItem.product)
+    )
+    result = await db.execute(query)
+    new_cart_item = result.unique().scalars().first()
+
     return new_cart_item
 
 
@@ -78,7 +84,8 @@ async def update_cart_item_by_id(
         return None
     
     for k, v in cart_item_update.dict(exclude_unset=True).items():
-        setattr(db_cart_item, k, v)
+        if v is not None:
+            setattr(db_cart_item, k, v)
 
     await db.commit()
     await db.refresh(db_cart_item)

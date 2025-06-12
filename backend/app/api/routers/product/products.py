@@ -4,14 +4,14 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, Query, status
 
 from app.schemas import ProductCreate, ProductPublic, ProductUpdate, Message
-from backend.app.services.product.product import (
+from app.services.product.product import (
     get_product_by_id,
     get_products,
     create_product,
     update_product_by_id,
     delete_product_by_id
 )
-from app.api.deps import CurrentUser, SessionDep
+from app.api.deps import SessionDep
 
 router = APIRouter(prefix="/products", tags=["Product"])
 
@@ -53,7 +53,7 @@ async def create_new_product(db: SessionDep, product_create: ProductCreate) -> A
     Creating new product with product_create form.
     """
 
-    new_product = await create_new_product(db=db, product_create=product_create)
+    new_product = await create_product(db=db, product_create=product_create)
 
     if not new_product:
         raise HTTPException(
@@ -95,4 +95,4 @@ async def delete_product(db: SessionDep, product_id: UUID) -> Any:
             detail="Product not found!"
         )
     
-    return deleted_product
+    return Message(data="Product deleted successfully!")

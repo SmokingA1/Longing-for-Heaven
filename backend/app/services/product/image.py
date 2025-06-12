@@ -67,7 +67,7 @@ async def delete_product_im(
     db: AsyncSession,
     product_im_id: UUID,
 ) -> ProductImage:
-    db_product_im = get_product_im_by_id(db=db, product_im_id=product_im_id)
+    db_product_im = await get_product_im_by_id(db=db, product_im_id=product_im_id)
 
     if not db_product_im:
         return None

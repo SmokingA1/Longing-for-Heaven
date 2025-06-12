@@ -55,7 +55,8 @@ async def update_product_by_id(
         return None
     
     for k, v in product_update.dict(exclude_unset=True).items():
-        setattr(db_product, k, v)
+        if v is not None:  # Если value является не None if value != None: setattr
+            setattr(db_product, k, v)
 
     await db.commit()
     await db.refresh(db_product)

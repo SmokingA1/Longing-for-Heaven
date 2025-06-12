@@ -48,6 +48,7 @@ class Product(Base, TimestampMixin):
     order_items: Mapped[list["OrderItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
     cart_items: Mapped[list["CartItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
 
+
 class ProductImage(Base, TimestampMixin):
     __tablename__ = "product_images"
     

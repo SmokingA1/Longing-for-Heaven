@@ -8,9 +8,9 @@ from app.api.deps import SessionDep
 from app.core.security import create_access_token
 from app.utils.logger import logger
 from app.services.admin import authenticate
-router = APIRouter(tags=["Login"])
+router = APIRouter(tags=["Admin login"])
 
-@router.post("/login", response_model=Message)
+@router.post("/admin/login", response_model=Message)
 async def login(
     db: SessionDep,
     response: Response,

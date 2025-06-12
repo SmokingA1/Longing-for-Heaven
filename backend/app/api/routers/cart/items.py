@@ -69,7 +69,7 @@ async def read_cart_items_by_cart_id(
 
 
 @router.post("/create", response_model=CartItemPublic)
-async def create_cart_item(
+async def create_new_cart_item(
     db: SessionDep,
     cart_item_create: CartItemCreate,
 ) -> Any:
@@ -83,7 +83,7 @@ async def create_cart_item(
 
 
 @router.put("/update/{cart_item_id}", response_model=CartItemPublic)
-async def update_cart_item_by_id(
+async def update_cart_item(
     db: SessionDep,
     cart_item_id: UUID,
     cart_item_update: CartItemUpdate,
@@ -92,7 +92,7 @@ async def update_cart_item_by_id(
     Update cart item by id.
     """
 
-    updated_cart_item = await update_cart_item_by_id(db=db, cart_item_id=cart_item_id)
+    updated_cart_item = await update_cart_item_by_id(db=db, cart_item_id=cart_item_id, cart_item_update=cart_item_update)
 
     if not updated_cart_item:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cart item not found!")
@@ -114,4 +114,4 @@ async def delete_cart_item(
     if not deleted_cart_item:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cart item not found!")
     
-    return deleted_cart_item
+    return Message(data="Cart item deleted successfully!")

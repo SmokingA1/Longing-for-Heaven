@@ -23,7 +23,7 @@ async def read_admins(db: SessionDep):
     return db_admins
 
 
-@router.get("/current", response_class=AdminRead)
+@router.get("/current", response_model=AdminRead)
 async def read_admin_by_id(db: SessionDep, current_admin: CurrentAdmin):
     """
     Retrieve admin by his id.
@@ -32,7 +32,7 @@ async def read_admin_by_id(db: SessionDep, current_admin: CurrentAdmin):
     return current_admin
 
 
-@router.get("/{amdin_id}", response_class=AdminRead)
+@router.get("/{amdin_id}", response_model=AdminRead)
 async def read_admin_by_id(db: SessionDep, admin_id: UUID):
     """
     Retrieve admin by his id.
