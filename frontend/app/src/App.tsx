@@ -1,9 +1,16 @@
 import './styles/App.css'
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import LoginPage from './pages/LoginPage';
 
 function App() {
 
   return (
-      <div className='store-el'>Start of the store path.</div>
+    <Router>
+      <Routes>
+        <Route path='login' element={<LoginPage />}/>
+
+      </Routes>
+    </Router>
   )
 }
 
