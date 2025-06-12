@@ -5,17 +5,17 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 
-from app.models import Order, OrderItem
+from app.models import Order, OrderItem, Product
 from app.schemas import OrderCreate, OrderUpdate
 
 
 async def get_order_by_id(*, db: AsyncSession, order_id: UUID) -> Order:
     query = select(Order).options(
-        joinedload(Order.order_items).joinedload(OrderItem.product)
+        joinedload(Order.order_items).joinedload(OrderItem.product).joinedload(Product.images)
     ).where(Order.id == order_id)
 
     db_order = await db.execute(query)
-    return db_order.scalars().first()
+    return db_order.unique().scalars().first()
 
 
 async def get_orders(
@@ -26,11 +26,14 @@ async def get_orders(
 ) -> List[Order]:
     query = select(Order)
 
+    query = query.options(joinedload
+        (Order.order_items).joinedload(OrderItem.product).joinedload(Product.images)
+    )
     query = query.offset(offset=offset).limit(limit=limit)
-    query = query.options(joinedload(Order.order_items).joinedload(OrderItem.product))
+
 
     result = await db.execute(query)
-    db_orders = result.scalars().all()
+    db_orders = result.unique().scalars().all()
 
     return db_orders
 
@@ -41,10 +44,12 @@ async def get_orders_by_user_id(
     user_id: UUID,
 ) -> List[Order]:
     query = select(Order).where(Order.user_id == user_id)
-    query = query.options(joinedload(Order.order_items).joinedload(OrderItem.product))
+    query = query.options(
+        joinedload(Order.order_items).joinedload(OrderItem.product).joinedload(Product.images)
+    )
 
     result = await db.execute(query)
-    db_orders = result.scalars().all()
+    db_orders = result.unique().scalars().all()
 
     return db_orders
 
@@ -55,6 +60,12 @@ async def create_order(*, db: AsyncSession, order_create: OrderCreate) -> Order:
     db.add(new_order)
     await db.commit()
     await db.refresh(new_order)
+
+    query = select(Order).options(
+        joinedload(Order.order_items).joinedload(OrderItem.product).joinedload(Product.images)
+    ).where(Order.id == new_order.id)
+    result = await db.execute(query)
+    new_order = result.unique().scalars().first()
 
     return new_order
 
