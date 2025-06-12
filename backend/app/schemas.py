@@ -64,6 +64,8 @@ class ProductCreate(ProductBase):
 class ProductPublic(ProductBase):
     id: UUID
 
+    images: list["ProductImagePublic"]
+
     model_config = {"from_attributes": True}
 
 

@@ -3,6 +3,7 @@ from uuid import UUID
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
+from sqlalchemy.orm import joinedload
 
 from app.models import Product
 from app.schemas import ProductCreate, ProductUpdate
@@ -10,7 +11,7 @@ from app.schemas import ProductCreate, ProductUpdate
 from app.utils.logger import logger
 
 async def get_product_by_id(*, db: AsyncSession, product_id: UUID) -> Product:
-    product = await db.get(Product, product_id)
+    product = select(Product).options(joinedload(Product.images)).where(Product.id == product_id)
     return product
 
 
@@ -21,12 +22,12 @@ async def get_products(
     limit: int = 20,
     
 ) -> List[Product]:
-    query = select(Product)
+    query = select(Product).options(joinedload(Product.images))
 
     query = query.offset(offset=offset).limit(limit=limit)
 
     result = await db.execute(query)
-    db_products = result.scalars().all()
+    db_products = result.unique().scalars().all()
 
     return db_products
 
@@ -39,6 +40,10 @@ async def create_product(*, db: AsyncSession, product_create: ProductCreate) -> 
     db.add(new_product)
     await db.commit()
     await db.refresh(new_product)
+
+    query = select(Product).where(Product.id == new_product.id).options(joinedload(Product.images))
+    result = await db.execute(query)
+    new_product = result.unique().scalars().first()
 
     return new_product
 

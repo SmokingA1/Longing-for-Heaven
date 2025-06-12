@@ -118,4 +118,4 @@ class CartItem(Base, TimestampMixin):
     product: Mapped["Product"] = relationship(back_populates="cart_items")
 
 
-# Something yet payment etc.
+# Something yet payment, reviews etc.

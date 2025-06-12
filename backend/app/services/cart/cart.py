@@ -5,8 +5,24 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 
-from app.models import Cart, CartItem
+from app.models import Cart, CartItem, Product
 from app.schemas import CartCreate
+
+
+async def get_carts(
+    *,
+    db: AsyncSession,
+    offset: int = 0, 
+    limit: int = 20,
+) -> List[Cart]:
+    query = select(Cart).options(
+        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload()
+    ).offset(offset=offset).limit(limit=limit)
+
+    result = await db.execute(query)
+    db_carts = result.unique().scalars().all()
+
+    return db_carts
 
 
 async def get_cart_by_id(
@@ -14,7 +30,9 @@ async def get_cart_by_id(
     db: AsyncSession,
     cart_id: UUID,
 ) -> Cart:
-    query = select(Cart).where(Cart.id == cart_id).options(joinedload(Cart.cart_items).joinedload(CartItem.product))
+    query = select(Cart).where(Cart.id == cart_id).options(
+        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload(Product.images)
+    )
     result = await db.execute(query)
     db_cart = result.unique().scalars().first()
     return db_cart
@@ -25,7 +43,9 @@ async def get_cart_by_user_id(
     db: AsyncSession,
     user_id: UUID,
 ) -> Cart:
-    query = select(Cart).where(Cart.user_id == user_id).options(joinedload(Cart.cart_items).joinedload(CartItem.product))
+    query = select(Cart).where(Cart.user_id == user_id).options(
+        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload(Product.images)
+    )
     result = await db.execute(query)
     db_cart = result.unique().scalars().first()
     return db_cart
@@ -42,26 +62,12 @@ async def get_or_create_cart_by_user_id(*, db: AsyncSession, user_id: UUID) -> C
     await db.refresh(new_cart)
 
     query = select(Cart).where(Cart.id == new_cart.id).options(
-        joinedload(Cart.cart_items).joinedload(CartItem.product)
+        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload(Product.images)
     )
     result = await db.execute(query)
     new_cart = result.scalars().first()
 
     return new_cart
-
-
-async def get_carts(
-    *,
-    db: AsyncSession,
-    offset: int = 0, 
-    limit: int = 20,
-) -> List[Cart]:
-    query = select(Cart).options(joinedload(Cart.cart_items).joinedload(CartItem.product)).offset(offset=offset).limit(limit=limit)
-
-    result = await db.execute(query)
-    db_carts = result.unique().scalars().all()
-
-    return db_carts
 
 
 async def create_cart(
@@ -77,7 +83,7 @@ async def create_cart(
 
 
     query = select(Cart).where(Cart.id == new_cart.id).options(
-        joinedload(Cart.cart_items).joinedload(CartItem.product)
+        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload(Product.images)
     )
     result = await db.execute(query)
     new_cart = result.scalars().first()
