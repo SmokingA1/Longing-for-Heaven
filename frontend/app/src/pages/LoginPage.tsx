@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "../styles/pages/LoginPage.css"
 import LoginForm from "../components/LoginForm";
 import longingForHeavenTitle from "../assets/LongingForHeaven24.png"
+
 const LoginPage: React.FC = () => {
 
 

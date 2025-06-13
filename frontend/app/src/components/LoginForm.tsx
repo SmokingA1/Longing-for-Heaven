@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import googleIcon from "../assets/google.svg"
 import facebookIcon from "../assets/facebook.svg"
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
+import { useDispatch } from "react-redux";
+import { type AppDispatch  } from "../store";
+import { setUser } from "../features/user/userSlice";
 import api from "../api";
 
 interface UserLoginInterface {
@@ -18,6 +21,28 @@ const LoginForm: React.FC = () => {
     })
 
     const [error, setError] = useState<"password" | "server" | null>(null);
+    const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
+
+    const getUser = async () => {
+        try {
+            const response = await api.get("/users/me")
+            const { id, name, email, phone_number, avatar_url, country, city, street } = response.data;
+                dispatch(setUser({
+                    "id": id,
+                    "name": name,
+                    "email": email ,
+                    "phone_number": phone_number,
+                    "avatar_url": avatar_url,
+                    "country": country,
+                    "city": city,
+                    "street": street,
+                }));
+            
+        } catch (error) {
+            console.error;
+        }
+    }
 
     const handleLogin = async (e:React.FormEvent) => {
         e.preventDefault();
@@ -32,6 +57,9 @@ const LoginForm: React.FC = () => {
                 "Content-Type": "application/x-www-form-urlencoded"
             }})
             console.log(response.data);
+            await getUser();
+            navigate("/");
+
         } catch( error: any ) {
             if (error.response) {
                 console.error("Server error: ", error.response);
@@ -43,7 +71,6 @@ const LoginForm: React.FC = () => {
 
 
     }
-
 
     return(
         <form className="w-90 h-130 bg-white border-0 border-black rounded-xl shadow-md shadow-gray-300 flex flex-col items-center gap-6 px-5 py-10
@@ -111,7 +138,7 @@ const LoginForm: React.FC = () => {
 
                 </button>
                 {error == "password" && <span className="absolute top-full left-6.5 text-red-500 ">Password cannot be less than 8 characters.</span>}
-                {error == "server" && <span className="absolute top-full left-6.5 text-red-500 ">Incorrent email or password.</span>}
+                {error == "server" && <span className="absolute top-full left-6.5 text-red-500 ">Incorrect email or password.</span>}
 
             </div>
             

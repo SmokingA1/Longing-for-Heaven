@@ -49,7 +49,7 @@ async def login(
         )
     
     access_token = create_access_token(sub=db_user.id)
-    logger.info("Access token: ", access_token)
+    logger.info("Access token: %s ", access_token)
 
     response.set_cookie(
         key="access_token",

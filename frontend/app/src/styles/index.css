@@ -34,4 +34,8 @@ body, #root {
 
 :root {
   --spacing: 4px;
+} 
+
+:root {
+  --font-display: "Inter", sans-serif;
 }
