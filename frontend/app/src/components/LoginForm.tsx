@@ -3,6 +3,8 @@ import googleIcon from "../assets/google.svg"
 import facebookIcon from "../assets/facebook.svg"
 import { Link } from "react-router";
 
+import api from "../api";
+
 interface UserLoginInterface {
     username: string;
     password: string;
@@ -15,16 +17,47 @@ const LoginForm: React.FC = () => {
         password: "",
     })
 
+    const [error, setError] = useState<"password" | "server" | null>(null);
+
+    const handleLogin = async (e:React.FormEvent) => {
+        e.preventDefault();
+
+        if (userLogin.password.length < 8) {setError("password"); return;}
+
+        try{
+            const response = await api.post("/login", {
+                username: userLogin.username,
+                password: userLogin.password,
+            }, {headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }})
+            console.log(response.data);
+        } catch( error: any ) {
+            if (error.response) {
+                console.error("Server error: ", error.response);
+                setError("server");
+            } else {
+                console.error("Network or other error: ", error);
+            }
+        }
+
+
+    }
+
+
     return(
-        <form className="w-120 h-150 bg-white border-0 border-black rounded-xl shadow-md shadow-gray-300 flex flex-col items-center gap-6 px-10 py-15 " onSubmit={() => console.log("Hello")}>
-            <h2 className="font-normal text-3xl pb-5" >Login</h2>
+        <form className="w-90 h-130 bg-white border-0 border-black rounded-xl shadow-md shadow-gray-300 flex flex-col items-center gap-6 px-5 py-10
+                        sm:w-120 sm:h-150 sm:text-base sm:px-10 sm:py-15"
+        onSubmit={handleLogin}
+        >
+            <h2 className="font-normal text-3xl pb-3 sm:pb-5" >Login</h2>
             <div className="w-full flex flex-row gap-0 items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-6">
                     <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z" clipRule="evenodd" />
                 </svg>
 
                 <input 
-                    className="px-2 border-b-1 border-dotted border-black w-full text-lg outline-0 rounded-t-md"
+                    className="px-2 border-b-1 border-dotted border-black w-full text-md sm:text-lg outline-0 rounded-t-md"
                     type="email" 
                     placeholder="Email"
                     name="email"
@@ -42,7 +75,7 @@ const LoginForm: React.FC = () => {
                     <path fillRule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clipRule="evenodd" />
                 </svg>
                 <input 
-                    className="px-2 border-b-1 border-dotted border-black w-full text-lg outline-0 rounded-t-md"
+                    className="px-2 border-b-1 border-dotted border-black w-full text-md sm:text-lg outline-0 rounded-t-md"
                     type={isVisiblePassword ? "text" : "password"}
                     placeholder="Password"
                     name="current-password"
@@ -77,6 +110,9 @@ const LoginForm: React.FC = () => {
 
 
                 </button>
+                {error == "password" && <span className="absolute top-full left-6.5 text-red-500 ">Password cannot be less than 8 characters.</span>}
+                {error == "server" && <span className="absolute top-full left-6.5 text-red-500 ">Incorrent email or password.</span>}
+
             </div>
             
             <div className="flex flex-row w-full">
@@ -91,7 +127,7 @@ const LoginForm: React.FC = () => {
                 </Link>
 
             </div>
-            <button className="w-full px-8 py-2 my-1 bg-indigo-300 rounded-xl ease-in duration-120 cursor-pointer text-white hover:bg-indigo-400">
+            <button type="submit" className="w-full px-8 py-2 my-1 mb-4 sm:mb-0 bg-indigo-300 rounded-xl ease-in duration-120 cursor-pointer text-white hover:bg-indigo-400">
                 SIGN IN
             </button>
 

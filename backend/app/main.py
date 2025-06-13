@@ -1,10 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 import app.core.redis as redis_module
 from app.api import main
 
 app = FastAPI(title="Longing for heaven")
+
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 app.include_router(main.router)
 

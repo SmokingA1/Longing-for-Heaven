@@ -2,6 +2,7 @@ from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Response, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordRequestForm
+# from fastapi
 
 from app.schemas import Message
 from app.api.deps import SessionDep
@@ -48,6 +49,8 @@ async def login(
         )
     
     access_token = create_access_token(sub=db_user.id)
+    logger.info("Access token: ", access_token)
+
     response.set_cookie(
         key="access_token",
         value=access_token,
@@ -55,7 +58,6 @@ async def login(
         secure=False,
         samesite="lax"
     )
-
     await redis_module.redis.delete(key)
 
     return Message(data="Signed in successfully!")
