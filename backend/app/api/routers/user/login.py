@@ -62,3 +62,11 @@ async def login(
 
     return Message(data="Signed in successfully!")
 
+
+@router.get("/clear-cookie", response_model=Message)
+async def clear_cookie(response: Response):
+    """
+        This route is required to sign out from account and clear cookie data
+    """
+    response.delete_cookie("access_token")
+    return Message(data="Cookie have been cleared!")

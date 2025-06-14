@@ -4,8 +4,9 @@ const config: Config = {
     theme: {
         extend: {
             fontFamily: {
-                inter: ['Inter', 'sans-serif'],
-                display: ['var(--font-display)'],
+                slab: ['"Roboto Slab"', 'serif'],
+                inter: ['"Inter"', 'sans-serif'],
+                oswald: ['"Oswald"', 'sans-serif'],
             },
         },
     },

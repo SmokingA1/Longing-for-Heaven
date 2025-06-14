@@ -1,7 +1,7 @@
 from typing import List, Any
 from uuid import UUID
 
-from fastapi import APIRouter, Query, HTTPException, status
+from fastapi import APIRouter, Query, HTTPException, status, Response
 
 from app.api.deps import SessionDep, CurrentUser
 from app.schemas import UserCreate, UserPublic, UserUpdate, Message

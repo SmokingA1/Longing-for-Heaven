@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Hand+Pre:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=LXGW+Marker+Gothic&family=Oswald:wght@200..700&family=Roboto+Slab:wght@300&display=swap');
 @import "tailwindcss";
-
 
 
 @layer base {
@@ -11,15 +11,7 @@
         box-sizing: border-box;
     }
 
-    /* For Firefox. */
-    * {
-        scrollbar-width: none;
-    }
 
-    /* For WebKit (Chrome & Safari). */
-    ::-webkit-scrollbar {
-        display: none;
-    }
 }
 
 
@@ -36,6 +28,32 @@ body, #root {
   --spacing: 4px;
 } 
 
-:root {
-  --font-display: "Inter", sans-serif;
+
+@layer utilities {
+  @keyframes fade-in-scale {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .animate-out-here {
+    animation: fade-in-scale 0.3s ease-out;
+  }
+  
+  .roboto-slab-font {
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
+}
+
+body {
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }

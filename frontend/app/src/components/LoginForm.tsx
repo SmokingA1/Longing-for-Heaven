@@ -4,7 +4,7 @@ import facebookIcon from "../assets/facebook.svg"
 import { Link, useNavigate } from "react-router";
 
 import { useDispatch } from "react-redux";
-import { type AppDispatch  } from "../store";
+import { type AppDispatch } from "../store";
 import { setUser } from "../features/user/userSlice";
 import api from "../api";
 
@@ -23,6 +23,7 @@ const LoginForm: React.FC = () => {
     const [error, setError] = useState<"password" | "server" | null>(null);
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
+
 
     const getUser = async () => {
         try {
