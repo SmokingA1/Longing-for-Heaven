@@ -39,8 +39,22 @@ body, #root {
     }
   }
 
+  @keyframes out-top {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0%);
+
+    }
+  }
+
   .animate-out-here {
     animation: fade-in-scale 0.3s ease-out;
+  }
+
+  .animate-out-top {
+    animation: out-top 0.16s ease-out
   }
   
   .roboto-slab-font {

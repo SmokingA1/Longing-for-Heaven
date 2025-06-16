@@ -1,8 +1,12 @@
+import sys
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 import app.core.redis as redis_module
+from app.backend_admin_preload import initializate_admin
+from app.core.database import async_session
 from app.api import main
 
 app = FastAPI(title="Longing for heaven")
@@ -29,6 +33,14 @@ async def startup_event():
         print("Redis успешно инициализирован")
     else:
         print("Redis не инициализирован!")
+
+    async with async_session() as db:
+        admin = await initializate_admin(db)
+        if not admin:
+            print("Не удалось создать или получить администратора. Завершение приложения.")
+            sys.exit(1)
+
+
     
 
 @app.on_event("shutdown")
@@ -40,3 +52,4 @@ async def shutdown_event():
 @app.get("/", response_model=dict)
 async def read_home():
     return {"data": "The main router of Longing for heaven application."}
+

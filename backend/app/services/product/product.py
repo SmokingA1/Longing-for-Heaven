@@ -11,8 +11,10 @@ from app.schemas import ProductCreate, ProductUpdate
 from app.utils.logger import logger
 
 async def get_product_by_id(*, db: AsyncSession, product_id: UUID) -> Product:
-    product = select(Product).options(joinedload(Product.images)).where(Product.id == product_id)
-    return product
+    query = select(Product).options(joinedload(Product.images)).where(Product.id == product_id)
+    result = await db.execute(query)
+    db_product = result.scalars().first()
+    return db_product
 
 
 async def get_products(
@@ -73,7 +75,7 @@ async def delete_product_by_id(
     *,
     db: AsyncSession,
     product_id: UUID,
-) -> Product:
+) -> Product | None:
     db_product = await get_product_by_id(db=db, product_id=product_id)
 
     if not db_product:

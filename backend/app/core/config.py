@@ -28,5 +28,10 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7 
 
+
+    # Admin
+    ADMIN_EMAIL: str
+    ADMIN_PASSWORD: str
+    ADMIN_PHONE_NUMBER: str
     
 settings = Settings()

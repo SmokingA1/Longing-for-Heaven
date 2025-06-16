@@ -14,15 +14,11 @@ router = APIRouter(tags=["Admin login"])
 async def login(
     db: SessionDep,
     response: Response,
-    request: Request,
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()]
 ) -> Any:
     """
     Authenticate an admin using their email and password, and set an access token as a cookie.
     """
-
-    ip = request.client.host
-
     db_admin = await authenticate(db=db, admin_email=form_data.username, password=form_data.password)
 
     if not db_admin:
