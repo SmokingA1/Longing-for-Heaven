@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import ProductImageForm from "./ProductImageForm";
+
 
 interface ProductFormProps {
     isVisible: boolean;
@@ -20,13 +22,14 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
         price: null,
         stock: null,
     })
+    const [isPIFormVisible, setIsPIFormVisible] = useState<boolean>(false);
     if (!isVisible) return null;
 
     return(
         <>
-            <div id="blur" className="fixed left-0 top-0 h-full w-full z-40 backdrop-blur-xs" onClick={() => setIsVisible(false)}></div>
+            <div id="blur" className="fixed left-0 top-0 h-full w-full z-20 backdrop-blur-xs" onClick={() => setIsVisible(false)}></div>
 
-            <div className="w-250 h-230 rounded-xl fixed top-1/2 left-1/2 bg-white z-50 -translate-x-1/2 -translate-y-1/2 p-5 shadow-md text-center"> 
+            <div className="w-250 h-230 rounded-xl fixed top-1/2 left-1/2 bg-white z-30 -translate-x-1/2 -translate-y-1/2 p-5 shadow-md text-center"> 
                 <h2>ADD NEW PRODUCT</h2>
                 <form 
                     className="w-full flex flex-col     items-center gap-5 text-left"
@@ -110,7 +113,7 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
 
                     </div>
 
-                    <div className="w-70 h-70 border-1 bg-slate-300 hover:opacity-80 duration-120 shadow-sm  cursor-pointer text-5xl flex rounded-xl items-center justify-center" >
+                    <div onClick={() => setIsPIFormVisible(true)} className="w-70 h-70 border-1 bg-slate-300 hover:opacity-80 duration-120 shadow-sm  cursor-pointer text-5xl flex rounded-xl items-center justify-center" >
 
                         +
 
@@ -121,6 +124,7 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
                 </form>
 
             </div>
+            <ProductImageForm isVisible={isPIFormVisible} setIsVisible={() => setIsPIFormVisible(false)}/>
         </>
     )
 }
