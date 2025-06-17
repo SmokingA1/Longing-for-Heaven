@@ -41,7 +41,7 @@ const LoginForm: React.FC = () => {
                 }));
             
         } catch (error) {
-            console.error;
+            console.error(error);
         }
     }
 

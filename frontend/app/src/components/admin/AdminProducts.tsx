@@ -60,12 +60,12 @@ const AdminProducts: React.FC = () => {
                         </thead>
                         <tbody>
                             {products.map((product) => (
-                            <tr key={product.id} className="hover:opacity-90 cursor-pointer" onClick={() => console.log("hello")}>
+                            <tr key={product.id} className="cursor-pointer" onClick={() => console.log("hello")}>
                                 <td scope="col" className="border border-gray-300 w-50 px-1 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">{product.name}</td>
                                 <td scope="col" className="border border-gray-300 w-30 px-1 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">{product.price}</td>
                                 <td scope="col" className="border border-gray-300 w-30 px-1 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">{product.stock}</td>
                                 <td scope="col" className="border border-gray-300 w-20 px-2.5 py-3 text-gray-500 uppercase tracking-wider bg-white">
-                                    <img className="size-15" src={`http://localhost:8000/${[product.images[0].photo_url]}`} alt="img-first-picture" />
+                                    {product.images.length > 0 && <img className="size-15" src={`http://localhost:8000/${product.images[0].photo_url}`} alt="img-first-picture" />}
                                 </td>
 
                             </tr>
@@ -74,7 +74,7 @@ const AdminProducts: React.FC = () => {
                     </table>
                 </div>
 
-                <div className="w-50 h-30 bg-blue-300 hover:bg-blue-200 rounded-lg flex items-center justify-center cursor-pointer" onClick={() => setIsProductFormVisible(true)}>
+                <div className="w-40 h-20 bg-blue-200 hover:bg-blue-300 duration-120 rounded-lg flex items-center justify-center cursor-pointer" onClick={() => setIsProductFormVisible(true)}>
                         ADD PRODUCT
                 </div>
             </div>

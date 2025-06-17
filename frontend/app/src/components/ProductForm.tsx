@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProductImageForm from "./ProductImageForm";
-
+import api from "../api";
 
 interface ProductFormProps {
     isVisible: boolean;
@@ -23,13 +23,52 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
         stock: null,
     })
     const [isPIFormVisible, setIsPIFormVisible] = useState<boolean>(false);
+
+    const handleCreateProductImage = async (product_id: string) => {
+        try {
+            const response = await api.post("/product-images/create", {
+                product_id: product_id,
+                photo_url: "static/products/stone_island.jpg"
+            })
+            console.log(response.data);
+        } catch( error: any ) {
+            if (error.response) {
+                console.error("Server error: ", error.response);
+            } else {
+                console.error("Network or other error: ", error);
+            }
+        }
+    }
+
+    const handleCreateProduct = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const response = await api.post("/products/create", {
+                name: productCreate.name,
+                description: productCreate.description,
+                price: productCreate.price,
+                stock: productCreate.stock
+            })
+            console.log(response.data);
+            if (response) {
+                handleCreateProductImage(response.data.id)
+            }
+        }  catch( error: any ) {
+            if (error.response) {
+                console.error("Server error: ", error.response);
+            } else {
+                console.error("Network or other error: ", error);
+            }
+        }
+    }
+
     if (!isVisible) return null;
 
     return(
         <>
             <div id="blur" className="fixed left-0 top-0 h-full w-full z-20 backdrop-blur-xs" onClick={() => setIsVisible(false)}></div>
 
-            <div className="w-250 h-230 rounded-xl fixed top-1/2 left-1/2 bg-white z-30 -translate-x-1/2 -translate-y-1/2 p-5 shadow-md text-center"> 
+            <div onSubmit={handleCreateProduct} className="w-250 h-230 rounded-xl fixed top-1/2 left-1/2 bg-white z-30 -translate-x-1/2 -translate-y-1/2 p-5 shadow-md text-center"> 
                 <h2>ADD NEW PRODUCT</h2>
                 <form 
                     className="w-full flex flex-col     items-center gap-5 text-left"
