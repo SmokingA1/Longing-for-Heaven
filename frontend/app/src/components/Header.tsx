@@ -19,10 +19,10 @@ const Header: React.FC = () => {
         <header className=" w-full flex justify-center py-2">
             <div id="header-in" className="flex  xl:w-300">
                 <div id='l-nav' className=" xl:w-100">
-                    <nav id="l-nav-options" className="h-full w-full flex items-center xl:gap-5 xl:text-md">
-                        <a href="#" className="inline">SHOP</a>
-                        <a href="#">SHIPPING AND PAYMENT</a>
-                        <a href="#">CONTACS</a>
+                    <nav id="l-nav-options" className="h-full w-full flex items-center xl:gap-5 xl:text-[15px]">
+                        <Link to="/contacts" className="hover:opacity-80">SHOP</Link>
+                        <Link to="/contacts" className="hover:opacity-80">SHIPPING AND PAYMENT</Link>
+                        <Link to="/contacts" className="hover:opacity-80">CONTACS</Link>
                     </nav>
 
                 </div>
@@ -31,7 +31,7 @@ const Header: React.FC = () => {
 
                 </div>
                 <div id='r-nav' className=" xl:w-100">
-                    <nav id="l-nav-options" className="h-full w-full flex justify-end items-center xl:gap-5 xl:text-md">
+                    <nav id="l-nav-options" className="h-full w-full flex justify-end items-center xl:gap-5 xl:text-[15px]">
                                 {user.name ? (
                                     <div className="flex items-center gap-1 cursor-pointer hover:text-gray-700" onClick={() => dispatch(openSideBar())}>
                                         <span>{user.name} </span> 

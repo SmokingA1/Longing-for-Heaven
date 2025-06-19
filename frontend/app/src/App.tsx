@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "./features/user/userSlice";
 import api from "./api";
 import { type RootState, type AppDispatch } from "./store";
+import ContactsPage from './pages/ContactsPage';
 
 function App() {
   const user = useSelector((state: RootState) => state.user);
@@ -40,6 +41,7 @@ function App() {
         <Route path='/' element={<HomePage />}/>
         <Route path='/admin' element={<AdminLoginPage />}/>
         <Route path='/admin/page' element={<AdminPage />}/>
+        <Route path='/contacts' element={<ContactsPage  />}/>
       </Routes>
     </Router>
   )
