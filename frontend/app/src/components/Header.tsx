@@ -20,7 +20,7 @@ const Header: React.FC = () => {
             <div id="header-in" className="flex  xl:w-300">
                 <div id='l-nav' className=" xl:w-100">
                     <nav id="l-nav-options" className="h-full w-full flex items-center xl:gap-5 xl:text-[15px]">
-                        <Link to="/contacts" className="hover:opacity-80">SHOP</Link>
+                        <Link to="/shop/" className="hover:opacity-80">SHOP</Link>
                         <Link to="/contacts" className="hover:opacity-80">SHIPPING AND PAYMENT</Link>
                         <Link to="/contacts" className="hover:opacity-80">CONTACS</Link>
                     </nav>

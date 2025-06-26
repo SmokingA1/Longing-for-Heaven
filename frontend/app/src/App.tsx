@@ -5,6 +5,8 @@ import RegistrationPage from './pages/RegistrationForm';
 import HomePage from './pages/HomePage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminPage from './pages/AdminPage';
+import ShopPage from './pages/ShopPage';
+import ProductPage from './pages/ProductPage';
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,6 +44,8 @@ function App() {
         <Route path='/admin' element={<AdminLoginPage />}/>
         <Route path='/admin/page' element={<AdminPage />}/>
         <Route path='/contacts' element={<ContactsPage  />}/>
+        <Route path='/shop/' element={<ShopPage  />}/>
+        <Route path='/shop/:id' element={<ProductPage  />}/>
       </Routes>
     </Router>
   )

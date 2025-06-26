@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
     }, [])
 
     return(
-        <div id="page-layout" className="flex flex-col items-center w-full min-h-screen relative overflow-x-hidden">
+        <div id="home-layout" className="flex flex-col items-center w-full min-h-screen relative overflow-x-hidden">
             <Header />
             <SideBar />
             <Main />

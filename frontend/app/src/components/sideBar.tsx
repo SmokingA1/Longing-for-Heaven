@@ -38,17 +38,17 @@ const SideBar: React.FC = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 w-10 absolute top- right-0">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                     </svg>
-
                 </div>
-                <div id="user-info" className="flex items-center text-base w-full h-15 gap-2.5">
-
+                <div id="user-info" className="flex items-center text-base w-full h-15 gap-2.5 mb-2.5">
                     <img src={user.avatar_url? `http://localhost:8000/${user.avatar_url}` : "http://localhost:8000/static/avatars/d-avatar.jpg"} alt="user-logo" className="size-12 rounded-full shadow-md" />
-                    <span  id="user-name-email" className="flex flex-col">{user.name} 
+                    <span  id="user-name-email" className="flex flex-col">
+                        {user.name} 
                         <span className="text-sm">{user.email}</span>
                     </span>
-
                 </div>
+
                 <div className="w-full h-px bg-gray-300/50"></div>
+
                 <div id="profile-link" className="flex my-5">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 w-10">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />

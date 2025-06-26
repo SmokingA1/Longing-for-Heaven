@@ -10,7 +10,7 @@ const AdminPage: React.FC = () => {
 
 
     return(
-        <div id="" className="h-full bg-white flex">
+        <div id="admin-layout" className="h-full bg-white flex">
             <AdminSideBar choosenRow={choosenRow} setChoosenRow={setChoosenRow} />
 
             {choosenRow === "users" && <AdminUsers />}
