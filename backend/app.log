@@ -16981,3 +16981,1259 @@ FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id 
 WHERE products.id = $1::UUID
 [2025-06-26 12:08:06,246] INFO in base: [cached since 4843s ago] (UUID('3e85b28c-cd8c-4960-a2c9-69f18cecac00'),)
 [2025-06-26 12:08:06,248] INFO in base: ROLLBACK
+[2025-06-27 21:46:01,766] INFO in base: select pg_catalog.version()
+[2025-06-27 21:46:01,766] INFO in base: [raw sql] ()
+[2025-06-27 21:46:01,769] INFO in base: select current_schema()
+[2025-06-27 21:46:01,769] INFO in base: [raw sql] ()
+[2025-06-27 21:46:01,771] INFO in base: show standard_conforming_strings
+[2025-06-27 21:46:01,771] INFO in base: [raw sql] ()
+[2025-06-27 21:46:01,773] INFO in base: BEGIN (implicit)
+[2025-06-27 21:46:01,786] INFO in base: SELECT admins.id, admins.name, admins.email, admins.hashed_password, admins.phone_number, admins.avatar_url, admins.created_at, admins.updated_at 
+FROM admins 
+WHERE admins.email = $1::VARCHAR
+[2025-06-27 21:46:01,786] INFO in base: [generated in 0.00056s] ('denisshokolad1221@gmail.com',)
+[2025-06-27 21:46:01,792] INFO in base: ROLLBACK
+[2025-06-27 21:46:29,027] INFO in base: BEGIN (implicit)
+[2025-06-27 21:46:29,031] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 21:46:29,032] INFO in base: [generated in 0.00072s] (20, 0)
+[2025-06-27 21:46:29,043] INFO in base: ROLLBACK
+[2025-06-27 21:46:29,047] INFO in base: BEGIN (implicit)
+[2025-06-27 21:46:29,047] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 21:46:29,048] INFO in base: [cached since 0.01675s ago] (20, 0)
+[2025-06-27 21:46:29,050] INFO in base: ROLLBACK
+[2025-06-27 21:46:31,094] INFO in base: BEGIN (implicit)
+[2025-06-27 21:46:31,096] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:46:31,097] INFO in base: [generated in 0.00056s] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:46:31,100] INFO in base: ROLLBACK
+[2025-06-27 21:46:31,103] INFO in base: BEGIN (implicit)
+[2025-06-27 21:46:31,103] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:46:31,104] INFO in base: [cached since 0.007257s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:46:31,105] INFO in base: ROLLBACK
+[2025-06-27 21:48:55,925] INFO in base: BEGIN (implicit)
+[2025-06-27 21:48:55,926] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:48:55,927] INFO in base: [cached since 144.8s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:48:55,929] INFO in base: ROLLBACK
+[2025-06-27 21:48:55,932] INFO in base: BEGIN (implicit)
+[2025-06-27 21:48:55,933] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:48:55,936] INFO in base: [cached since 144.8s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:48:55,938] INFO in base: ROLLBACK
+[2025-06-27 21:50:43,623] INFO in base: BEGIN (implicit)
+[2025-06-27 21:50:43,623] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:50:43,624] INFO in base: [cached since 252.5s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:50:43,625] INFO in base: ROLLBACK
+[2025-06-27 21:50:43,629] INFO in base: BEGIN (implicit)
+[2025-06-27 21:50:43,629] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:50:43,629] INFO in base: [cached since 252.5s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:50:43,631] INFO in base: ROLLBACK
+[2025-06-27 21:51:33,399] INFO in base: BEGIN (implicit)
+[2025-06-27 21:51:33,400] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:51:33,401] INFO in base: [cached since 302.3s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:51:33,402] INFO in base: ROLLBACK
+[2025-06-27 21:51:33,405] INFO in base: BEGIN (implicit)
+[2025-06-27 21:51:33,406] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:51:33,406] INFO in base: [cached since 302.3s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:51:33,408] INFO in base: ROLLBACK
+[2025-06-27 21:53:46,593] INFO in base: BEGIN (implicit)
+[2025-06-27 21:53:46,593] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:53:46,594] INFO in base: [cached since 435.5s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:53:46,595] INFO in base: ROLLBACK
+[2025-06-27 21:53:46,598] INFO in base: BEGIN (implicit)
+[2025-06-27 21:53:46,598] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:53:46,598] INFO in base: [cached since 435.5s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:53:46,600] INFO in base: ROLLBACK
+[2025-06-27 21:53:56,248] INFO in base: BEGIN (implicit)
+[2025-06-27 21:53:56,249] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:53:56,249] INFO in base: [cached since 445.2s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:53:56,251] INFO in base: ROLLBACK
+[2025-06-27 21:53:56,254] INFO in base: BEGIN (implicit)
+[2025-06-27 21:53:56,254] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:53:56,255] INFO in base: [cached since 445.2s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:53:56,256] INFO in base: ROLLBACK
+[2025-06-27 21:54:26,572] INFO in base: BEGIN (implicit)
+[2025-06-27 21:54:26,572] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:54:26,573] INFO in base: [cached since 475.5s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:54:26,574] INFO in base: ROLLBACK
+[2025-06-27 21:54:26,577] INFO in base: BEGIN (implicit)
+[2025-06-27 21:54:26,577] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:54:26,578] INFO in base: [cached since 475.5s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:54:26,579] INFO in base: ROLLBACK
+[2025-06-27 21:54:28,257] INFO in base: BEGIN (implicit)
+[2025-06-27 21:54:28,258] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:54:28,258] INFO in base: [cached since 477.2s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:54:28,260] INFO in base: ROLLBACK
+[2025-06-27 21:54:28,263] INFO in base: BEGIN (implicit)
+[2025-06-27 21:54:28,264] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:54:28,264] INFO in base: [cached since 477.2s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-27 21:54:28,265] INFO in base: ROLLBACK
+[2025-06-27 21:54:54,014] INFO in login: LOGIN ATTEMPTS FOR IP: 127.0.0.1 - None
+[2025-06-27 21:54:54,015] INFO in base: BEGIN (implicit)
+[2025-06-27 21:54:54,017] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-06-27 21:54:54,017] INFO in base: [generated in 0.00054s] ('denisshokolad1221@gmail.com',)
+[2025-06-27 21:54:54,066] WARNING in bcrypt: (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "Z:\Work_Space\Full-Stack\Longing-for-heaven-App\backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+[2025-06-27 21:54:54,473] INFO in login: Access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmM5YTc5Ni02N2ZjLTQ2YmMtYmI5YS1mNTU5NDU2ZWZlZmEiLCJleHAiOjE3NTE2NTUyOTR9.Eahj3sMWU98GHT0TsaQ9tSttmT6fjRf8MWnP6vRkFeQ 
+[2025-06-27 21:54:54,477] INFO in base: ROLLBACK
+[2025-06-27 21:54:54,483] INFO in base: BEGIN (implicit)
+[2025-06-27 21:54:54,485] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 21:54:54,485] INFO in base: [generated in 0.00059s] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 21:54:54,489] INFO in base: ROLLBACK
+[2025-06-27 21:54:54,505] INFO in base: BEGIN (implicit)
+[2025-06-27 21:54:54,506] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 21:54:54,506] INFO in base: [cached since 505.5s ago] (20, 0)
+[2025-06-27 21:54:54,509] INFO in base: ROLLBACK
+[2025-06-27 21:54:54,512] INFO in base: BEGIN (implicit)
+[2025-06-27 21:54:54,513] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 21:54:54,513] INFO in base: [cached since 505.5s ago] (20, 0)
+[2025-06-27 21:54:54,515] INFO in base: ROLLBACK
+[2025-06-27 21:54:56,482] INFO in base: BEGIN (implicit)
+[2025-06-27 21:54:56,483] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:54:56,483] INFO in base: [cached since 505.4s ago] (UUID('e4720f8c-257f-443c-9c68-2ab7d6b06589'),)
+[2025-06-27 21:54:56,486] INFO in base: ROLLBACK
+[2025-06-27 21:54:56,490] INFO in base: BEGIN (implicit)
+[2025-06-27 21:54:56,490] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-27 21:54:56,491] INFO in base: [cached since 505.4s ago] (UUID('e4720f8c-257f-443c-9c68-2ab7d6b06589'),)
+[2025-06-27 21:54:56,493] INFO in base: ROLLBACK
+[2025-06-27 22:03:19,563] INFO in base: BEGIN (implicit)
+[2025-06-27 22:03:19,564] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:03:19,564] INFO in base: [cached since 1011s ago] (20, 0)
+[2025-06-27 22:03:19,566] INFO in base: ROLLBACK
+[2025-06-27 22:03:19,569] INFO in base: BEGIN (implicit)
+[2025-06-27 22:03:19,569] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:03:19,570] INFO in base: [cached since 1011s ago] (20, 0)
+[2025-06-27 22:03:19,571] INFO in base: ROLLBACK
+[2025-06-27 22:03:25,370] INFO in base: BEGIN (implicit)
+[2025-06-27 22:03:25,371] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:03:25,371] INFO in base: [cached since 1016s ago] (20, 0)
+[2025-06-27 22:03:25,374] INFO in base: ROLLBACK
+[2025-06-27 22:03:25,378] INFO in base: BEGIN (implicit)
+[2025-06-27 22:03:25,379] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:03:25,379] INFO in base: [cached since 1016s ago] (20, 0)
+[2025-06-27 22:03:25,382] INFO in base: ROLLBACK
+[2025-06-27 22:03:27,535] INFO in base: BEGIN (implicit)
+[2025-06-27 22:03:27,536] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:03:27,537] INFO in base: [cached since 1019s ago] (20, 0)
+[2025-06-27 22:03:27,539] INFO in base: ROLLBACK
+[2025-06-27 22:03:27,542] INFO in base: BEGIN (implicit)
+[2025-06-27 22:03:27,543] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:03:27,544] INFO in base: [cached since 1019s ago] (20, 0)
+[2025-06-27 22:03:27,546] INFO in base: ROLLBACK
+[2025-06-27 22:13:54,828] INFO in base: BEGIN (implicit)
+[2025-06-27 22:13:54,829] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:13:54,829] INFO in base: [cached since 1646s ago] (20, 0)
+[2025-06-27 22:13:54,835] INFO in base: ROLLBACK
+[2025-06-27 22:13:54,840] INFO in base: BEGIN (implicit)
+[2025-06-27 22:13:54,840] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:13:54,841] INFO in base: [cached since 1646s ago] (20, 0)
+[2025-06-27 22:13:54,843] INFO in base: ROLLBACK
+[2025-06-27 22:13:54,909] INFO in base: BEGIN (implicit)
+[2025-06-27 22:13:54,910] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:13:54,910] INFO in base: [cached since 1140s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:13:54,914] INFO in base: ROLLBACK
+[2025-06-27 22:13:54,917] INFO in base: BEGIN (implicit)
+[2025-06-27 22:13:54,918] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:13:54,919] INFO in base: [cached since 1140s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:13:54,921] INFO in base: ROLLBACK
+[2025-06-27 22:19:02,020] INFO in base: BEGIN (implicit)
+[2025-06-27 22:19:02,021] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:19:02,021] INFO in base: [cached since 1953s ago] (20, 0)
+[2025-06-27 22:19:02,023] INFO in base: BEGIN (implicit)
+[2025-06-27 22:19:02,024] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:19:02,024] INFO in base: [cached since 1448s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:19:02,026] INFO in base: ROLLBACK
+[2025-06-27 22:19:02,030] INFO in base: BEGIN (implicit)
+[2025-06-27 22:19:02,030] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:19:02,030] INFO in base: [cached since 1448s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:19:02,032] INFO in base: ROLLBACK
+[2025-06-27 22:19:02,034] INFO in base: ROLLBACK
+[2025-06-27 22:19:02,036] INFO in base: BEGIN (implicit)
+[2025-06-27 22:19:02,037] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:19:02,038] INFO in base: [cached since 1953s ago] (20, 0)
+[2025-06-27 22:19:02,041] INFO in base: ROLLBACK
+[2025-06-27 22:24:24,305] INFO in base: BEGIN (implicit)
+[2025-06-27 22:24:24,305] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:24:24,306] INFO in base: [cached since 2275s ago] (20, 0)
+[2025-06-27 22:24:24,309] INFO in base: ROLLBACK
+[2025-06-27 22:24:24,312] INFO in base: BEGIN (implicit)
+[2025-06-27 22:24:24,313] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:24:24,313] INFO in base: [cached since 2275s ago] (20, 0)
+[2025-06-27 22:24:24,316] INFO in base: ROLLBACK
+[2025-06-27 22:25:01,759] INFO in base: BEGIN (implicit)
+[2025-06-27 22:25:01,760] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:25:01,760] INFO in base: [cached since 2313s ago] (20, 0)
+[2025-06-27 22:25:01,762] INFO in base: ROLLBACK
+[2025-06-27 22:25:01,765] INFO in base: BEGIN (implicit)
+[2025-06-27 22:25:01,765] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:25:01,766] INFO in base: [cached since 2313s ago] (20, 0)
+[2025-06-27 22:25:01,768] INFO in base: ROLLBACK
+[2025-06-27 22:26:50,756] INFO in base: BEGIN (implicit)
+[2025-06-27 22:26:50,757] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:26:50,757] INFO in base: [cached since 2422s ago] (20, 0)
+[2025-06-27 22:26:50,759] INFO in base: ROLLBACK
+[2025-06-27 22:26:50,762] INFO in base: BEGIN (implicit)
+[2025-06-27 22:26:50,762] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:26:50,763] INFO in base: [cached since 2422s ago] (20, 0)
+[2025-06-27 22:26:50,764] INFO in base: ROLLBACK
+[2025-06-27 22:30:26,461] INFO in base: BEGIN (implicit)
+[2025-06-27 22:30:26,461] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:30:26,462] INFO in base: [cached since 2637s ago] (20, 0)
+[2025-06-27 22:30:26,463] INFO in base: ROLLBACK
+[2025-06-27 22:30:56,137] INFO in base: BEGIN (implicit)
+[2025-06-27 22:30:56,137] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:30:56,137] INFO in base: [cached since 2667s ago] (20, 0)
+[2025-06-27 22:30:56,139] INFO in base: ROLLBACK
+[2025-06-27 22:36:09,469] INFO in base: BEGIN (implicit)
+[2025-06-27 22:36:09,469] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:36:09,470] INFO in base: [cached since 2980s ago] (20, 0)
+[2025-06-27 22:36:09,471] INFO in base: ROLLBACK
+[2025-06-27 22:36:09,475] INFO in base: BEGIN (implicit)
+[2025-06-27 22:36:09,475] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:36:09,476] INFO in base: [cached since 2980s ago] (20, 0)
+[2025-06-27 22:36:09,477] INFO in base: ROLLBACK
+[2025-06-27 22:36:54,156] INFO in base: BEGIN (implicit)
+[2025-06-27 22:36:54,156] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:36:54,157] INFO in base: [cached since 3025s ago] (20, 0)
+[2025-06-27 22:36:54,158] INFO in base: ROLLBACK
+[2025-06-27 22:36:54,162] INFO in base: BEGIN (implicit)
+[2025-06-27 22:36:54,163] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:36:54,163] INFO in base: [cached since 3025s ago] (20, 0)
+[2025-06-27 22:36:54,165] INFO in base: ROLLBACK
+[2025-06-27 22:36:56,783] INFO in base: BEGIN (implicit)
+[2025-06-27 22:36:56,783] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:36:56,784] INFO in base: [cached since 3028s ago] (20, 0)
+[2025-06-27 22:36:56,785] INFO in base: ROLLBACK
+[2025-06-27 22:36:56,789] INFO in base: BEGIN (implicit)
+[2025-06-27 22:36:56,789] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:36:56,790] INFO in base: [cached since 3028s ago] (20, 0)
+[2025-06-27 22:36:56,791] INFO in base: ROLLBACK
+[2025-06-27 22:36:59,627] INFO in base: BEGIN (implicit)
+[2025-06-27 22:36:59,627] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:36:59,628] INFO in base: [cached since 3031s ago] (20, 0)
+[2025-06-27 22:36:59,631] INFO in base: ROLLBACK
+[2025-06-27 22:36:59,635] INFO in base: BEGIN (implicit)
+[2025-06-27 22:36:59,635] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:36:59,636] INFO in base: [cached since 3031s ago] (20, 0)
+[2025-06-27 22:36:59,639] INFO in base: ROLLBACK
+[2025-06-27 22:37:07,560] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:07,561] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:07,561] INFO in base: [cached since 3039s ago] (20, 0)
+[2025-06-27 22:37:07,564] INFO in base: ROLLBACK
+[2025-06-27 22:37:07,568] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:07,568] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:07,569] INFO in base: [cached since 3039s ago] (20, 0)
+[2025-06-27 22:37:07,571] INFO in base: ROLLBACK
+[2025-06-27 22:37:11,129] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:11,130] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:11,131] INFO in base: [cached since 3042s ago] (20, 0)
+[2025-06-27 22:37:11,133] INFO in base: ROLLBACK
+[2025-06-27 22:37:11,137] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:11,138] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:11,138] INFO in base: [cached since 3042s ago] (20, 0)
+[2025-06-27 22:37:11,140] INFO in base: ROLLBACK
+[2025-06-27 22:37:14,194] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:14,195] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:14,195] INFO in base: [cached since 3045s ago] (20, 0)
+[2025-06-27 22:37:14,197] INFO in base: ROLLBACK
+[2025-06-27 22:37:14,200] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:14,201] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:14,202] INFO in base: [cached since 3045s ago] (20, 0)
+[2025-06-27 22:37:14,204] INFO in base: ROLLBACK
+[2025-06-27 22:37:20,117] INFO in login: LOGIN ATTEMPTS FOR IP: 127.0.0.1 - None
+[2025-06-27 22:37:20,119] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:20,119] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-06-27 22:37:20,120] INFO in base: [cached since 2546s ago] ('denisshokolad1221@gmail.com',)
+[2025-06-27 22:37:20,475] INFO in login: Access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmM5YTc5Ni02N2ZjLTQ2YmMtYmI5YS1mNTU5NDU2ZWZlZmEiLCJleHAiOjE3NTE2NTc4NDB9.uIqLc8X1cS-aeg3mcV-1Caoc8Kc1qE2ixogQ_npwtpM 
+[2025-06-27 22:37:20,477] INFO in base: ROLLBACK
+[2025-06-27 22:37:20,489] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:20,490] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:37:20,490] INFO in base: [cached since 2546s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:37:20,492] INFO in base: ROLLBACK
+[2025-06-27 22:37:20,511] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:20,512] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:20,513] INFO in base: [cached since 3051s ago] (20, 0)
+[2025-06-27 22:37:20,515] INFO in base: ROLLBACK
+[2025-06-27 22:37:20,518] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:20,518] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:20,518] INFO in base: [cached since 3051s ago] (20, 0)
+[2025-06-27 22:37:20,520] INFO in base: ROLLBACK
+[2025-06-27 22:37:22,885] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:22,886] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:22,887] INFO in base: [cached since 3054s ago] (20, 0)
+[2025-06-27 22:37:22,890] INFO in base: ROLLBACK
+[2025-06-27 22:37:22,894] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:22,895] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:22,895] INFO in base: [cached since 3054s ago] (20, 0)
+[2025-06-27 22:37:22,897] INFO in base: ROLLBACK
+[2025-06-27 22:37:25,940] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:25,941] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:25,942] INFO in base: [cached since 3057s ago] (20, 0)
+[2025-06-27 22:37:25,944] INFO in base: ROLLBACK
+[2025-06-27 22:37:25,947] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:25,947] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:25,948] INFO in base: [cached since 3057s ago] (20, 0)
+[2025-06-27 22:37:25,950] INFO in base: ROLLBACK
+[2025-06-27 22:37:28,609] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:28,610] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:28,610] INFO in base: [cached since 3060s ago] (20, 0)
+[2025-06-27 22:37:28,613] INFO in base: ROLLBACK
+[2025-06-27 22:37:28,616] INFO in base: BEGIN (implicit)
+[2025-06-27 22:37:28,617] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:37:28,617] INFO in base: [cached since 3060s ago] (20, 0)
+[2025-06-27 22:37:28,620] INFO in base: ROLLBACK
+[2025-06-27 22:45:51,989] INFO in base: BEGIN (implicit)
+[2025-06-27 22:45:51,989] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:45:51,990] INFO in base: [cached since 3563s ago] (20, 0)
+[2025-06-27 22:45:51,991] INFO in base: BEGIN (implicit)
+[2025-06-27 22:45:51,991] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:45:51,991] INFO in base: [cached since 3058s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:45:51,993] INFO in base: ROLLBACK
+[2025-06-27 22:45:51,993] INFO in base: ROLLBACK
+[2025-06-27 22:45:51,996] INFO in base: BEGIN (implicit)
+[2025-06-27 22:45:51,997] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:45:51,997] INFO in base: [cached since 3563s ago] (20, 0)
+[2025-06-27 22:45:51,998] INFO in base: BEGIN (implicit)
+[2025-06-27 22:45:51,998] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:45:51,999] INFO in base: [cached since 3058s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:45:52,000] INFO in base: ROLLBACK
+[2025-06-27 22:45:52,001] INFO in base: ROLLBACK
+[2025-06-27 22:47:07,256] INFO in base: BEGIN (implicit)
+[2025-06-27 22:47:07,257] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:47:07,257] INFO in base: [cached since 3133s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:47:07,259] INFO in base: ROLLBACK
+[2025-06-27 22:47:07,262] INFO in base: BEGIN (implicit)
+[2025-06-27 22:47:07,263] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:47:07,263] INFO in base: [cached since 3133s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:47:07,265] INFO in base: ROLLBACK
+[2025-06-27 22:47:09,912] INFO in base: BEGIN (implicit)
+[2025-06-27 22:47:09,912] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:47:09,913] INFO in base: [cached since 3641s ago] (20, 0)
+[2025-06-27 22:47:09,916] INFO in base: ROLLBACK
+[2025-06-27 22:47:09,919] INFO in base: BEGIN (implicit)
+[2025-06-27 22:47:09,920] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:47:09,920] INFO in base: [cached since 3641s ago] (20, 0)
+[2025-06-27 22:47:09,923] INFO in base: ROLLBACK
+[2025-06-27 22:50:38,465] INFO in base: BEGIN (implicit)
+[2025-06-27 22:50:38,465] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:50:38,466] INFO in base: [cached since 3849s ago] (20, 0)
+[2025-06-27 22:50:38,467] INFO in base: BEGIN (implicit)
+[2025-06-27 22:50:38,467] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:50:38,467] INFO in base: [cached since 3344s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:50:38,469] INFO in base: ROLLBACK
+[2025-06-27 22:50:38,470] INFO in base: ROLLBACK
+[2025-06-27 22:50:38,473] INFO in base: BEGIN (implicit)
+[2025-06-27 22:50:38,474] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:50:38,474] INFO in base: [cached since 3849s ago] (20, 0)
+[2025-06-27 22:50:38,476] INFO in base: BEGIN (implicit)
+[2025-06-27 22:50:38,476] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:50:38,476] INFO in base: [cached since 3344s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:50:38,478] INFO in base: ROLLBACK
+[2025-06-27 22:50:38,479] INFO in base: ROLLBACK
+[2025-06-27 22:50:57,145] INFO in base: BEGIN (implicit)
+[2025-06-27 22:50:57,146] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:50:57,146] INFO in base: [cached since 3868s ago] (20, 0)
+[2025-06-27 22:50:57,148] INFO in base: ROLLBACK
+[2025-06-27 22:50:57,151] INFO in base: BEGIN (implicit)
+[2025-06-27 22:50:57,152] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:50:57,152] INFO in base: [cached since 3363s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:50:57,154] INFO in base: ROLLBACK
+[2025-06-27 22:50:57,157] INFO in base: BEGIN (implicit)
+[2025-06-27 22:50:57,158] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:50:57,158] INFO in base: [cached since 3868s ago] (20, 0)
+[2025-06-27 22:50:57,160] INFO in base: ROLLBACK
+[2025-06-27 22:50:57,162] INFO in base: BEGIN (implicit)
+[2025-06-27 22:50:57,163] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:50:57,163] INFO in base: [cached since 3363s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:50:57,165] INFO in base: ROLLBACK
+[2025-06-27 22:52:27,137] INFO in base: BEGIN (implicit)
+[2025-06-27 22:52:27,138] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:52:27,138] INFO in base: [cached since 3958s ago] (20, 0)
+[2025-06-27 22:52:27,139] INFO in base: BEGIN (implicit)
+[2025-06-27 22:52:27,140] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:52:27,140] INFO in base: [cached since 3453s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:52:27,141] INFO in base: ROLLBACK
+[2025-06-27 22:52:27,142] INFO in base: ROLLBACK
+[2025-06-27 22:52:27,145] INFO in base: BEGIN (implicit)
+[2025-06-27 22:52:27,145] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:52:27,146] INFO in base: [cached since 3453s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:52:27,147] INFO in base: BEGIN (implicit)
+[2025-06-27 22:52:27,147] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:52:27,147] INFO in base: [cached since 3958s ago] (20, 0)
+[2025-06-27 22:52:27,149] INFO in base: ROLLBACK
+[2025-06-27 22:52:27,150] INFO in base: ROLLBACK
+[2025-06-27 22:55:40,310] INFO in base: BEGIN (implicit)
+[2025-06-27 22:55:40,311] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:55:40,311] INFO in base: [cached since 4151s ago] (20, 0)
+[2025-06-27 22:55:40,312] INFO in base: BEGIN (implicit)
+[2025-06-27 22:55:40,313] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:55:40,313] INFO in base: [cached since 3646s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:55:40,315] INFO in base: ROLLBACK
+[2025-06-27 22:55:40,315] INFO in base: ROLLBACK
+[2025-06-27 22:55:40,318] INFO in base: BEGIN (implicit)
+[2025-06-27 22:55:40,319] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:55:40,319] INFO in base: [cached since 4151s ago] (20, 0)
+[2025-06-27 22:55:40,320] INFO in base: BEGIN (implicit)
+[2025-06-27 22:55:40,320] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:55:40,321] INFO in base: [cached since 3646s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:55:40,322] INFO in base: ROLLBACK
+[2025-06-27 22:55:40,323] INFO in base: ROLLBACK
+[2025-06-27 22:59:10,551] INFO in base: BEGIN (implicit)
+[2025-06-27 22:59:10,552] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:59:10,552] INFO in base: [cached since 4362s ago] (20, 0)
+[2025-06-27 22:59:10,553] INFO in base: BEGIN (implicit)
+[2025-06-27 22:59:10,554] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:59:10,554] INFO in base: [cached since 3856s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:59:10,555] INFO in base: ROLLBACK
+[2025-06-27 22:59:10,556] INFO in base: ROLLBACK
+[2025-06-27 22:59:10,559] INFO in base: BEGIN (implicit)
+[2025-06-27 22:59:10,560] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 22:59:10,560] INFO in base: [cached since 4362s ago] (20, 0)
+[2025-06-27 22:59:10,561] INFO in base: BEGIN (implicit)
+[2025-06-27 22:59:10,562] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 22:59:10,562] INFO in base: [cached since 3856s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 22:59:10,564] INFO in base: ROLLBACK
+[2025-06-27 22:59:10,565] INFO in base: ROLLBACK
+[2025-06-27 23:03:57,262] INFO in base: BEGIN (implicit)
+[2025-06-27 23:03:57,262] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:03:57,263] INFO in base: [cached since 4143s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:03:57,264] INFO in base: BEGIN (implicit)
+[2025-06-27 23:03:57,264] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:03:57,264] INFO in base: [cached since 4648s ago] (20, 0)
+[2025-06-27 23:03:57,266] INFO in base: ROLLBACK
+[2025-06-27 23:03:57,266] INFO in base: ROLLBACK
+[2025-06-27 23:03:57,269] INFO in base: BEGIN (implicit)
+[2025-06-27 23:03:57,270] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:03:57,270] INFO in base: [cached since 4143s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:03:57,271] INFO in base: BEGIN (implicit)
+[2025-06-27 23:03:57,272] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:03:57,272] INFO in base: [cached since 4648s ago] (20, 0)
+[2025-06-27 23:03:57,274] INFO in base: ROLLBACK
+[2025-06-27 23:03:57,275] INFO in base: ROLLBACK
+[2025-06-27 23:04:22,682] INFO in base: BEGIN (implicit)
+[2025-06-27 23:04:22,683] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:04:22,683] INFO in base: [cached since 4674s ago] (20, 0)
+[2025-06-27 23:04:22,685] INFO in base: ROLLBACK
+[2025-06-27 23:04:22,688] INFO in base: BEGIN (implicit)
+[2025-06-27 23:04:22,689] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:04:22,689] INFO in base: [cached since 4168s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:04:22,690] INFO in base: ROLLBACK
+[2025-06-27 23:04:22,694] INFO in base: BEGIN (implicit)
+[2025-06-27 23:04:22,694] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:04:22,695] INFO in base: [cached since 4674s ago] (20, 0)
+[2025-06-27 23:04:22,696] INFO in base: ROLLBACK
+[2025-06-27 23:04:22,699] INFO in base: BEGIN (implicit)
+[2025-06-27 23:04:22,699] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:04:22,700] INFO in base: [cached since 4168s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:04:22,701] INFO in base: ROLLBACK
+[2025-06-27 23:04:24,709] INFO in base: BEGIN (implicit)
+[2025-06-27 23:04:24,709] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:04:24,710] INFO in base: [cached since 4676s ago] (20, 0)
+[2025-06-27 23:04:24,712] INFO in base: BEGIN (implicit)
+[2025-06-27 23:04:24,712] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:04:24,712] INFO in base: [cached since 4170s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:04:24,714] INFO in base: ROLLBACK
+[2025-06-27 23:04:24,715] INFO in base: ROLLBACK
+[2025-06-27 23:04:24,717] INFO in base: BEGIN (implicit)
+[2025-06-27 23:04:24,718] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:04:24,718] INFO in base: [cached since 4170s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:04:24,719] INFO in base: BEGIN (implicit)
+[2025-06-27 23:04:24,720] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:04:24,720] INFO in base: [cached since 4676s ago] (20, 0)
+[2025-06-27 23:04:24,721] INFO in base: ROLLBACK
+[2025-06-27 23:04:24,723] INFO in base: ROLLBACK
+[2025-06-27 23:05:04,437] INFO in base: BEGIN (implicit)
+[2025-06-27 23:05:04,438] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:05:04,438] INFO in base: [cached since 4715s ago] (20, 0)
+[2025-06-27 23:05:04,439] INFO in base: BEGIN (implicit)
+[2025-06-27 23:05:04,440] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:05:04,440] INFO in base: [cached since 4210s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:05:04,441] INFO in base: ROLLBACK
+[2025-06-27 23:05:04,442] INFO in base: ROLLBACK
+[2025-06-27 23:05:04,445] INFO in base: BEGIN (implicit)
+[2025-06-27 23:05:04,446] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:05:04,446] INFO in base: [cached since 4715s ago] (20, 0)
+[2025-06-27 23:05:04,448] INFO in base: BEGIN (implicit)
+[2025-06-27 23:05:04,448] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:05:04,448] INFO in base: [cached since 4210s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:05:04,449] INFO in base: ROLLBACK
+[2025-06-27 23:05:04,450] INFO in base: ROLLBACK
+[2025-06-27 23:10:51,667] INFO in base: BEGIN (implicit)
+[2025-06-27 23:10:51,667] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:10:51,668] INFO in base: [cached since 5063s ago] (20, 0)
+[2025-06-27 23:10:51,669] INFO in base: BEGIN (implicit)
+[2025-06-27 23:10:51,669] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:10:51,670] INFO in base: [cached since 4557s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:10:51,671] INFO in base: ROLLBACK
+[2025-06-27 23:10:51,672] INFO in base: ROLLBACK
+[2025-06-27 23:10:51,675] INFO in base: BEGIN (implicit)
+[2025-06-27 23:10:51,675] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:10:51,675] INFO in base: [cached since 5063s ago] (20, 0)
+[2025-06-27 23:10:51,677] INFO in base: BEGIN (implicit)
+[2025-06-27 23:10:51,677] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:10:51,678] INFO in base: [cached since 4557s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:10:51,680] INFO in base: ROLLBACK
+[2025-06-27 23:10:51,680] INFO in base: ROLLBACK
+[2025-06-27 23:12:04,594] INFO in base: BEGIN (implicit)
+[2025-06-27 23:12:04,595] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:12:04,595] INFO in base: [cached since 5136s ago] (20, 0)
+[2025-06-27 23:12:04,596] INFO in base: BEGIN (implicit)
+[2025-06-27 23:12:04,597] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:12:04,597] INFO in base: [cached since 4630s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:12:04,598] INFO in base: ROLLBACK
+[2025-06-27 23:12:04,599] INFO in base: ROLLBACK
+[2025-06-27 23:12:04,602] INFO in base: BEGIN (implicit)
+[2025-06-27 23:12:04,602] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-27 23:12:04,603] INFO in base: [cached since 4630s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-27 23:12:04,604] INFO in base: BEGIN (implicit)
+[2025-06-27 23:12:04,604] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:12:04,605] INFO in base: [cached since 5136s ago] (20, 0)
+[2025-06-27 23:12:04,606] INFO in base: ROLLBACK
+[2025-06-27 23:12:04,607] INFO in base: ROLLBACK
+[2025-06-27 23:19:31,820] INFO in base: BEGIN (implicit)
+[2025-06-27 23:19:31,820] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:19:31,821] INFO in base: [cached since 5583s ago] (20, 0)
+[2025-06-27 23:19:31,822] INFO in base: ROLLBACK
+[2025-06-27 23:19:31,825] INFO in base: BEGIN (implicit)
+[2025-06-27 23:19:31,826] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-27 23:19:31,826] INFO in base: [cached since 5583s ago] (20, 0)
+[2025-06-27 23:19:31,827] INFO in base: ROLLBACK
+[2025-06-28 00:25:35,480] INFO in base: BEGIN (implicit)
+[2025-06-28 00:25:35,481] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 00:25:35,481] INFO in base: [cached since 9546s ago] (20, 0)
+[2025-06-28 00:25:35,483] INFO in base: BEGIN (implicit)
+[2025-06-28 00:25:35,483] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 00:25:35,484] INFO in base: [cached since 9041s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 00:25:35,486] INFO in base: ROLLBACK
+[2025-06-28 00:25:35,487] INFO in base: ROLLBACK
+[2025-06-28 00:25:35,497] INFO in base: BEGIN (implicit)
+[2025-06-28 00:25:35,497] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 00:25:35,498] INFO in base: [cached since 9546s ago] (20, 0)
+[2025-06-28 00:25:35,499] INFO in base: BEGIN (implicit)
+[2025-06-28 00:25:35,500] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 00:25:35,501] INFO in base: [cached since 9041s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 00:25:35,503] INFO in base: ROLLBACK
+[2025-06-28 00:25:35,504] INFO in base: ROLLBACK
+[2025-06-28 00:25:54,239] INFO in base: BEGIN (implicit)
+[2025-06-28 00:25:54,240] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 00:25:54,240] INFO in base: [cached since 9565s ago] (20, 0)
+[2025-06-28 00:25:54,242] INFO in base: ROLLBACK
+[2025-06-28 00:25:54,245] INFO in base: BEGIN (implicit)
+[2025-06-28 00:25:54,246] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 00:25:54,246] INFO in base: [cached since 9060s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 00:25:54,248] INFO in base: ROLLBACK
+[2025-06-28 00:25:54,253] INFO in base: BEGIN (implicit)
+[2025-06-28 00:25:54,253] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 00:25:54,254] INFO in base: [cached since 9565s ago] (20, 0)
+[2025-06-28 00:25:54,256] INFO in base: ROLLBACK
+[2025-06-28 00:25:54,259] INFO in base: BEGIN (implicit)
+[2025-06-28 00:25:54,259] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 00:25:54,260] INFO in base: [cached since 9060s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 00:25:54,261] INFO in base: ROLLBACK
+[2025-06-28 00:26:31,772] INFO in base: BEGIN (implicit)
+[2025-06-28 00:26:31,773] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 00:26:31,774] INFO in base: [cached since 9603s ago] (20, 0)
+[2025-06-28 00:26:31,775] INFO in base: BEGIN (implicit)
+[2025-06-28 00:26:31,776] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 00:26:31,776] INFO in base: [cached since 9097s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 00:26:31,778] INFO in base: ROLLBACK
+[2025-06-28 00:26:31,779] INFO in base: ROLLBACK
+[2025-06-28 00:26:31,785] INFO in base: BEGIN (implicit)
+[2025-06-28 00:26:31,785] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 00:26:31,786] INFO in base: [cached since 9603s ago] (20, 0)
+[2025-06-28 00:26:31,788] INFO in base: BEGIN (implicit)
+[2025-06-28 00:26:31,789] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 00:26:31,789] INFO in base: [cached since 9097s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 00:26:31,792] INFO in base: ROLLBACK
+[2025-06-28 00:26:31,794] INFO in base: ROLLBACK
+[2025-06-28 00:26:34,871] INFO in base: BEGIN (implicit)
+[2025-06-28 00:26:34,872] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 00:26:34,873] INFO in base: [cached since 9606s ago] (20, 0)
+[2025-06-28 00:26:34,874] INFO in base: BEGIN (implicit)
+[2025-06-28 00:26:34,875] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 00:26:34,876] INFO in base: [cached since 9100s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 00:26:34,878] INFO in base: ROLLBACK
+[2025-06-28 00:26:34,881] INFO in base: ROLLBACK
+[2025-06-28 00:26:34,885] INFO in base: BEGIN (implicit)
+[2025-06-28 00:26:34,886] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 00:26:34,887] INFO in base: [cached since 9100s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 00:26:34,889] INFO in base: BEGIN (implicit)
+[2025-06-28 00:26:34,890] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 00:26:34,890] INFO in base: [cached since 9606s ago] (20, 0)
+[2025-06-28 00:26:34,892] INFO in base: ROLLBACK
+[2025-06-28 00:26:34,894] INFO in base: ROLLBACK
+[2025-06-28 00:27:34,848] INFO in base: BEGIN (implicit)
+[2025-06-28 00:27:34,849] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 00:27:34,849] INFO in base: [cached since 9666s ago] (20, 0)
+[2025-06-28 00:27:34,851] INFO in base: ROLLBACK
+[2025-06-28 00:27:34,854] INFO in base: BEGIN (implicit)
+[2025-06-28 00:27:34,855] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 00:27:34,855] INFO in base: [cached since 9666s ago] (20, 0)
+[2025-06-28 00:27:34,858] INFO in base: ROLLBACK
+[2025-06-28 11:05:58,219] INFO in base: select pg_catalog.version()
+[2025-06-28 11:05:58,220] INFO in base: [raw sql] ()
+[2025-06-28 11:05:58,223] INFO in base: select current_schema()
+[2025-06-28 11:05:58,223] INFO in base: [raw sql] ()
+[2025-06-28 11:05:58,225] INFO in base: show standard_conforming_strings
+[2025-06-28 11:05:58,225] INFO in base: [raw sql] ()
+[2025-06-28 11:05:58,227] INFO in base: BEGIN (implicit)
+[2025-06-28 11:05:58,241] INFO in base: SELECT admins.id, admins.name, admins.email, admins.hashed_password, admins.phone_number, admins.avatar_url, admins.created_at, admins.updated_at 
+FROM admins 
+WHERE admins.email = $1::VARCHAR
+[2025-06-28 11:05:58,242] INFO in base: [generated in 0.00066s] ('denisshokolad1221@gmail.com',)
+[2025-06-28 11:05:58,247] INFO in base: ROLLBACK
+[2025-06-28 11:06:10,647] INFO in base: BEGIN (implicit)
+[2025-06-28 11:06:10,651] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:06:10,652] INFO in base: [generated in 0.00069s] (20, 0)
+[2025-06-28 11:06:10,670] INFO in base: ROLLBACK
+[2025-06-28 11:06:10,673] INFO in base: BEGIN (implicit)
+[2025-06-28 11:06:10,674] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:06:10,674] INFO in base: [cached since 0.02322s ago] (20, 0)
+[2025-06-28 11:06:10,676] INFO in base: ROLLBACK
+[2025-06-28 11:06:21,737] INFO in login: LOGIN ATTEMPTS FOR IP: 127.0.0.1 - None
+[2025-06-28 11:06:21,738] INFO in base: BEGIN (implicit)
+[2025-06-28 11:06:21,739] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-06-28 11:06:21,739] INFO in base: [generated in 0.00033s] ('denisshokolad1221@gmail.com',)
+[2025-06-28 11:06:21,795] WARNING in bcrypt: (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "Z:\Work_Space\Full-Stack\Longing-for-heaven-App\backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+[2025-06-28 11:06:22,007] INFO in login: Access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmM5YTc5Ni02N2ZjLTQ2YmMtYmI5YS1mNTU5NDU2ZWZlZmEiLCJleHAiOjE3NTE3MDI3ODJ9.h4k083viAqiuya8VVOu0WnrHM2cPwdeg1-qBibdJdN8 
+[2025-06-28 11:06:22,009] INFO in base: ROLLBACK
+[2025-06-28 11:06:22,014] INFO in base: BEGIN (implicit)
+[2025-06-28 11:06:22,016] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 11:06:22,016] INFO in base: [generated in 0.00060s] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 11:06:22,018] INFO in base: ROLLBACK
+[2025-06-28 11:06:22,033] INFO in base: BEGIN (implicit)
+[2025-06-28 11:06:22,034] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:06:22,034] INFO in base: [cached since 11.38s ago] (20, 0)
+[2025-06-28 11:06:22,036] INFO in base: ROLLBACK
+[2025-06-28 11:06:22,039] INFO in base: BEGIN (implicit)
+[2025-06-28 11:06:22,040] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:06:22,040] INFO in base: [cached since 11.39s ago] (20, 0)
+[2025-06-28 11:06:22,041] INFO in base: ROLLBACK
+[2025-06-28 11:07:04,824] INFO in base: BEGIN (implicit)
+[2025-06-28 11:07:04,825] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:07:04,826] INFO in base: [cached since 54.17s ago] (20, 0)
+[2025-06-28 11:07:04,832] INFO in base: ROLLBACK
+[2025-06-28 11:07:04,837] INFO in base: BEGIN (implicit)
+[2025-06-28 11:07:04,838] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:07:04,838] INFO in base: [cached since 54.19s ago] (20, 0)
+[2025-06-28 11:07:04,840] INFO in base: ROLLBACK
+[2025-06-28 11:07:04,924] INFO in base: BEGIN (implicit)
+[2025-06-28 11:07:04,925] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 11:07:04,926] INFO in base: [cached since 42.91s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 11:07:04,930] INFO in base: ROLLBACK
+[2025-06-28 11:07:04,933] INFO in base: BEGIN (implicit)
+[2025-06-28 11:07:04,934] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 11:07:04,934] INFO in base: [cached since 42.92s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 11:07:04,936] INFO in base: ROLLBACK
+[2025-06-28 11:07:21,793] INFO in base: BEGIN (implicit)
+[2025-06-28 11:07:21,796] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-28 11:07:21,797] INFO in base: [generated in 0.00063s] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-28 11:07:21,803] INFO in base: ROLLBACK
+[2025-06-28 11:07:21,808] INFO in base: BEGIN (implicit)
+[2025-06-28 11:07:21,809] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-28 11:07:21,809] INFO in base: [cached since 0.01283s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-28 11:07:21,812] INFO in base: ROLLBACK
+[2025-06-28 11:07:30,664] INFO in base: BEGIN (implicit)
+[2025-06-28 11:07:30,665] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:07:30,666] INFO in base: [cached since 80.01s ago] (20, 0)
+[2025-06-28 11:07:30,669] INFO in base: ROLLBACK
+[2025-06-28 11:07:30,673] INFO in base: BEGIN (implicit)
+[2025-06-28 11:07:30,674] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:07:30,675] INFO in base: [cached since 80.02s ago] (20, 0)
+[2025-06-28 11:07:30,677] INFO in base: ROLLBACK
+[2025-06-28 11:07:35,989] INFO in base: BEGIN (implicit)
+[2025-06-28 11:07:35,990] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-28 11:07:35,990] INFO in base: [cached since 14.19s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-28 11:07:35,992] INFO in base: ROLLBACK
+[2025-06-28 11:07:35,996] INFO in base: BEGIN (implicit)
+[2025-06-28 11:07:35,997] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-28 11:07:35,997] INFO in base: [cached since 14.2s ago] (UUID('c471db88-510c-4ad2-a6be-343ed54589af'),)
+[2025-06-28 11:07:36,000] INFO in base: ROLLBACK
+[2025-06-28 11:09:35,146] INFO in base: BEGIN (implicit)
+[2025-06-28 11:09:35,149] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:09:35,149] INFO in base: [cached since 204.5s ago] (20, 0)
+[2025-06-28 11:09:35,155] INFO in base: ROLLBACK
+[2025-06-28 11:09:35,158] INFO in base: BEGIN (implicit)
+[2025-06-28 11:09:35,158] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:09:35,159] INFO in base: [cached since 204.5s ago] (20, 0)
+[2025-06-28 11:09:35,161] INFO in base: ROLLBACK
+[2025-06-28 11:10:25,990] INFO in base: BEGIN (implicit)
+[2025-06-28 11:10:25,991] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:10:25,992] INFO in base: [cached since 255.3s ago] (20, 0)
+[2025-06-28 11:10:25,993] INFO in base: ROLLBACK
+[2025-06-28 11:10:25,998] INFO in base: BEGIN (implicit)
+[2025-06-28 11:10:25,999] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 11:10:25,999] INFO in base: [cached since 244s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 11:10:26,002] INFO in base: ROLLBACK
+[2025-06-28 11:10:26,006] INFO in base: BEGIN (implicit)
+[2025-06-28 11:10:26,007] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:10:26,007] INFO in base: [cached since 255.4s ago] (20, 0)
+[2025-06-28 11:10:26,009] INFO in base: ROLLBACK
+[2025-06-28 11:10:26,012] INFO in base: BEGIN (implicit)
+[2025-06-28 11:10:26,012] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 11:10:26,012] INFO in base: [cached since 244s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 11:10:26,014] INFO in base: ROLLBACK
+[2025-06-28 11:16:36,363] INFO in base: BEGIN (implicit)
+[2025-06-28 11:16:36,365] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:16:36,366] INFO in base: [cached since 625.7s ago] (20, 0)
+[2025-06-28 11:16:36,371] INFO in base: BEGIN (implicit)
+[2025-06-28 11:16:36,372] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 11:16:36,372] INFO in base: [cached since 614.4s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 11:16:36,378] INFO in base: ROLLBACK
+[2025-06-28 11:16:36,394] INFO in base: ROLLBACK
+[2025-06-28 11:16:36,399] INFO in base: BEGIN (implicit)
+[2025-06-28 11:16:36,399] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-06-28 11:16:36,399] INFO in base: [cached since 614.4s ago] ('62c9a796-67fc-46bc-bb9a-f559456efefa',)
+[2025-06-28 11:16:36,401] INFO in base: BEGIN (implicit)
+[2025-06-28 11:16:36,401] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:16:36,402] INFO in base: [cached since 625.8s ago] (20, 0)
+[2025-06-28 11:16:36,404] INFO in base: ROLLBACK
+[2025-06-28 11:16:36,405] INFO in base: ROLLBACK
+[2025-06-28 11:18:19,433] INFO in base: BEGIN (implicit)
+[2025-06-28 11:18:19,433] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:18:19,434] INFO in base: [cached since 728.8s ago] (20, 0)
+[2025-06-28 11:18:19,436] INFO in base: ROLLBACK
+[2025-06-28 11:18:19,440] INFO in base: BEGIN (implicit)
+[2025-06-28 11:18:19,440] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:18:19,441] INFO in base: [cached since 728.8s ago] (20, 0)
+[2025-06-28 11:18:19,443] INFO in base: ROLLBACK
+[2025-06-28 11:20:50,683] INFO in base: BEGIN (implicit)
+[2025-06-28 11:20:50,684] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:20:50,685] INFO in base: [cached since 880s ago] (20, 0)
+[2025-06-28 11:20:50,687] INFO in base: ROLLBACK
+[2025-06-28 11:20:50,691] INFO in base: BEGIN (implicit)
+[2025-06-28 11:20:50,691] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:20:50,692] INFO in base: [cached since 880s ago] (20, 0)
+[2025-06-28 11:20:50,694] INFO in base: ROLLBACK
+[2025-06-28 11:20:55,273] INFO in base: BEGIN (implicit)
+[2025-06-28 11:20:55,274] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:20:55,274] INFO in base: [cached since 884.6s ago] (20, 0)
+[2025-06-28 11:20:55,276] INFO in base: ROLLBACK
+[2025-06-28 11:20:55,282] INFO in base: BEGIN (implicit)
+[2025-06-28 11:20:55,283] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:20:55,283] INFO in base: [cached since 884.6s ago] (20, 0)
+[2025-06-28 11:20:55,286] INFO in base: ROLLBACK
+[2025-06-28 11:40:06,871] INFO in base: BEGIN (implicit)
+[2025-06-28 11:40:06,872] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-28 11:40:06,873] INFO in base: [cached since 1965s ago] (UUID('3e85b28c-cd8c-4960-a2c9-69f18cecac00'),)
+[2025-06-28 11:40:06,878] INFO in base: ROLLBACK
+[2025-06-28 11:40:06,882] INFO in base: BEGIN (implicit)
+[2025-06-28 11:40:06,883] INFO in base: SELECT products.id, products.name, products.description, products.price, products.stock, products.created_at, products.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM products LEFT OUTER JOIN product_images AS product_images_1 ON products.id = product_images_1.product_id 
+WHERE products.id = $1::UUID
+[2025-06-28 11:40:06,883] INFO in base: [cached since 1965s ago] (UUID('3e85b28c-cd8c-4960-a2c9-69f18cecac00'),)
+[2025-06-28 11:40:06,887] INFO in base: ROLLBACK
+[2025-06-28 11:40:09,613] INFO in base: BEGIN (implicit)
+[2025-06-28 11:40:09,613] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:40:09,614] INFO in base: [cached since 2039s ago] (20, 0)
+[2025-06-28 11:40:09,616] INFO in base: ROLLBACK
+[2025-06-28 11:40:09,620] INFO in base: BEGIN (implicit)
+[2025-06-28 11:40:09,620] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:40:09,621] INFO in base: [cached since 2039s ago] (20, 0)
+[2025-06-28 11:40:09,623] INFO in base: ROLLBACK
+[2025-06-28 11:55:16,933] INFO in base: BEGIN (implicit)
+[2025-06-28 11:55:16,934] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:55:16,935] INFO in base: [cached since 2946s ago] (20, 0)
+[2025-06-28 11:55:16,937] INFO in base: ROLLBACK
+[2025-06-28 11:55:16,946] INFO in base: BEGIN (implicit)
+[2025-06-28 11:55:16,946] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:55:16,947] INFO in base: [cached since 2946s ago] (20, 0)
+[2025-06-28 11:55:16,949] INFO in base: ROLLBACK
+[2025-06-28 11:55:25,298] INFO in base: BEGIN (implicit)
+[2025-06-28 11:55:25,304] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:55:25,305] INFO in base: [cached since 2955s ago] (20, 0)
+[2025-06-28 11:55:25,308] INFO in base: ROLLBACK
+[2025-06-28 11:55:25,312] INFO in base: BEGIN (implicit)
+[2025-06-28 11:55:25,312] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:55:25,313] INFO in base: [cached since 2955s ago] (20, 0)
+[2025-06-28 11:55:25,315] INFO in base: ROLLBACK
+[2025-06-28 11:55:31,770] INFO in base: BEGIN (implicit)
+[2025-06-28 11:55:31,770] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:55:31,771] INFO in base: [cached since 2961s ago] (20, 0)
+[2025-06-28 11:55:31,772] INFO in base: ROLLBACK
+[2025-06-28 11:55:31,776] INFO in base: BEGIN (implicit)
+[2025-06-28 11:55:31,777] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-06-28 11:55:31,777] INFO in base: [cached since 2961s ago] (20, 0)
+[2025-06-28 11:55:31,779] INFO in base: ROLLBACK

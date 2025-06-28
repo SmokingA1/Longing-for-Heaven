@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { _NEVER } from "@reduxjs/toolkit/query";
 
 interface UIState {
     sideBarOpen: boolean;
+    sideCartOpen: boolean;
 }
 
 
 const initialState: UIState = {
     sideBarOpen: false,
+    sideCartOpen: false,
 }
 
 const uiSlice = createSlice({
@@ -22,8 +25,14 @@ const uiSlice = createSlice({
         closeSideBar: (state) => {
             state.sideBarOpen = false;
         },
+        openSideCart: (state) => {
+            state.sideCartOpen = true;
+        },
+        closeSideCart: (state) => {
+            state.sideCartOpen = false;
+        }
     }
 })
 
-export const {toggleSideBar, openSideBar, closeSideBar} = uiSlice.actions;
+export const {toggleSideBar, openSideBar, closeSideBar, openSideCart, closeSideCart} = uiSlice.actions;
 export default uiSlice.reducer;

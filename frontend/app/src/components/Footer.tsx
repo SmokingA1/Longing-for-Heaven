@@ -5,8 +5,8 @@ const Footer: React.FC = () => {
 
 
     return(
-        <footer id='container-footer' className="w-full h-60 relative bottom-0 flex justify-center border-t-[1px] border-gray-100 shadow-[0px_-2px_-4px_rgba(0,0,0,0.25)]">
-            <div className="w-300 flex justify-center gap-30 px-2.5 pt-10">
+        <footer id='container-footer' className="w-full h-100 relative bottom-0 flex justify-center border-t-[1px] border-gray-100 shadow-[0px_-2px_-4px_rgba(0,0,0,0.25)]">
+            <div className="w-85 xl:w-300 flex flex-col md:flex-row items-center gap-5 px-2.5 pt-10">
                 <div className="flex flex-col gap-2.5 items-center text-sm">
                     <span className="font-medium text-base">NAVIGATE</span>
                     <Link to={'/'}>Home</Link>

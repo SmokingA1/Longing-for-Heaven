@@ -39,9 +39,9 @@ const Products: React.FC = () => {
     }, [])
 
     return(
-        <div id="prdoucts-container" className="flex-grow flex gap-2 w-300 py-20">
-            <aside className="flex min-w-75 p-2.5 ">
-                <div className="bg-white h-30 w-full rounded-md border-[0.5px] border-gray-300 px-5 py-5 flex flex-col gap-2.5 ">
+        <div id="prdoucts-container" className="flex-grow flex md:w-185 lg:w-250 xl:w-300 py-20">
+            <aside className="hidden md:flex min-w-70 p-2.5 ">
+                <div className="flex bg-white h-30 w-full rounded-md border-[0.5px] border-gray-300 px-5 py-5 flex-col gap-2.5 ">
                     <span className=" font-normal">Filters</span>
                     <div className="w-full h-[1px] bg-gray-200"></div>
                     <span className="w-full flex justify-between items-center">
@@ -53,10 +53,10 @@ const Products: React.FC = () => {
                 </div>
 
             </aside>
-            <main className="flex ">
-                <article className="h-full grid xl:grid-cols-3 grid-rows-[450px] text-sm">
+            <main className="w-full">
+                <article className="h-full w-85 md:w-115 lg:w-[700px] xl:w-[900px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-col- text-sm">
                     {products && products.map((product) => (
-                        <div key={product.id} className={`flex flex-col h-[500px] bg-blue-white py-10 px-4 items-center  p-2.5 relative rounded-md hover:z-20 overflow-visible ${product.id === hoverElId && "hover:shadow-[0_2px_10px_rgba(0,0,0,0.25)]"}`}   onMouseLeave={() => setHoverElId(null)} >
+                        <div key={product.id} className={`flex flex-col h-[500px] bg-blue-white py-10 px-4 items-center p-2.5 relative rounded-md hover:z-20 overflow-visible ${product.id === hoverElId && "hover:shadow-[0_2px_10px_rgba(0,0,0,0.25)]"}`}   onMouseLeave={() => setHoverElId(null)} >
                             <div className="flex flex-col gap-5 group" onMouseEnter={() => setHoverElId(product.id)}>
                                 <img src={`http://localhost:8000/${product.images[0].photo_url}`} alt="" className="cursor-pointer " onClick={() => navigate(`/shop/${product.id}`)}/>
                                 <span className="font-normal">{product.name}</span>

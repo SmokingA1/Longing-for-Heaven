@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Contacts from "../components/Contacts";
+import SideBar from "../components/SideBar";
+import SideCart from "../components/SideCart";
 
 const ContactsPage: React.FC = () => {
 
@@ -14,6 +16,8 @@ const ContactsPage: React.FC = () => {
             <Header />
             <Contacts />
             <Footer />
+            <SideBar />
+            <SideCart />
         </div>
         
     )

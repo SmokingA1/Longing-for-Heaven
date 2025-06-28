@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeSideBar } from "../features/sideBar/sideBarSlice";
 import { clearUser } from "../features/user/userSlice";
 import { type AppDispatch, type RootState } from "../store";
 import api from "../api";
 import { useNavigate } from "react-router";
+import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
 
 const SideBar: React.FC = () => {
     const sideBar = useSelector((state: RootState) => state.ui);
     const user = useSelector((state: RootState) => state.user);
+    const [isShow, setIsShow] = useState<boolean>(true);
     const dispatch = useDispatch<AppDispatch>()
-
     const navigate = useNavigate();
 
     const signOut = async () => {
@@ -27,14 +28,22 @@ const SideBar: React.FC = () => {
             console.error(error);
         }
     }
-
+    useLockBodyScroll(sideBar.sideBarOpen);
     if (!sideBar.sideBarOpen) return null;
 
     return(
         <>
             <div id="blur" className="fixed left-0 top-0 h-full w-full z-40 backdrop-blur-xs" onClick={() => dispatch(closeSideBar())}></div>
-            <div id='side-bar' className="fixed right-0 top-0 h-full w-100 bg-white z-50 shadow-lg px-4 py-2.5  animate-out-here">
-                <div id="cross-x" onClick={() => dispatch(closeSideBar())} className="  top-0 left-0 h-0 w-full relative cursor-pointer">
+            <div id='side-bar' className={`fixed right-0 top-0 h-full w-100 bg-white z-50 shadow-lg px-4 py-2.5 ${isShow == true ? "animate-out-here" : "animation-out-away"}`}>
+                <div 
+                    id="cross-x"
+                    onClick={() => {
+                                setIsShow(false);
+                                setTimeout(
+                                    () => {dispatch(closeSideBar()); setIsShow(true)}, 300)
+                            }}
+                    className="  top-0 left-0 h-0 w-full relative cursor-pointer"
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 w-10 absolute top- right-0">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                     </svg>

@@ -54,7 +54,7 @@ const Product: React.FC<{id: string}> = ({ id }) => {
 
     
     return(
-        <div id="product-container" className="flex-grow h-200 flex w-300 pt-20 pb-10   " >
+        <div id="product-container" className="flex-grow min-h-200 flex w-300 pt-20 pb-10   " >
             <div id="product-in-container" className="w-full flex gap-2.5 bg-white">
 
                 <div id="product-picture-content" className="flex">

@@ -11,6 +11,17 @@
         margin: 0;
         box-sizing: border-box;
     }
+    
+    #root::-webkit-scrollbar {
+      background-color: white;
+      width: 12px;
+    }
+
+    #root::-webkit-scrollbar-thumb {
+      background-color: rgb(119, 119, 119);
+      border-radius: 6px;
+      border: 2px solid white;
+    }
 
 
 }
@@ -22,6 +33,7 @@ body, #root {
   width: 100%;
   margin: 0; padding: 0;
   box-sizing: border-box;
+  overflow: auto;
 }
 
 
@@ -31,7 +43,7 @@ body, #root {
 
 
 @layer utilities {
-  @keyframes fade-in-scale {
+  @keyframes slice-to-left {
     0% {
       transform: translateX(100%);
     }
@@ -50,8 +62,21 @@ body, #root {
     }
   }
 
+  @keyframes slice-to-right {
+    0%{
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
   .animate-out-here {
-    animation: fade-in-scale 0.3s ease-out;
+    animation: slice-to-left 0.3s linear;
+  }
+
+  .animation-out-away {
+    animation: slice-to-right 0.3s linear;
   }
 
   .animate-out-top {
