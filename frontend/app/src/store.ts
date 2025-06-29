@@ -1,6 +1,7 @@
 import { configureStore, combineReducers} from '@reduxjs/toolkit';
 import userReducer from './features/user/userSlice';
 import uiReducer from "./features/sideBar/sideBarSlice";
+import cartReducer from "./features/cart/cartSlice"
 import {
   persistStore,
   persistReducer,
@@ -16,12 +17,13 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user'], // какие редьюсеры сохранять
+  whitelist: ['user', 'cart'], // какие редьюсеры сохранять
 };
 
 const rootReducer = combineReducers({
   user: userReducer,
   ui: uiReducer,
+  cart: cartReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

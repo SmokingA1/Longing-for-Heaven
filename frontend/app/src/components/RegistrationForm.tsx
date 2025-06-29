@@ -42,6 +42,9 @@ const RegistrationForm: React.FC = () => {
 
             const response = await api.post("/users/create/", registerData )
             console.log(response.data);
+            if (response.data) {
+                handleCreateCart(response.data.id);
+            }
         } catch (error: any) {
             if (error.response) {
                 console.error("Server error", error.response.data);
@@ -65,6 +68,15 @@ const RegistrationForm: React.FC = () => {
             } else {
                 console.error("Network or other error", error);
             }
+        }
+    }
+
+    const handleCreateCart = async (userId: string) => {
+        try {
+            const response = await api.post("/carts/create", {"user_id": userId});
+            console.log(response.data);
+        } catch (error) {
+            console.error("Some error: ", error);
         }
     }
 

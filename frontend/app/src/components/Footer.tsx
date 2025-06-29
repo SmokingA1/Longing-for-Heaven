@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
 
     return(
         <footer id='container-footer' className="w-full h-100 relative bottom-0 flex justify-center border-t-[1px] border-gray-100 shadow-[0px_-2px_-4px_rgba(0,0,0,0.25)]">
-            <div className="w-85 xl:w-300 flex flex-col md:flex-row items-center gap-5 px-2.5 pt-10">
+            <div className="w-85 xl:w-300 flex flex-col md:flex-row xl:justify-center items-center gap-5 px-2.5 pt-10">
                 <div className="flex flex-col gap-2.5 items-center text-sm">
                     <span className="font-medium text-base">NAVIGATE</span>
                     <Link to={'/'}>Home</Link>
@@ -14,8 +14,8 @@ const Footer: React.FC = () => {
                     <span>Shipping and payment</span>
                     <span>Private policy</span>
                     <Link to={'/contacts'}>Contacts</Link>
-
                 </div>
+                
                 <div className="flex flex-col gap-2.5 items-center text-sm">
                     <h2 className="font-medium text-base">CONTACTS</h2>
                     <span>smokinga1wm@gmail.com</span>

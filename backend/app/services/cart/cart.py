@@ -16,7 +16,7 @@ async def get_carts(
     limit: int = 20,
 ) -> List[Cart]:
     query = select(Cart).options(
-        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload()
+        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload(Product.images)
     ).offset(offset=offset).limit(limit=limit)
 
     result = await db.execute(query)

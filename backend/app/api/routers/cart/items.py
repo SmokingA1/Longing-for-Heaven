@@ -100,6 +100,48 @@ async def update_cart_item(
     return updated_cart_item
 
 
+@router.patch("/{cart_item_id}/increment", response_model=CartItemPublic)
+async def inrement_quantity(
+    *,
+    db: SessionDep,
+    cart_item_id: UUID,
+):
+    db_cart_item = await get_cart_item_by_id(db=db, cart_item_id=cart_item_id)
+    if not db_cart_item:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Such cart item not found!")
+    if db_cart_item.quantity >= db_cart_item.product.stock:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Maximum stock reached"
+        )
+    else:
+        db_cart_item.quantity += 1    
+        await db.commit()
+        await db.refresh(db_cart_item)
+        return db_cart_item
+
+
+@router.patch("/{cart_item_id}/decrement", response_model=CartItemPublic)
+async def decrement_quantity(
+    *,
+    db: SessionDep,
+    cart_item_id: UUID,
+):
+    db_cart_item = await get_cart_item_by_id(db=db, cart_item_id=cart_item_id)
+    if not db_cart_item:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Such cart item not found!")
+    if db_cart_item.quantity <= 1:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Minimun quantity reached"
+        )
+    else:
+        db_cart_item.quantity -= 1    
+        await db.commit()
+        await db.refresh(db_cart_item)
+        return db_cart_item
+
+
 @router.delete("/delete/{cart_item_id}", response_model=Message)
 async def delete_cart_item(
     db: SessionDep,
