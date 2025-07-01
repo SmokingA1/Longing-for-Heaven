@@ -17,17 +17,19 @@ interface CartItem {
     product: {
         id: string,
         name: string,
+        description: string,
+        price: number,
         stock: number,
         images: ProductImage[]
     }
 }
 
 interface CartState {
-    items: CartItem[];
+    cart_items: CartItem[];
 }
 
 const initialState: CartState = {
-    items: []
+    cart_items: []
 }
 
 const cartSlice = createSlice({
@@ -35,29 +37,29 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         fillCart: (state, action: PayloadAction<CartItem[]>) => {
-            state.items = action.payload;
+            state.cart_items = action.payload;
         },
         addToCart: (state, action: PayloadAction<CartItem>) => {
-            state.items.push(action.payload);
+            state.cart_items.push(action.payload);
         },
         incrementQTY: (state, action: PayloadAction<string>) => {
             // state.items = state.items.map((item) => item.id === action.payload ? { ...item, quantity: item.quantity + 1} : item ) //my
-            const item = state.items.find(item => item.id === action.payload);
+            const item = state.cart_items.find(item => item.id === action.payload);
             if (item && item.quantity < item.product.stock) {
                 item.quantity += 1;
             }
         },
         decrementQTY: (state, action: PayloadAction<string>) => {
-            const item = state.items.find(item => item.id === action.payload);
+            const item = state.cart_items.find(item => item.id === action.payload);
             if (item && item.quantity > 1) {
                 item.quantity -=1;
             }
         },
         removeFromCart: (state, action: PayloadAction<string>) => {
-            state.items = state.items.filter((cartItem) => cartItem.id != action.payload);
+            state.cart_items = state.cart_items.filter((cartItem) => cartItem.id != action.payload);
         },
         clearCart: (state) => {
-            state.items = [];
+            state.cart_items = [];
         }
     },
 })

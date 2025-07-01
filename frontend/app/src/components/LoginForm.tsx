@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { type AppDispatch } from "../store";
 import { setUser } from "../features/user/userSlice";
+import { fillCart } from "../features/cart/cartSlice";
 import api from "../api";
 
 interface UserLoginInterface {
@@ -44,6 +45,18 @@ const LoginForm: React.FC = () => {
             console.error(error);
         }
     }
+    
+    const getCart = async () => {
+        try {
+            const response = await api.get("/carts/user/me");
+            console.log("CART DATA: ",response.data);
+            dispatch(fillCart(
+                response.data.cart_items
+            ))
+        } catch (error) {
+            console.log("Some error", error);
+        }
+    }
 
     const handleLogin = async (e:React.FormEvent) => {
         e.preventDefault();
@@ -59,6 +72,7 @@ const LoginForm: React.FC = () => {
             }})
             console.log(response.data);
             await getUser();
+            await getCart();
             navigate("/");
 
         } catch( error: any ) {

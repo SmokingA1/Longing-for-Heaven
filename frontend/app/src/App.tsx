@@ -8,7 +8,7 @@ import AdminPage from './pages/AdminPage';
 import ShopPage from './pages/ShopPage';
 import ProductPage from './pages/ProductPage';
 
-import { useEffect } from "react";
+import {  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "./features/user/userSlice";
 import { closeSideBar, closeSideCart } from './features/sideBar/sideBarSlice';

@@ -6,7 +6,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 
 from app.models import CartItem, Product
-from app.schemas import CartItemCreate, CartItemUpdate
+from app.schemas import CartItemCreate, CartItemUpdate, CartItemCreateWCart
 
 async def get_cart_item_by_id(
     *,
@@ -64,6 +64,32 @@ async def create_cart_item(
     cart_item_create: CartItemCreate,
 ) -> CartItem:
     new_cart_item = CartItem(**cart_item_create.model_dump())
+
+    db.add(new_cart_item)
+    await db.commit()
+    await db.refresh(new_cart_item)
+
+    query = select(CartItem).where(CartItem.id == new_cart_item.id).options(
+        joinedload(CartItem.product).joinedload(Product.images)
+    )
+    result = await db.execute(query)
+    new_cart_item = result.unique().scalars().first()
+
+    return new_cart_item
+
+
+async def create_cart_item_w_cart(
+    *,
+    db: AsyncSession,
+    cart_item_create: CartItemCreateWCart,
+    cart_id: UUID,
+) -> CartItem:
+    new_cart_item = CartItem(
+        cart_id=cart_id,
+        product_id=cart_item_create.product_id,
+        quantity=cart_item_create.quantity,
+        price=cart_item_create.price
+    )
 
     db.add(new_cart_item)
     await db.commit()

@@ -180,6 +180,12 @@ class CartItemCreate(CartItemBase):
     pass
 
 
+class CartItemCreateWCart(BaseModel): #without cart
+    product_id: UUID
+    quantity: int = Field(default=1, ge=1)
+    price: int = Field(default=0)
+
+
 class CartItemPublic(CartItemBase):
     id: UUID
 

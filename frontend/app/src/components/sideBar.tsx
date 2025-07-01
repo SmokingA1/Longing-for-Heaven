@@ -6,6 +6,7 @@ import { type AppDispatch, type RootState } from "../store";
 import api from "../api";
 import { useNavigate } from "react-router";
 import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
+import { clearCart } from "../features/cart/cartSlice";
 
 const SideBar: React.FC = () => {
     const sideBar = useSelector((state: RootState) => state.ui);
@@ -20,6 +21,7 @@ const SideBar: React.FC = () => {
             if (response) {
                 dispatch(clearUser());
                 dispatch(closeSideBar());
+                dispatch(clearCart());
                 navigate("/login");
             }
             
