@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProductImageForm from "./ProductImageForm";
+// import ProductImageForm from "./ProductImageForm";
 import api from "../api";
 
 interface ProductFormProps {
@@ -22,13 +22,15 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
         price: null,
         stock: null,
     })
-    const [isPIFormVisible, setIsPIFormVisible] = useState<boolean>(false);
+
+    // файлики
+    // const [file, setFile] = useState<File>()
 
     const handleCreateProductImage = async (product_id: string) => {
         try {
             const response = await api.post("/product-images/create", {
                 product_id: product_id,
-                photo_url: "static/products/stone_island.jpg"
+                photo_url: "static/products/herelst.webp"
             })
             console.log(response.data);
         } catch( error: any ) {
@@ -152,18 +154,25 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
 
                     </div>
 
-                    <div onClick={() => setIsPIFormVisible(true)} className="w-70 h-70 border-1 bg-slate-300 hover:opacity-80 duration-120 shadow-sm  cursor-pointer text-5xl flex rounded-xl items-center justify-center" >
-
-                        +
-
-
+                    {/* <div className="w-70 h-70 border-1 bg-slate-300 hover:opacity-80 duration-120 shadow-sm  cursor-pointer text-5xl flex rounded-xl items-center justify-center" >
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                                const f = e.target.files?.[0];
+                                if (f) setFile(f);
+                                }}
+                         />
+                    </div> */}
+                    <div className="size-50 flex justify-center ">
                     </div>
+                    
 
                     <button className="w-80 py-2 mt-5 bg-indigo-300 rounded-xl ease-in duration-120 cursor-pointer text-white hover:bg-indigo-400">ADD PRODUCT</button>
                 </form>
 
             </div>
-            <ProductImageForm isVisible={isPIFormVisible} setIsVisible={() => setIsPIFormVisible(false)}/>
+            {/* <ProductImageForm isVisible={isPIFormVisible} setIsVisible={() => setIsPIFormVisible(false)}/> */}
         </>
     )
 }

@@ -20,9 +20,13 @@ def render_template(
     template_name: str,
     context: dict[str, Any],
 ) -> str:
-    template_str = (
-        Path(__file__).parent / ".." / "email-templates" / "build" / template_name
-    ).read_text()
+    
+    base_dir = Path(__file__).resolve().parent        #  .../app
+    templates_dir = base_dir.parent / "email-templates" / "build"
+    template_path = templates_dir / template_name
+
+
+    template_str = template_path.read_text()
     html_content = Template(template_str).render(context)
     return html_content
 
@@ -36,7 +40,7 @@ def send_email(
     assert settings.emails_enabled, "no provided configuration for email variables"
     message = emails.Message(
         subject=subject,
-        html_content=html_content,
+        html=html_content,
         mail_from=(settings.EMAILS_FROM_NAME, settings.EMAILS_FROM_EMAIL)
     )
 
@@ -58,7 +62,7 @@ def send_email(
     logger.info(response)
 
 
-def create_new_account_email(
+def generate_new_account_email(
     email_to: str,
     username: str,
     password: str,
@@ -77,3 +81,25 @@ def create_new_account_email(
             "link": f"http://localhost:5173/"
         }   
     ))
+    return EmailData(subject=subject, html_content=html_contect)
+
+
+def generate_recover_password_email(
+    *,
+    email: str,
+    username: str,
+) -> EmailData:
+    
+    project_name = settings.PROJECT_NAME
+
+    subject = f"{project_name} - Recovering password for user {username}"
+    email_recover_token = create_access_token(email)
+    html_content = render_template(
+        template_name="reset_password.html",
+        context={
+            "project_name": project_name,
+            "username": username,
+            "link": f"{settings.FRONTEND_HOST}/recover_password?token={email_recover_token}"
+        }
+    )
+    return EmailData(subject=subject, html_content=html_content)

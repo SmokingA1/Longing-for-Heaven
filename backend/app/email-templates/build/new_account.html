@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f4;">
+        <tr>
+            <td align="center" style="padding: 30px 0;;">
+                <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff;">
+                    <!-- level 3 -->
+                    <tr>
+                        
+                            
+                        <td align="center"
+                            style="
+                            padding: 40px 0 40px 0 ;
+                            font-size: 18px;
+                            line-height: 1.4;
+                            color: #333333; 
+                            background-color: #d6dbdf; 
+                            border-top-right-radius: 6px;
+                            border-top-left-radius: 6px;"
+                        >
+                                    <table>
+                                        <tr>
+                                            <td style="width: 420px; padding: 0 20px;">
+                                                <img src="../EmailWelcomeLFH.png" alt="welcome-words-for-use" style="width: 440px">
+                                                    
+                                            </td>
+                                            <td style="width: 100px; padding: 0 20px 0 0;">
+                                                <img src="../catLFH2.jpg" alt="cat-logo" style="width: 100px;">
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                        </td>
+
+                        <tr> 
+                            <td align="center">
+                                <table cellpaddig="0" cellspasing="0">
+                                    <tr>
+                                        <td style="
+                                            line-height: 1.6;
+                                            padding: 20px 20px;
+                                            font-family:Verdana, Geneva, Tahoma, sans-serif"                                        >   
+                                            <p>Hello, {{ username }}! You're receiving this message because you recently sigined up for a account.</p>
+                                            <p>
+                                                Thank you for creating a new account on Longing for Heaven!
+                                                We glad to see new members with us!
+                                            </p>
+                                            <p>Here your account login and password:</p>
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td align="center">
+                                <table style="font-family: Verdana, Geneva, Tahoma, sans-serif; padding: 0 0 10px 0;" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="padding: 0 0 20px 0;">
+                                            <p style="margin: 0;">Login: {{ email }}</p>
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p style="margin: 0;">Password: {{ password }}</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="
+                                            line-height: 1.6;
+                                            padding: 10px 20px 30px 20px;
+                                            font-family:Verdana, Geneva, Tahoma, sans-serif"                                        >   
+                                            <p>You can visit site clicked by this link -> 
+                                                <a style="text-decoration: none; padding: 8px 32px; border-radius: 4px; color: #fff; background-color: #d6dbdf;" href="{{ link }}">Follow</a>
+                                            </p>
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="border-top: 1px solid #d6dbdf; width: 500px; padding: 40px 0 10px 0;;">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td 
+                                            align="center"
+                                            style="
+                                            line-height: 1.6;
+                                            width: 125px;
+                                            border-right: 1px solid #d6dbdf;
+                                            font-family:Verdana, Geneva, Tahoma, sans-serif"
+                                        >
+                                            <a href="{{ link }}" style="margin: 0; text-decoration: none; color: #000;">Home</a>
+                                        </td>
+                                        <td 
+                                            align="center"
+                                            style="
+                                            line-height: 1.6;
+                                            width: 125px;
+                                            border-right: 1px solid #d6dbdf;
+                                            font-family:Verdana, Geneva, Tahoma, sans-serif"
+                                        >
+                                            <a href="{{ link }}" style="margin: 0; text-decoration: none; color: #000;">Page</a>
+                                        </td>
+                                        <td 
+                                            align="center"
+                                            style="
+                                            line-height: 1.6;
+                                            width: 125px;
+                                            border-right: 1px solid #d6dbdf;
+                                            font-family:Verdana, Geneva, Tahoma, sans-serif"
+                                        >
+                                            <a href="http://localhost:5173/about-us/" style="margin: 0; text-decoration: none; color: #000;">About us</a>
+                                        </td>
+                                        <td 
+                                            align="center"
+                                            style="
+                                            line-height: 1.6;
+                                            width: 125px;
+                                            font-family:Verdana, Geneva, Tahoma, sans-serif"
+                                        >
+                                            <a href="http://localhost:5173/contact-us/" style="margin: 0; text-decoration: none; color: #000;">Contact us</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" >
+                                <table cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td 
+                                            align="center"
+                                            style="
+                                            line-height: 1.6;
+                                            padding: 20px 0 40px 0;
+                                            width: 400px;
+                                            font-family:Verdana, Geneva, Tahoma, sans-serif"
+                                        >
+                                            © 2025 Longing for Heaven, All rights reserved.
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tr>
+
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

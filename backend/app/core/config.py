@@ -59,5 +59,7 @@ class Settings(BaseSettings):
     def emails_enabled(self) -> bool:
         return bool(self.EMAILS_FROM_EMAIL and self.SMTP_HOST)
     
+    FRONTEND_HOST: str
+
     
 settings = Settings()

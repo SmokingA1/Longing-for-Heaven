@@ -4,7 +4,7 @@ from uuid import UUID
 from fastapi import APIRouter, Query, HTTPException, status, Response
 
 from app.api.deps import SessionDep, CurrentUser
-from app.schemas import UserCreate, UserPublic, UserUpdate, Message
+from app.schemas import UserCreate, UserPublic, UserUpdate, Message, EmailRequest
 from app.services.user import (
     get_users,
     get_user_by_email,
@@ -14,6 +14,8 @@ from app.services.user import (
     update_user_by_id,
     delete_user_by_id,
 )
+from app.utils.utils import generate_new_account_email, send_email, generate_recover_password_email
+from app.core.config import settings
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
@@ -110,10 +112,23 @@ async def create_new_user(db: SessionDep, user_create: UserCreate) -> Any:
 
     new_user = await create_user(db=db, user_create=user_create)
 
+
     if not new_user:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Server error while creating new user."
+        )
+    
+    if settings.emails_enabled and user_create.email:
+        email_data = generate_new_account_email(
+            email_to=user_create.email,
+            username=user_create.name,
+            password=user_create.password
+        )
+        send_email(
+            email_to=user_create.email,
+            subject=email_data.subject,
+            html_content=email_data.html_content
         )
     
     return new_user
@@ -219,3 +234,30 @@ async def delete_user(db: SessionDep, user_id: UUID) -> Any:
         )
 
     return Message(data="User deleted successfully.")
+
+
+
+
+@router.post("/reset-password", response_model=Message)
+async def reset_password(db: SessionDep, email_request: EmailRequest):
+    """
+        Endpoint for sending password for existing user by email to reset password.
+    """
+    db_user = await get_user_by_email(db=db, user_email=email_request.email)
+
+    if not db_user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User by email not found!"
+        )
+    
+    email_data = generate_recover_password_email(
+        email=db_user.email,
+        username=db_user.name
+    )
+    send_email(
+        email_to=db_user.email,
+        subject=email_data.subject,
+        html_content=email_data.html_content
+    )
+
+    return Message(data="Email sent successfully")

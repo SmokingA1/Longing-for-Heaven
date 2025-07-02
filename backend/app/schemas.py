@@ -208,6 +208,9 @@ class Message(BaseModel):
     data: str
 
 
+class EmailRequest(BaseModel):
+    email: EmailStr
+
 OrderPublic.model_rebuild()
 OrderItemPublic.model_rebuild()
 CartPublic.model_rebuild()
