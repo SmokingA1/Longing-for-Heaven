@@ -26,7 +26,7 @@ async def get_current_user(request: Request, db: SessionDep) -> User:
 
         if token_data.exp < datetime.utcnow().timestamp():
             raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
+                status_code=status.HTTP_408_REQUEST_TIMEOUT,
                 detail="Token has expired",
             )
     except (ValidationError, InvalidTokenError):

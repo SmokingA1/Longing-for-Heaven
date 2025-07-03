@@ -99,7 +99,7 @@ def generate_recover_password_email(
         context={
             "project_name": project_name,
             "username": username,
-            "link": f"{settings.FRONTEND_HOST}/recover_password?token={email_recover_token}"
+            "link": f"{settings.FRONTEND_HOST}/recover-password?token={email_recover_token}"
         }
     )
     return EmailData(subject=subject, html_content=html_content)

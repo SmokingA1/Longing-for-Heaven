@@ -2,7 +2,6 @@ from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Response, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordRequestForm
-# from fastapi
 
 from app.schemas import Message
 from app.api.deps import SessionDep

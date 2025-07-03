@@ -16,9 +16,9 @@ const ForgotPassword: React.FC = () => {
 
     return(
         <div id="forgot-password-container" className="min-h-screen w-full flex justify-center items-start py-20">
-            <form onSubmit={handleSendEmail} className="w-150 border-1 py-10 px-10 flex flex-col gap-2 rounded-md shadow-lg">
-                <span>Forgot password?</span>
-                <span>Enter your email adress and wait for an email to reset password! </span>
+            <form onSubmit={handleSendEmail} className="w-150 border-1 border-gray-500 p-10 flex flex-col gap-2 rounded-md shadow-lg">
+                <h1>Forgot password?</h1>
+                <p>Enter your email adress and wait for an email to reset password!</p>
                 <div className="flex gap-1" >
                     {/* <label htmlFor="">Email</label> */}
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">

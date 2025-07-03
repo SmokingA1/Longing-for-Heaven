@@ -1,10 +1,23 @@
 from typing import List, Any
 from uuid import UUID
+from datetime import datetime, timedelta
 
+from pydantic import ValidationError
 from fastapi import APIRouter, Query, HTTPException, status, Response
+import jwt
+from jwt import InvalidTokenError
+
 
 from app.api.deps import SessionDep, CurrentUser
-from app.schemas import UserCreate, UserPublic, UserUpdate, Message, EmailRequest
+from app.schemas import (
+    UserCreate,
+    UserPublic,
+    UserUpdate,
+    Message,
+    EmailRequest,
+    UserRecoverPassword,
+    TokenPayload
+)
 from app.services.user import (
     get_users,
     get_user_by_email,
@@ -16,6 +29,7 @@ from app.services.user import (
 )
 from app.utils.utils import generate_new_account_email, send_email, generate_recover_password_email
 from app.core.config import settings
+from app.core.security import hash_password
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
@@ -241,7 +255,7 @@ async def delete_user(db: SessionDep, user_id: UUID) -> Any:
 @router.post("/reset-password", response_model=Message)
 async def reset_password(db: SessionDep, email_request: EmailRequest):
     """
-        Endpoint for sending password for existing user by email to reset password.
+    Endpoint for sending an email for existing user by email to reset password.
     """
     db_user = await get_user_by_email(db=db, user_email=email_request.email)
 
@@ -261,3 +275,34 @@ async def reset_password(db: SessionDep, email_request: EmailRequest):
     )
 
     return Message(data="Email sent successfully")
+
+
+@router.post("/recover-password", response_model=Message)
+async def recover_password(db: SessionDep, user_recover: UserRecoverPassword):
+    """
+    Endpoint to set new password by decoding in token
+    """
+    try:
+        token_payload = jwt.decode(user_recover.token, key=settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+        token_data = TokenPayload(**token_payload)
+        if token_data.exp < datetime.utcnow().timestamp():
+            raise HTTPException(status_code=status.HTTP_408_REQUEST_TIMEOUT, detail="Token has expired!")
+    except (ValidationError, InvalidTokenError):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Could not validate credentials!"
+        )
+    
+    db_user = await get_user_by_email(db=db, user_email=str(token_data.sub))
+
+    if not db_user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found!"
+        )
+    
+    db_user.hashed_password = hash_password(user_recover.new_password)
+
+    await db.commit()
+    await db.refresh(db_user)
+
+    return Message(data="Password has been successfully reset.")

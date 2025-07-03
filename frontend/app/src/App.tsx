@@ -16,6 +16,7 @@ import { closeSideBar, closeSideCart } from './features/sideBar/sideBarSlice';
 import api from "./api";
 import { type RootState, type AppDispatch } from "./store";
 import ContactsPage from './pages/ContactsPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 function App() {
   const user = useSelector((state: RootState) => state.user);
@@ -58,6 +59,7 @@ function App() {
       <Route path='/shop/' element={<ShopPage  />}/>
       <Route path='/shop/:id' element={<ProductPage  />}/>
       <Route path='/forgot-password/' element={<ForgotPassword />}/>
+      <Route path='/recover-password' element={<ResetPasswordPage /> }/>
     </Routes>
   )
 }

@@ -50,6 +50,11 @@ class UserUpdate(BaseModel):
     street: str | None = Field(None, min_length=2, max_length=100)
 
 
+class UserRecoverPassword(BaseModel):
+    token: str
+    new_password: str
+
+
 class ProductBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
     description: str = Field(..., min_length=1, max_length=255)
