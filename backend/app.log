@@ -23679,3 +23679,381 @@ WHERE users.email = $1::VARCHAR
 [2025-07-03 11:42:39,240] INFO in base: [cached since 12.58s ago] ('denisshokolad1221@gmail.com',)
 [2025-07-03 11:42:42,557] INFO in utils: <emails.backend.SMTPResponse status_code=250 status_text=b'2.0.0 OK  1751532163 2adb3069b0e04-5562798d93csm494339e87.250 - gsmtp'>
 [2025-07-03 11:42:42,557] INFO in base: ROLLBACK
+[2025-07-03 11:45:01,807] INFO in base: select pg_catalog.version()
+[2025-07-03 11:45:01,808] INFO in base: [raw sql] ()
+[2025-07-03 11:45:01,809] INFO in base: select current_schema()
+[2025-07-03 11:45:01,810] INFO in base: [raw sql] ()
+[2025-07-03 11:45:01,811] INFO in base: show standard_conforming_strings
+[2025-07-03 11:45:01,812] INFO in base: [raw sql] ()
+[2025-07-03 11:45:01,813] INFO in base: BEGIN (implicit)
+[2025-07-03 11:45:01,836] INFO in base: SELECT admins.id, admins.name, admins.email, admins.hashed_password, admins.phone_number, admins.avatar_url, admins.created_at, admins.updated_at 
+FROM admins 
+WHERE admins.email = $1::VARCHAR
+[2025-07-03 11:45:01,836] INFO in base: [generated in 0.00065s] ('denisshokolad1221@gmail.com',)
+[2025-07-03 11:45:01,841] INFO in base: ROLLBACK
+[2025-07-03 11:45:01,960] INFO in base: BEGIN (implicit)
+[2025-07-03 11:45:01,962] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 11:45:01,962] INFO in base: [generated in 0.00046s] ('denisshokolad1221@gmail.com',)
+[2025-07-03 11:45:05,007] INFO in utils: <emails.backend.SMTPResponse status_code=250 status_text=b'2.0.0 OK  1751532305 2adb3069b0e04-556274688bcsm539103e87.229 - gsmtp'>
+[2025-07-03 11:45:05,008] INFO in base: ROLLBACK
+[2025-07-03 11:49:30,147] INFO in base: BEGIN (implicit)
+[2025-07-03 11:49:30,149] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 11:49:30,150] INFO in base: [cached since 268.2s ago] ('denisshokolad1221@gmail.com',)
+[2025-07-03 11:49:32,021] INFO in utils: <emails.backend.SMTPResponse status_code=250 status_text=b'2.0.0 OK  1751532572 2adb3069b0e04-5550b2eec3dsm2348956e87.242 - gsmtp'>
+[2025-07-03 11:49:32,022] INFO in base: ROLLBACK
+[2025-07-03 11:55:31,776] INFO in base: BEGIN (implicit)
+[2025-07-03 11:55:31,777] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 11:55:31,777] INFO in base: [cached since 629.8s ago] ('denisshokolad1221@gmail.com',)
+[2025-07-03 11:55:33,574] INFO in utils: <emails.backend.SMTPResponse status_code=250 status_text=b'2.0.0 OK  1751532934 2adb3069b0e04-5550b2d8058sm2354535e87.209 - gsmtp'>
+[2025-07-03 11:55:33,575] INFO in base: ROLLBACK
+[2025-07-03 11:57:12,972] INFO in base: BEGIN (implicit)
+[2025-07-03 11:57:12,973] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 11:57:12,973] INFO in base: [cached since 731s ago] ('denisshokolad1221@gmail.com',)
+[2025-07-03 11:57:13,019] WARNING in bcrypt: (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "Z:\Work_Space\Full-Stack\Longing-for-heaven-App\backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+[2025-07-03 11:57:13,435] INFO in base: UPDATE users SET hashed_password=$1::VARCHAR, updated_at=$2::TIMESTAMP WITHOUT TIME ZONE WHERE users.id = $3::UUID
+[2025-07-03 11:57:13,436] INFO in base: [generated in 0.00082s] ('$2b$12$lCd22V5sLdBaKWjRrD5iJOdXGJk5sDF2sZO8B5nPiyywV25PdU/tm', datetime.datetime(2025, 7, 3, 8, 57, 13, 435890), UUID('1144b730-af6b-4e3f-8b30-9348198756a4'))
+[2025-07-03 11:57:13,486] INFO in base: COMMIT
+[2025-07-03 11:57:13,489] INFO in base: BEGIN (implicit)
+[2025-07-03 11:57:13,491] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-07-03 11:57:13,491] INFO in base: [generated in 0.00074s] (UUID('1144b730-af6b-4e3f-8b30-9348198756a4'),)
+[2025-07-03 11:57:13,494] INFO in base: ROLLBACK
+[2025-07-03 11:57:26,334] INFO in login: LOGIN ATTEMPTS FOR IP: 127.0.0.1 - None
+[2025-07-03 11:57:26,336] INFO in base: BEGIN (implicit)
+[2025-07-03 11:57:26,336] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 11:57:26,337] INFO in base: [cached since 744.4s ago] ('denisshokolad1221@gmail.com',)
+[2025-07-03 11:57:26,714] INFO in login: Access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMTQ0YjczMC1hZjZiLTRlM2YtOGIzMC05MzQ4MTk4NzU2YTQiLCJleHAiOjE3NTIxMzc4NDZ9.Ku_o0QiJo0pyxh-ZKXLuWfNQs6DS8dPbdzfXkE9_bik 
+[2025-07-03 11:57:26,716] INFO in base: ROLLBACK
+[2025-07-03 11:57:26,724] INFO in base: BEGIN (implicit)
+[2025-07-03 11:57:26,727] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-07-03 11:57:26,729] INFO in base: [generated in 0.00213s] ('1144b730-af6b-4e3f-8b30-9348198756a4',)
+[2025-07-03 11:57:26,735] INFO in base: ROLLBACK
+[2025-07-03 11:57:26,762] INFO in base: BEGIN (implicit)
+[2025-07-03 11:57:26,764] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-07-03 11:57:26,765] INFO in base: [cached since 0.03818s ago] ('1144b730-af6b-4e3f-8b30-9348198756a4',)
+[2025-07-03 11:57:26,776] INFO in base: SELECT carts.id, carts.user_id, carts.created_at, carts.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1, products_1.id AS id_2, products_1.name, products_1.description, products_1.price, products_1.stock, products_1.created_at AS created_at_2, products_1.updated_at AS updated_at_2, cart_items_1.id AS id_3, cart_items_1.cart_id, cart_items_1.product_id AS product_id_1, cart_items_1.quantity, cart_items_1.price AS price_1, cart_items_1.created_at AS created_at_3, cart_items_1.updated_at AS updated_at_3 
+FROM carts LEFT OUTER JOIN cart_items AS cart_items_1 ON carts.id = cart_items_1.cart_id LEFT OUTER JOIN products AS products_1 ON products_1.id = cart_items_1.product_id LEFT OUTER JOIN product_images AS product_images_1 ON products_1.id = product_images_1.product_id 
+WHERE carts.user_id = $1::UUID
+[2025-07-03 11:57:26,776] INFO in base: [generated in 0.00086s] (UUID('1144b730-af6b-4e3f-8b30-9348198756a4'),)
+[2025-07-03 11:57:26,787] INFO in base: ROLLBACK
+[2025-07-03 11:57:26,845] INFO in base: BEGIN (implicit)
+[2025-07-03 11:57:26,850] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-07-03 11:57:26,851] INFO in base: [generated in 0.00101s] (20, 0)
+[2025-07-03 11:57:26,856] INFO in base: ROLLBACK
+[2025-07-03 11:57:26,861] INFO in base: BEGIN (implicit)
+[2025-07-03 11:57:26,861] INFO in base: SELECT anon_1.id, anon_1.name, anon_1.description, anon_1.price, anon_1.stock, anon_1.created_at, anon_1.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1 
+FROM (SELECT products.id AS id, products.name AS name, products.description AS description, products.price AS price, products.stock AS stock, products.created_at AS created_at, products.updated_at AS updated_at 
+FROM products 
+ LIMIT $1::INTEGER OFFSET $2::INTEGER) AS anon_1 LEFT OUTER JOIN product_images AS product_images_1 ON anon_1.id = product_images_1.product_id
+[2025-07-03 11:57:26,862] INFO in base: [cached since 0.0123s ago] (20, 0)
+[2025-07-03 11:57:26,864] INFO in base: ROLLBACK
+[2025-07-03 11:58:47,781] INFO in base: BEGIN (implicit)
+[2025-07-03 11:58:47,782] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 11:58:47,782] INFO in base: [cached since 825.8s ago] ('denisshokolad1221@gmail.com',)
+[2025-07-03 11:58:49,371] INFO in utils: <emails.backend.SMTPResponse status_code=250 status_text=b'2.0.0 OK  1751533130 38308e7fff4ca-32cd2f173fcsm20098121fa.112 - gsmtp'>
+[2025-07-03 11:58:49,372] INFO in base: ROLLBACK
+[2025-07-03 12:00:03,519] INFO in base: select pg_catalog.version()
+[2025-07-03 12:00:03,519] INFO in base: [raw sql] ()
+[2025-07-03 12:00:03,521] INFO in base: select current_schema()
+[2025-07-03 12:00:03,522] INFO in base: [raw sql] ()
+[2025-07-03 12:00:03,524] INFO in base: show standard_conforming_strings
+[2025-07-03 12:00:03,524] INFO in base: [raw sql] ()
+[2025-07-03 12:00:03,526] INFO in base: BEGIN (implicit)
+[2025-07-03 12:00:03,557] INFO in base: SELECT admins.id, admins.name, admins.email, admins.hashed_password, admins.phone_number, admins.avatar_url, admins.created_at, admins.updated_at 
+FROM admins 
+WHERE admins.email = $1::VARCHAR
+[2025-07-03 12:00:03,557] INFO in base: [generated in 0.00086s] ('denisshokolad1221@gmail.com',)
+[2025-07-03 12:00:03,562] INFO in base: ROLLBACK
+[2025-07-03 12:03:52,508] INFO in login: LOGIN ATTEMPTS FOR IP: 127.0.0.1 - None
+[2025-07-03 12:03:52,509] INFO in base: BEGIN (implicit)
+[2025-07-03 12:03:52,511] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 12:03:52,512] INFO in base: [generated in 0.00062s] ('denisshokolad1221@gmail.com',)
+[2025-07-03 12:03:52,518] WARNING in bcrypt: (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "Z:\Work_Space\Full-Stack\Longing-for-heaven-App\backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+[2025-07-03 12:03:52,877] INFO in login: Access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMTQ0YjczMC1hZjZiLTRlM2YtOGIzMC05MzQ4MTk4NzU2YTQiLCJleHAiOjE3NTIxMzgyMzJ9.HRTPejfSKg3lBFs4hbSpvxy-RIW8Rn1K5gNmUP_A9Gk 
+[2025-07-03 12:03:52,879] INFO in base: ROLLBACK
+[2025-07-03 12:03:57,685] INFO in base: BEGIN (implicit)
+[2025-07-03 12:03:57,687] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-07-03 12:03:57,688] INFO in base: [generated in 0.00071s] ('1144b730-af6b-4e3f-8b30-9348198756a4',)
+[2025-07-03 12:03:57,694] INFO in base: SELECT orders.id AS orders_id, orders.user_id AS orders_user_id, orders.total_price AS orders_total_price, orders.status AS orders_status, orders.created_at AS orders_created_at, orders.updated_at AS orders_updated_at 
+FROM orders 
+WHERE $1::UUID = orders.user_id
+[2025-07-03 12:03:57,695] INFO in base: [generated in 0.00073s] (UUID('1144b730-af6b-4e3f-8b30-9348198756a4'),)
+[2025-07-03 12:03:57,778] INFO in base: SELECT carts.id AS carts_id, carts.user_id AS carts_user_id, carts.created_at AS carts_created_at, carts.updated_at AS carts_updated_at 
+FROM carts 
+WHERE $1::UUID = carts.user_id
+[2025-07-03 12:03:57,778] INFO in base: [generated in 0.00050s] (UUID('1144b730-af6b-4e3f-8b30-9348198756a4'),)
+[2025-07-03 12:03:57,783] INFO in base: SELECT cart_items.id AS cart_items_id, cart_items.cart_id AS cart_items_cart_id, cart_items.product_id AS cart_items_product_id, cart_items.quantity AS cart_items_quantity, cart_items.price AS cart_items_price, cart_items.created_at AS cart_items_created_at, cart_items.updated_at AS cart_items_updated_at 
+FROM cart_items 
+WHERE $1::UUID = cart_items.cart_id
+[2025-07-03 12:03:57,784] INFO in base: [generated in 0.00071s] (UUID('723f6135-09f8-4094-be1b-882502e81a3b'),)
+[2025-07-03 12:03:57,789] INFO in base: DELETE FROM carts WHERE carts.id = $1::UUID
+[2025-07-03 12:03:57,790] INFO in base: [generated in 0.00055s] (UUID('723f6135-09f8-4094-be1b-882502e81a3b'),)
+[2025-07-03 12:03:57,793] INFO in base: DELETE FROM users WHERE users.id = $1::UUID
+[2025-07-03 12:03:57,794] INFO in base: [generated in 0.00060s] (UUID('1144b730-af6b-4e3f-8b30-9348198756a4'),)
+[2025-07-03 12:03:57,796] INFO in base: COMMIT
+[2025-07-03 12:04:09,952] INFO in base: BEGIN (implicit)
+[2025-07-03 12:04:09,953] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 12:04:09,953] INFO in base: [cached since 17.44s ago] ('denisshokolad1221@gmail.com',)
+[2025-07-03 12:04:09,955] INFO in base: ROLLBACK
+[2025-07-03 12:04:23,039] INFO in base: BEGIN (implicit)
+[2025-07-03 12:04:23,040] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 12:04:23,040] INFO in base: [cached since 30.53s ago] ('denisshokolad1221@gmail.com',)
+[2025-07-03 12:04:23,042] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.phone_number = $1::VARCHAR
+[2025-07-03 12:04:23,043] INFO in base: [generated in 0.00059s] ('3806613606',)
+[2025-07-03 12:04:23,365] INFO in base: INSERT INTO users (id, name, email, hashed_password, phone_number, avatar_url, country, city, street, created_at, updated_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR, $7::VARCHAR, $8::VARCHAR, $9::VARCHAR, $10::TIMESTAMP WITHOUT TIME ZONE, $11::TIMESTAMP WITHOUT TIME ZONE)
+[2025-07-03 12:04:23,365] INFO in base: [generated in 0.00090s] (UUID('209ab6c3-90d2-46eb-a1d0-d298330fa361'), 'Денис Фадин', 'denisshokolad1221@gmail.com', '$2b$12$85J8qUsipxMBzoecllCBIug366pqjQ3tdq0uWBwm21lGI0fKYZl7.', '3806613606', 'static/avatars/d-avatar.jpg', None, None, None, datetime.datetime(2025, 7, 3, 9, 4, 23, 365133), datetime.datetime(2025, 7, 3, 9, 4, 23, 365137))
+[2025-07-03 12:04:23,372] INFO in base: COMMIT
+[2025-07-03 12:04:23,374] INFO in base: BEGIN (implicit)
+[2025-07-03 12:04:23,376] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-07-03 12:04:23,376] INFO in base: [generated in 0.00056s] (UUID('209ab6c3-90d2-46eb-a1d0-d298330fa361'),)
+[2025-07-03 12:04:26,450] INFO in utils: <emails.backend.SMTPResponse status_code=250 status_text=b'2.0.0 OK  1751533467 38308e7fff4ca-32cd2ec5e68sm21713101fa.66 - gsmtp'>
+[2025-07-03 12:04:26,451] INFO in base: ROLLBACK
+[2025-07-03 12:04:26,502] INFO in base: BEGIN (implicit)
+[2025-07-03 12:04:26,509] INFO in base: SELECT carts.id, carts.user_id, carts.created_at, carts.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1, products_1.id AS id_2, products_1.name, products_1.description, products_1.price, products_1.stock, products_1.created_at AS created_at_2, products_1.updated_at AS updated_at_2, cart_items_1.id AS id_3, cart_items_1.cart_id, cart_items_1.product_id AS product_id_1, cart_items_1.quantity, cart_items_1.price AS price_1, cart_items_1.created_at AS created_at_3, cart_items_1.updated_at AS updated_at_3 
+FROM carts LEFT OUTER JOIN cart_items AS cart_items_1 ON carts.id = cart_items_1.cart_id LEFT OUTER JOIN products AS products_1 ON products_1.id = cart_items_1.product_id LEFT OUTER JOIN product_images AS product_images_1 ON products_1.id = product_images_1.product_id 
+WHERE carts.user_id = $1::UUID
+[2025-07-03 12:04:26,510] INFO in base: [generated in 0.00087s] (UUID('209ab6c3-90d2-46eb-a1d0-d298330fa361'),)
+[2025-07-03 12:04:26,516] INFO in base: INSERT INTO carts (id, user_id, created_at, updated_at) VALUES ($1::UUID, $2::UUID, $3::TIMESTAMP WITHOUT TIME ZONE, $4::TIMESTAMP WITHOUT TIME ZONE)
+[2025-07-03 12:04:26,517] INFO in base: [generated in 0.00061s] (UUID('cdf4887f-0046-4ea9-a4c3-5004a71391a0'), UUID('209ab6c3-90d2-46eb-a1d0-d298330fa361'), datetime.datetime(2025, 7, 3, 9, 4, 26, 516523), datetime.datetime(2025, 7, 3, 9, 4, 26, 516527))
+[2025-07-03 12:04:26,519] INFO in base: COMMIT
+[2025-07-03 12:04:26,522] INFO in base: BEGIN (implicit)
+[2025-07-03 12:04:26,523] INFO in base: SELECT carts.id, carts.user_id, carts.created_at, carts.updated_at 
+FROM carts 
+WHERE carts.id = $1::UUID
+[2025-07-03 12:04:26,523] INFO in base: [generated in 0.00052s] (UUID('cdf4887f-0046-4ea9-a4c3-5004a71391a0'),)
+[2025-07-03 12:04:26,535] INFO in base: SELECT carts.id, carts.user_id, carts.created_at, carts.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1, products_1.id AS id_2, products_1.name, products_1.description, products_1.price, products_1.stock, products_1.created_at AS created_at_2, products_1.updated_at AS updated_at_2, cart_items_1.id AS id_3, cart_items_1.cart_id, cart_items_1.product_id AS product_id_1, cart_items_1.quantity, cart_items_1.price AS price_1, cart_items_1.created_at AS created_at_3, cart_items_1.updated_at AS updated_at_3 
+FROM carts LEFT OUTER JOIN cart_items AS cart_items_1 ON carts.id = cart_items_1.cart_id LEFT OUTER JOIN products AS products_1 ON products_1.id = cart_items_1.product_id LEFT OUTER JOIN product_images AS product_images_1 ON products_1.id = product_images_1.product_id 
+WHERE carts.id = $1::UUID
+[2025-07-03 12:04:26,536] INFO in base: [generated in 0.00074s] (UUID('cdf4887f-0046-4ea9-a4c3-5004a71391a0'),)
+[2025-07-03 12:04:26,539] INFO in base: ROLLBACK
+[2025-07-03 12:06:06,620] INFO in base: select pg_catalog.version()
+[2025-07-03 12:06:06,620] INFO in base: [raw sql] ()
+[2025-07-03 12:06:06,623] INFO in base: select current_schema()
+[2025-07-03 12:06:06,623] INFO in base: [raw sql] ()
+[2025-07-03 12:06:06,624] INFO in base: show standard_conforming_strings
+[2025-07-03 12:06:06,625] INFO in base: [raw sql] ()
+[2025-07-03 12:06:06,626] INFO in base: BEGIN (implicit)
+[2025-07-03 12:06:06,646] INFO in base: SELECT admins.id, admins.name, admins.email, admins.hashed_password, admins.phone_number, admins.avatar_url, admins.created_at, admins.updated_at 
+FROM admins 
+WHERE admins.email = $1::VARCHAR
+[2025-07-03 12:06:06,647] INFO in base: [generated in 0.00068s] ('denisshokolad1221@gmail.com',)
+[2025-07-03 12:06:06,651] INFO in base: ROLLBACK
+[2025-07-03 12:06:25,177] INFO in login: LOGIN ATTEMPTS FOR IP: 127.0.0.1 - None
+[2025-07-03 12:06:25,179] INFO in base: BEGIN (implicit)
+[2025-07-03 12:06:25,182] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 12:06:25,183] INFO in base: [generated in 0.00067s] ('denisshokolad1221@gmail.com',)
+[2025-07-03 12:06:25,191] WARNING in bcrypt: (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "Z:\Work_Space\Full-Stack\Longing-for-heaven-App\backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+[2025-07-03 12:06:25,608] INFO in login: Access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMDlhYjZjMy05MGQyLTQ2ZWItYTFkMC1kMjk4MzMwZmEzNjEiLCJleHAiOjE3NTIxMzgzODV9.x9v9d11pgamz_4cWShQ5hRHcYYjXdYVwSDlUDxc-QA8 
+[2025-07-03 12:06:25,610] INFO in base: ROLLBACK
+[2025-07-03 12:06:28,751] INFO in base: BEGIN (implicit)
+[2025-07-03 12:06:28,753] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-07-03 12:06:28,754] INFO in base: [generated in 0.00089s] ('209ab6c3-90d2-46eb-a1d0-d298330fa361',)
+[2025-07-03 12:06:28,761] INFO in base: SELECT orders.id AS orders_id, orders.user_id AS orders_user_id, orders.total_price AS orders_total_price, orders.status AS orders_status, orders.created_at AS orders_created_at, orders.updated_at AS orders_updated_at 
+FROM orders 
+WHERE $1::UUID = orders.user_id
+[2025-07-03 12:06:28,762] INFO in base: [generated in 0.00143s] (UUID('209ab6c3-90d2-46eb-a1d0-d298330fa361'),)
+[2025-07-03 12:06:28,794] INFO in base: SELECT carts.id AS carts_id, carts.user_id AS carts_user_id, carts.created_at AS carts_created_at, carts.updated_at AS carts_updated_at 
+FROM carts 
+WHERE $1::UUID = carts.user_id
+[2025-07-03 12:06:28,794] INFO in base: [generated in 0.00067s] (UUID('209ab6c3-90d2-46eb-a1d0-d298330fa361'),)
+[2025-07-03 12:06:28,800] INFO in base: SELECT cart_items.id AS cart_items_id, cart_items.cart_id AS cart_items_cart_id, cart_items.product_id AS cart_items_product_id, cart_items.quantity AS cart_items_quantity, cart_items.price AS cart_items_price, cart_items.created_at AS cart_items_created_at, cart_items.updated_at AS cart_items_updated_at 
+FROM cart_items 
+WHERE $1::UUID = cart_items.cart_id
+[2025-07-03 12:06:28,801] INFO in base: [generated in 0.00081s] (UUID('cdf4887f-0046-4ea9-a4c3-5004a71391a0'),)
+[2025-07-03 12:06:28,807] INFO in base: DELETE FROM carts WHERE carts.id = $1::UUID
+[2025-07-03 12:06:28,807] INFO in base: [generated in 0.00057s] (UUID('cdf4887f-0046-4ea9-a4c3-5004a71391a0'),)
+[2025-07-03 12:06:28,810] INFO in base: DELETE FROM users WHERE users.id = $1::UUID
+[2025-07-03 12:06:28,810] INFO in base: [generated in 0.00072s] (UUID('209ab6c3-90d2-46eb-a1d0-d298330fa361'),)
+[2025-07-03 12:06:28,853] INFO in base: COMMIT
+[2025-07-03 12:06:45,193] INFO in base: BEGIN (implicit)
+[2025-07-03 12:06:45,194] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 12:06:45,195] INFO in base: [cached since 20.01s ago] ('denisshokolad1221@gmail.com',)
+[2025-07-03 12:06:45,203] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.phone_number = $1::VARCHAR
+[2025-07-03 12:06:45,204] INFO in base: [generated in 0.00109s] ('3806613606',)
+[2025-07-03 12:06:45,593] INFO in base: INSERT INTO users (id, name, email, hashed_password, phone_number, avatar_url, country, city, street, created_at, updated_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR, $7::VARCHAR, $8::VARCHAR, $9::VARCHAR, $10::TIMESTAMP WITHOUT TIME ZONE, $11::TIMESTAMP WITHOUT TIME ZONE)
+[2025-07-03 12:06:45,594] INFO in base: [generated in 0.00134s] (UUID('44721d07-af84-432c-bf6e-17f0f3770107'), 'Денис Фадин', 'denisshokolad1221@gmail.com', '$2b$12$H63ZZeY75t174FusbP4.qOVKzbuUqqzSuRXJulfN3ezNX.YGto1YO', '3806613606', 'static/avatars/d-avatar.jpg', None, None, None, datetime.datetime(2025, 7, 3, 9, 6, 45, 593557), datetime.datetime(2025, 7, 3, 9, 6, 45, 593565))
+[2025-07-03 12:06:45,597] INFO in base: COMMIT
+[2025-07-03 12:06:45,599] INFO in base: BEGIN (implicit)
+[2025-07-03 12:06:45,602] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-07-03 12:06:45,602] INFO in base: [generated in 0.00103s] (UUID('44721d07-af84-432c-bf6e-17f0f3770107'),)
+[2025-07-03 12:06:48,780] INFO in utils: <emails.backend.SMTPResponse status_code=250 status_text=b'2.0.0 OK  1751533609 38308e7fff4ca-32cd2f164c1sm21296151fa.108 - gsmtp'>
+[2025-07-03 12:06:48,782] INFO in base: ROLLBACK
+[2025-07-03 12:06:48,790] INFO in base: BEGIN (implicit)
+[2025-07-03 12:06:48,844] INFO in base: SELECT carts.id, carts.user_id, carts.created_at, carts.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1, products_1.id AS id_2, products_1.name, products_1.description, products_1.price, products_1.stock, products_1.created_at AS created_at_2, products_1.updated_at AS updated_at_2, cart_items_1.id AS id_3, cart_items_1.cart_id, cart_items_1.product_id AS product_id_1, cart_items_1.quantity, cart_items_1.price AS price_1, cart_items_1.created_at AS created_at_3, cart_items_1.updated_at AS updated_at_3 
+FROM carts LEFT OUTER JOIN cart_items AS cart_items_1 ON carts.id = cart_items_1.cart_id LEFT OUTER JOIN products AS products_1 ON products_1.id = cart_items_1.product_id LEFT OUTER JOIN product_images AS product_images_1 ON products_1.id = product_images_1.product_id 
+WHERE carts.user_id = $1::UUID
+[2025-07-03 12:06:48,846] INFO in base: [generated in 0.00266s] (UUID('44721d07-af84-432c-bf6e-17f0f3770107'),)
+[2025-07-03 12:06:48,854] INFO in base: INSERT INTO carts (id, user_id, created_at, updated_at) VALUES ($1::UUID, $2::UUID, $3::TIMESTAMP WITHOUT TIME ZONE, $4::TIMESTAMP WITHOUT TIME ZONE)
+[2025-07-03 12:06:48,854] INFO in base: [generated in 0.00080s] (UUID('0131791f-4aea-44d5-af8f-9ab45ebc8dcf'), UUID('44721d07-af84-432c-bf6e-17f0f3770107'), datetime.datetime(2025, 7, 3, 9, 6, 48, 853893), datetime.datetime(2025, 7, 3, 9, 6, 48, 853900))
+[2025-07-03 12:06:48,856] INFO in base: COMMIT
+[2025-07-03 12:06:48,896] INFO in base: BEGIN (implicit)
+[2025-07-03 12:06:48,897] INFO in base: SELECT carts.id, carts.user_id, carts.created_at, carts.updated_at 
+FROM carts 
+WHERE carts.id = $1::UUID
+[2025-07-03 12:06:48,898] INFO in base: [generated in 0.00055s] (UUID('0131791f-4aea-44d5-af8f-9ab45ebc8dcf'),)
+[2025-07-03 12:06:48,905] INFO in base: SELECT carts.id, carts.user_id, carts.created_at, carts.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1, products_1.id AS id_2, products_1.name, products_1.description, products_1.price, products_1.stock, products_1.created_at AS created_at_2, products_1.updated_at AS updated_at_2, cart_items_1.id AS id_3, cart_items_1.cart_id, cart_items_1.product_id AS product_id_1, cart_items_1.quantity, cart_items_1.price AS price_1, cart_items_1.created_at AS created_at_3, cart_items_1.updated_at AS updated_at_3 
+FROM carts LEFT OUTER JOIN cart_items AS cart_items_1 ON carts.id = cart_items_1.cart_id LEFT OUTER JOIN products AS products_1 ON products_1.id = cart_items_1.product_id LEFT OUTER JOIN product_images AS product_images_1 ON products_1.id = product_images_1.product_id 
+WHERE carts.id = $1::UUID
+[2025-07-03 12:06:48,906] INFO in base: [generated in 0.00150s] (UUID('0131791f-4aea-44d5-af8f-9ab45ebc8dcf'),)
+[2025-07-03 12:06:48,910] INFO in base: ROLLBACK
+[2025-07-03 12:07:54,671] INFO in base: select pg_catalog.version()
+[2025-07-03 12:07:54,672] INFO in base: [raw sql] ()
+[2025-07-03 12:07:54,674] INFO in base: select current_schema()
+[2025-07-03 12:07:54,674] INFO in base: [raw sql] ()
+[2025-07-03 12:07:54,676] INFO in base: show standard_conforming_strings
+[2025-07-03 12:07:54,676] INFO in base: [raw sql] ()
+[2025-07-03 12:07:54,677] INFO in base: BEGIN (implicit)
+[2025-07-03 12:07:54,701] INFO in base: SELECT admins.id, admins.name, admins.email, admins.hashed_password, admins.phone_number, admins.avatar_url, admins.created_at, admins.updated_at 
+FROM admins 
+WHERE admins.email = $1::VARCHAR
+[2025-07-03 12:07:54,702] INFO in base: [generated in 0.00057s] ('denisshokolad1221@gmail.com',)
+[2025-07-03 12:07:54,706] INFO in base: ROLLBACK
+[2025-07-03 12:08:00,789] INFO in login: LOGIN ATTEMPTS FOR IP: 127.0.0.1 - None
+[2025-07-03 12:08:00,790] INFO in base: BEGIN (implicit)
+[2025-07-03 12:08:00,793] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 12:08:00,793] INFO in base: [generated in 0.00066s] ('denisshokolad1221@gmail.com',)
+[2025-07-03 12:08:00,800] WARNING in bcrypt: (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "Z:\Work_Space\Full-Stack\Longing-for-heaven-App\backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+[2025-07-03 12:08:01,156] INFO in login: Access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NDcyMWQwNy1hZjg0LTQzMmMtYmY2ZS0xN2YwZjM3NzAxMDciLCJleHAiOjE3NTIxMzg0ODF9.3up1bSMJ8z-GVFOG3MoosaXL3JQv3rS4kGNq9WrrR8k 
+[2025-07-03 12:08:01,158] INFO in base: ROLLBACK
+[2025-07-03 12:08:02,711] INFO in base: BEGIN (implicit)
+[2025-07-03 12:08:02,713] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-07-03 12:08:02,714] INFO in base: [generated in 0.00085s] ('44721d07-af84-432c-bf6e-17f0f3770107',)
+[2025-07-03 12:08:02,733] INFO in base: SELECT orders.id AS orders_id, orders.user_id AS orders_user_id, orders.total_price AS orders_total_price, orders.status AS orders_status, orders.created_at AS orders_created_at, orders.updated_at AS orders_updated_at 
+FROM orders 
+WHERE $1::UUID = orders.user_id
+[2025-07-03 12:08:02,735] INFO in base: [generated in 0.01417s] (UUID('44721d07-af84-432c-bf6e-17f0f3770107'),)
+[2025-07-03 12:08:02,765] INFO in base: SELECT carts.id AS carts_id, carts.user_id AS carts_user_id, carts.created_at AS carts_created_at, carts.updated_at AS carts_updated_at 
+FROM carts 
+WHERE $1::UUID = carts.user_id
+[2025-07-03 12:08:02,766] INFO in base: [generated in 0.00112s] (UUID('44721d07-af84-432c-bf6e-17f0f3770107'),)
+[2025-07-03 12:08:02,773] INFO in base: SELECT cart_items.id AS cart_items_id, cart_items.cart_id AS cart_items_cart_id, cart_items.product_id AS cart_items_product_id, cart_items.quantity AS cart_items_quantity, cart_items.price AS cart_items_price, cart_items.created_at AS cart_items_created_at, cart_items.updated_at AS cart_items_updated_at 
+FROM cart_items 
+WHERE $1::UUID = cart_items.cart_id
+[2025-07-03 12:08:02,774] INFO in base: [generated in 0.00106s] (UUID('0131791f-4aea-44d5-af8f-9ab45ebc8dcf'),)
+[2025-07-03 12:08:02,779] INFO in base: DELETE FROM carts WHERE carts.id = $1::UUID
+[2025-07-03 12:08:02,780] INFO in base: [generated in 0.00059s] (UUID('0131791f-4aea-44d5-af8f-9ab45ebc8dcf'),)
+[2025-07-03 12:08:02,783] INFO in base: DELETE FROM users WHERE users.id = $1::UUID
+[2025-07-03 12:08:02,784] INFO in base: [generated in 0.00062s] (UUID('44721d07-af84-432c-bf6e-17f0f3770107'),)
+[2025-07-03 12:08:02,785] INFO in base: COMMIT
+[2025-07-03 12:08:05,548] INFO in base: BEGIN (implicit)
+[2025-07-03 12:08:05,549] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 12:08:05,550] INFO in base: [cached since 4.757s ago] ('denisshokolad1221@gmail.com',)
+[2025-07-03 12:08:05,552] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.phone_number = $1::VARCHAR
+[2025-07-03 12:08:05,553] INFO in base: [generated in 0.00057s] ('3806613606',)
+[2025-07-03 12:08:05,944] INFO in base: INSERT INTO users (id, name, email, hashed_password, phone_number, avatar_url, country, city, street, created_at, updated_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR, $7::VARCHAR, $8::VARCHAR, $9::VARCHAR, $10::TIMESTAMP WITHOUT TIME ZONE, $11::TIMESTAMP WITHOUT TIME ZONE)
+[2025-07-03 12:08:05,945] INFO in base: [generated in 0.00166s] (UUID('da7642a7-382f-49c6-936c-3c55eb23203c'), 'Денис Фадин', 'denisshokolad1221@gmail.com', '$2b$12$VCRBj33TFImQ/4ARpWtBsO.w/3EbVyeUKcY/3YhNbuLvi4Cr/IPzS', '3806613606', 'static/avatars/d-avatar.jpg', None, None, None, datetime.datetime(2025, 7, 3, 9, 8, 5, 943970), datetime.datetime(2025, 7, 3, 9, 8, 5, 943977))
+[2025-07-03 12:08:05,947] INFO in base: COMMIT
+[2025-07-03 12:08:05,949] INFO in base: BEGIN (implicit)
+[2025-07-03 12:08:05,950] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-07-03 12:08:05,950] INFO in base: [generated in 0.00066s] (UUID('da7642a7-382f-49c6-936c-3c55eb23203c'),)
+[2025-07-03 12:08:08,911] INFO in utils: <emails.backend.SMTPResponse status_code=250 status_text=b'2.0.0 OK  1751533689 2adb3069b0e04-5550b2402fcsm2347570e87.48 - gsmtp'>
+[2025-07-03 12:08:08,912] INFO in base: ROLLBACK
+[2025-07-03 12:08:08,919] INFO in base: BEGIN (implicit)
+[2025-07-03 12:08:08,929] INFO in base: SELECT carts.id, carts.user_id, carts.created_at, carts.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1, products_1.id AS id_2, products_1.name, products_1.description, products_1.price, products_1.stock, products_1.created_at AS created_at_2, products_1.updated_at AS updated_at_2, cart_items_1.id AS id_3, cart_items_1.cart_id, cart_items_1.product_id AS product_id_1, cart_items_1.quantity, cart_items_1.price AS price_1, cart_items_1.created_at AS created_at_3, cart_items_1.updated_at AS updated_at_3 
+FROM carts LEFT OUTER JOIN cart_items AS cart_items_1 ON carts.id = cart_items_1.cart_id LEFT OUTER JOIN products AS products_1 ON products_1.id = cart_items_1.product_id LEFT OUTER JOIN product_images AS product_images_1 ON products_1.id = product_images_1.product_id 
+WHERE carts.user_id = $1::UUID
+[2025-07-03 12:08:08,931] INFO in base: [generated in 0.00239s] (UUID('da7642a7-382f-49c6-936c-3c55eb23203c'),)
+[2025-07-03 12:08:08,939] INFO in base: INSERT INTO carts (id, user_id, created_at, updated_at) VALUES ($1::UUID, $2::UUID, $3::TIMESTAMP WITHOUT TIME ZONE, $4::TIMESTAMP WITHOUT TIME ZONE)
+[2025-07-03 12:08:08,940] INFO in base: [generated in 0.00071s] (UUID('b141e98d-9fa0-4d52-88a2-b78512d9b33d'), UUID('da7642a7-382f-49c6-936c-3c55eb23203c'), datetime.datetime(2025, 7, 3, 9, 8, 8, 939673), datetime.datetime(2025, 7, 3, 9, 8, 8, 939678))
+[2025-07-03 12:08:08,942] INFO in base: COMMIT
+[2025-07-03 12:08:08,944] INFO in base: BEGIN (implicit)
+[2025-07-03 12:08:08,945] INFO in base: SELECT carts.id, carts.user_id, carts.created_at, carts.updated_at 
+FROM carts 
+WHERE carts.id = $1::UUID
+[2025-07-03 12:08:08,946] INFO in base: [generated in 0.00073s] (UUID('b141e98d-9fa0-4d52-88a2-b78512d9b33d'),)
+[2025-07-03 12:08:08,956] INFO in base: SELECT carts.id, carts.user_id, carts.created_at, carts.updated_at, product_images_1.id AS id_1, product_images_1.product_id, product_images_1.photo_url, product_images_1.created_at AS created_at_1, product_images_1.updated_at AS updated_at_1, products_1.id AS id_2, products_1.name, products_1.description, products_1.price, products_1.stock, products_1.created_at AS created_at_2, products_1.updated_at AS updated_at_2, cart_items_1.id AS id_3, cart_items_1.cart_id, cart_items_1.product_id AS product_id_1, cart_items_1.quantity, cart_items_1.price AS price_1, cart_items_1.created_at AS created_at_3, cart_items_1.updated_at AS updated_at_3 
+FROM carts LEFT OUTER JOIN cart_items AS cart_items_1 ON carts.id = cart_items_1.cart_id LEFT OUTER JOIN products AS products_1 ON products_1.id = cart_items_1.product_id LEFT OUTER JOIN product_images AS product_images_1 ON products_1.id = product_images_1.product_id 
+WHERE carts.id = $1::UUID
+[2025-07-03 12:08:08,956] INFO in base: [generated in 0.00087s] (UUID('b141e98d-9fa0-4d52-88a2-b78512d9b33d'),)
+[2025-07-03 12:08:08,960] INFO in base: ROLLBACK
+[2025-07-03 12:27:24,449] INFO in base: BEGIN (implicit)
+[2025-07-03 12:27:24,450] INFO in base: SELECT users.id, users.name, users.email, users.hashed_password, users.phone_number, users.avatar_url, users.country, users.city, users.street, users.created_at, users.updated_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+[2025-07-03 12:27:24,451] INFO in base: [cached since 1164s ago] ('denisshokolad1221@gmail.com',)
+[2025-07-03 12:27:26,409] INFO in utils: <emails.backend.SMTPResponse status_code=250 status_text=b'2.0.0 OK  1751534847 38308e7fff4ca-32dff5e900esm3764501fa.45 - gsmtp'>
+[2025-07-03 12:27:26,410] INFO in base: ROLLBACK
+[2025-07-03 12:27:40,478] INFO in base: BEGIN (implicit)
+[2025-07-03 12:27:40,479] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-07-03 12:27:40,479] INFO in base: [cached since 1178s ago] ('1144b730-af6b-4e3f-8b30-9348198756a4',)
+[2025-07-03 12:27:40,481] INFO in base: ROLLBACK
+[2025-07-03 12:27:40,485] INFO in base: BEGIN (implicit)
+[2025-07-03 12:27:40,485] INFO in base: SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.hashed_password AS users_hashed_password, users.phone_number AS users_phone_number, users.avatar_url AS users_avatar_url, users.country AS users_country, users.city AS users_city, users.street AS users_street, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = $1::UUID
+[2025-07-03 12:27:40,486] INFO in base: [cached since 1178s ago] ('1144b730-af6b-4e3f-8b30-9348198756a4',)
+[2025-07-03 12:27:40,487] INFO in base: ROLLBACK
