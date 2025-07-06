@@ -20,7 +20,7 @@ const Header: React.FC = () => {
         <header className=" w-full flex justify-center py-2">
             <div id="header-in" className="flex w-full text-sm sm:text-base justify-between sm:w-[600px] md:w-[720px] lg:w-250 xl:w-300 ">
                 <div id='l-nav' className="hidden lg:inline lg:w-[350px] xl:w-100">
-                    <nav id="l-nav-options" className="h-full w-full flex flex-row lg:items-center items-start xl:pl-4 lg:gap-5 xl:text-[15px]">
+                    <nav id="l-nav-options" className="h-full w-full flex flex-row lg:items-center items-start xl:pl-0 lg:gap-5 xl:text-[15px]">
                         <Link to="/shop/" className="hover:opacity-80">SHOP</Link>
                         <Link to="/contacts" className="hover:opacity-80">SHIPPING AND PAYMENT</Link>
                         <Link to="/contacts" className="hover:opacity-80">CONTACS</Link>
@@ -38,9 +38,9 @@ const Header: React.FC = () => {
                 </div>
                 <div id='r-nav' className="sm:w-[180px] md:w-[240px] lg:w-[350px] xl:w-100">
                     <nav id="l-nav-options" className="h-full w-full flex gap-5 justify-end items-center xl:text-[15px]">
-                                {user.name ? (
+                                {user.email ? (
                                     <div className="flex items-center gap-1 cursor-pointer hover:text-gray-700" onClick={() => dispatch(openSideBar())}>
-                                        <span className="hidden lg:inline">{user.name} </span> 
+                                        <span className="hidden lg:inline">{user.name?.split(" ")[0]} </span> 
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-8 md:size-6">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
                                         </svg>

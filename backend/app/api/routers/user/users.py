@@ -16,6 +16,7 @@ from app.schemas import (
     Message,
     EmailRequest,
     UserRecoverPassword,
+    UserUpdatePassword,
     TokenPayload
 )
 from app.services.user import (
@@ -29,7 +30,7 @@ from app.services.user import (
 )
 from app.utils.utils import generate_new_account_email, send_email, generate_recover_password_email
 from app.core.config import settings
-from app.core.security import hash_password
+from app.core.security import hash_password, verify_password
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
@@ -209,6 +210,27 @@ async def update_user(
         )
     
     return updated_user
+
+
+@router.patch("/update-password/my", response_model=Message)
+async def update_user_password_my(db: SessionDep, user_update_password: UserUpdatePassword, current_user: CurrentUser):
+    """
+    Update user password by user id from decoded access token.
+    """
+
+    if not verify_password(user_update_password.current_password, current_user.hashed_password): # if current password doesn't match with current user password -> forbiden wrong password
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Wrong password")
+
+    # if verify_password(user_update_password.new_password, current_user.hashed_password): # if new password == current user password -> conflict ->  password can not be the same like the last
+    #     raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Passwords can not match with last!")
+
+    db_user = await get_user_by_id(db=db, user_id=current_user.id)
+    db_user.hashed_password = hash_password(user_update_password.new_password)
+
+    await db.commit()
+    await db.refresh(db_user)
+    
+    return Message(data="Password was successfully updated!")
 
 
 @router.delete("/delete/me", response_model=Message)

@@ -40,7 +40,7 @@ const LoginForm: React.FC = () => {
                     "city": city,
                     "street": street,
                 }));
-            
+                
         } catch (error) {
             console.error(error);
         }

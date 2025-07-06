@@ -71,6 +71,16 @@ body, #root {
     }
   }
 
+  @keyframes slice-to-cross {
+    0% {
+      width: 210px;
+    }
+
+    100% {
+      width: 40px;
+    }
+  }
+
   .animate-out-here {
     animation: slice-to-left 0.3s linear;
   }
@@ -80,7 +90,11 @@ body, #root {
   }
 
   .animate-out-top {
-    animation: out-top 0.16s ease-out
+    animation: out-top 0.16s ease-out;
+  }
+
+  .animate-to-cross {
+    animation: slice-to-cross 0.2s ease-out forwards;
   }
   
   .font-rb-md {

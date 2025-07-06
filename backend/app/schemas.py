@@ -50,12 +50,17 @@ class UserUpdate(BaseModel):
     street: str | None = Field(None, min_length=2, max_length=100)
 
 
+class UserUpdatePassword(BaseModel):
+    current_password: str = Field(..., min_length=8, max_length=50)
+    new_password: str = Field(..., min_length=8, max_length=50)
+
+
 class UserRecoverPassword(BaseModel):
     token: str
     new_password: str
 
 
-class ProductBase(BaseModel):
+class ProductBase(BaseModel): 
     name: str = Field(..., min_length=1, max_length=100)
     description: str = Field(..., min_length=1, max_length=255)
     price: int = Field(...)

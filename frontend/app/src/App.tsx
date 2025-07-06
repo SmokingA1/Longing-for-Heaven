@@ -8,6 +8,7 @@ import AdminPage from './pages/AdminPage';
 import ShopPage from './pages/ShopPage';
 import ProductPage from './pages/ProductPage';
 import ForgotPassword from './pages/ForgotPassword';
+import UserProfilePage from './pages/UserProfilePage';
 
 import {  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -60,6 +61,7 @@ function App() {
       <Route path='/shop/:id' element={<ProductPage  />}/>
       <Route path='/forgot-password/' element={<ForgotPassword />}/>
       <Route path='/recover-password' element={<ResetPasswordPage /> }/>
+      <Route path='/my-profile/' element={<UserProfilePage />} />
     </Routes>
   )
 }

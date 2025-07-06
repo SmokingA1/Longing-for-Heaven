@@ -15,7 +15,7 @@ const RegistrationForm: React.FC = () => {
     const [isVisiblePassword, setIsVisiblePassword] = useState<boolean>(false);
     const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] = useState<boolean>(false);
     
-    const [error, setError] = useState<'email' | 'password' | 'confirm-password' | 'phone-number' | null>(null);
+    const [error, setError] = useState<'email' | 'password' | 'confirm-password' | 'phone-number' | 'phone-number-s' | null>(null);
 
     const [userRegister, setUserRegister] = useState<UserRegisterInterface>({
         name: "",
@@ -30,6 +30,9 @@ const RegistrationForm: React.FC = () => {
 
         if (userRegister.password.length < 8) {setError("password"); return;}
         if (userRegister.confirmPassword != userRegister.password) {setError("confirm-password"); return;}
+        if (!userRegister.phoneNumber?.startsWith("0")) {setError("phone-number-s"); return;}
+        
+        setError(null);
         
         const registerData = {
             name: userRegister.name,
@@ -220,6 +223,8 @@ const RegistrationForm: React.FC = () => {
                     mask="_"
                 />
                 {error == "phone-number" && <span className="absolute top-full left-6.5 text-red-500 ">Such phone number already exists.</span>}
+                {error == "phone-number-s" && <span className="absolute top-full left-6.5 text-red-500 ">Incorrect format</span>}
+
             </div>
 
 

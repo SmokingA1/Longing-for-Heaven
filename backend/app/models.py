@@ -2,7 +2,7 @@ from uuid import UUID, uuid4
 from enum import Enum as PyEnum
 
 from sqlalchemy.orm import mapped_column, Mapped, relationship
-from sqlalchemy import ForeignKey, String, Integer, Enum
+from sqlalchemy import ForeignKey, String, Integer, Enum, PrimaryKeyConstraint
 from sqlalchemy.dialects.postgresql import UUID
 
 from app.core.database import Base, TimestampMixin
@@ -44,9 +44,42 @@ class Product(Base, TimestampMixin):
     price: Mapped[int] = mapped_column(Integer, nullable=False)
     stock: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
+    sizes: Mapped[list["ProductSize"]] = relationship(back_populates="product", cascade="all, delete-orphan") # Связи с размерами, доступными для этого продукта
     images: Mapped[list["ProductImage"]] = relationship(back_populates="product", cascade="all, delete-orphan")
     order_items: Mapped[list["OrderItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
     cart_items: Mapped[list["CartItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
+
+
+class SizeEnum(PyEnum):
+    M = "m"
+    L = "l"
+    XL = "xl"
+    XXL = "xxl"
+
+
+class Size(Base, TimestampMixin):
+    __tablename__ = "sizes"
+
+    id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
+    name: Mapped[SizeEnum] = mapped_column(Enum(SizeEnum, name="sizeenum"), nullable=False)
+
+    products: Mapped[list["ProductSize"]] = relationship(back_populates="size", cascade="all, delete-orphan") # продукты связаные с этим размером
+
+
+class ProductSize(Base, TimestampMixin):
+    __tablename__ = "productsizes"
+
+    product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"), nullable=False)
+    size_id: Mapped[UUID] = mapped_column(ForeignKey("sizes.id", ondelete="CASCADE"), nullable=False)
+    quantity: Mapped[int] = mapped_column(default=0, nullable=False)
+    
+    size: Mapped["Size"] = relationship(back_populates="products")
+    product: Mapped["Product"] = relationship(back_populates="sizes")
+
+    __table_args__ = (
+        PrimaryKeyConstraint("product_id", "size_id"),
+        # НЕ МОЖЕТЬ БЫТЬ ПРОДУКТ1, L ; ПРОДУКТ1, L; а вот PRODUCT1, L; PRODUCT1, XL; or PRODUCT1, L; PRODUCT2, L;
+    )
 
 
 class ProductImage(Base, TimestampMixin):
@@ -57,7 +90,6 @@ class ProductImage(Base, TimestampMixin):
     photo_url: Mapped[str] = mapped_column(String(255), nullable=False)
     
     product: Mapped["Product"] = relationship(back_populates="images")
-
 
 
 # under the most intereset magic xd
