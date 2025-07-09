@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 
-from app.models import Product
+from app.models import Product, ProductSize
 from app.schemas import ProductCreate, ProductUpdate
 
 from app.utils.logger import logger
@@ -24,7 +24,10 @@ async def get_products(
     limit: int = 20,
     
 ) -> List[Product]:
-    query = select(Product).options(joinedload(Product.images))
+    query = select(Product).options(
+        #в каждом Продукте подгружаю изображения, а так же подгружаю размеры продукта, и к каждому размеру продукта я подгружаю название размера то-есть размер
+        joinedload(Product.images),joinedload(Product.sizes).joinedload(ProductSize.size)
+        )
 
     query = query.offset(offset=offset).limit(limit=limit)
 

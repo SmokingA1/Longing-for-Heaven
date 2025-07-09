@@ -5,7 +5,8 @@ import { setUser } from "../features/user/userSlice";
 import { useNavigate } from "react-router";
 import api from "../api";
 import { PatternFormat } from "react-number-format";
-
+import { clearUser } from "../features/user/userSlice";
+import { clearCart } from "../features/cart/cartSlice";
 
 interface ChanePasswordInterface {
     current_password: string;
@@ -35,6 +36,7 @@ const UserProfile: React.FC = () => {
         current_password: '',
         new_password: ''
     });
+    const [isDeleteAccountForm, setIsDeleteAccountForm] = useState<boolean>(false);
     const [error, setError] = useState<"passwords" | "phone_number" | null>(null);
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
@@ -94,11 +96,33 @@ const UserProfile: React.FC = () => {
         }
     }
 
+    const handleDeleteAccount = async (e: React.FormEvent) => {
+        e.preventDefault() 
+        try {
+            const response = await api.delete("/users/delete/me");
+            console.log(response.data);
+            dispatch(clearUser());
+            dispatch(clearCart())
+            navigate("/")
+        } catch (error: any) {
+            if (error.response) {
+                console.error("Server error: ", error.response);
+            } else {
+                console.error("Network or other error: ", error);
+            }
+        }
+    }
+
     useEffect(() => {
         if (!user.email) {
             navigate('/')
         }
     }, [user.email, navigate])
+
+    useEffect(() => {
+        document.body.style.overflow = isDeleteAccountForm ? 'hidden' : '';
+        console.log("yeah")
+    }, [isDeleteAccountForm]);
 
     if (!user.email) return null;
 
@@ -220,7 +244,7 @@ const UserProfile: React.FC = () => {
                             className="py-2 w-[210px] my-2.5 bg-slate-200 hover:bg-slate-300 stone-700 hover:text-stone-100 duration-120 ease-in cursor-pointer" 
                             type="submit"
                         >
-                            submit
+                            Submit
                         </button>
 
                 </form>
@@ -265,23 +289,45 @@ const UserProfile: React.FC = () => {
                     `}
                     onClick={() => setIsChangeUserInfoForm(!isChangeUserInfoForm)}
                 >
-                    {isChangeUserInfoForm ? "X" : "Change password"}
+                    {isChangeUserInfoForm ? "X" : "Edit info"}
                 </button>
                 
                 <div className="w-full h-px bg-gray-300/50 my-3"></div>
                 <div id="password-actions">
                     <button 
                         className={`
+                            py-2 w-[210px] mr-1 bg-slate-200 hover:bg-slate-300 stone-700 hover:text-stone-100 duration-120 ease-in cursor-pointer
+                            ${isDeleteAccountForm ? "animate-to-cross" : ""}   
+                        `}
+                        onClick={() => { setIsDeleteAccountForm(!isDeleteAccountForm); setIsChangePasswordForm(false) }}
+                    >
+                        {isDeleteAccountForm ? "X" : "Delete account"}
+                    </button>
+                    <button 
+                        className={`
                             py-2 w-[210px] bg-slate-200 hover:bg-slate-300 stone-700 hover:text-stone-100 duration-120 ease-in cursor-pointer
                             ${isChangePasswordForm ? "animate-to-cross" : ""}   
                         `}
-                        onClick={() => setIsChangePasswordForm(!isChangePasswordForm)}
+                        onClick={() => { setIsChangePasswordForm(!isChangePasswordForm); setIsDeleteAccountForm(false) }}
                     >
                         {isChangePasswordForm ? "X" : "Change password"}
                     </button>
+                    {isDeleteAccountForm && 
+                        <>
+                        <div id="blur" className="fixed inset-0 h-screen w-screen z-40 backdrop-blur-xs" onClick={() => setIsDeleteAccountForm(false)}>
+                        </div>
+                        <form className="fixed z-50" onSubmit={handleDeleteAccount}>
+                            <div className="z-50 fixed flex flex-col items-center">
+                                <span>Do your really want to delete account ?</span>
+                                <button className=" py-2 w-[210px] bg-slate-200 hover:bg-slate-300 stone-700 hover:text-stone-100 duration-120 ease-in cursor-pointer my-2" type="submit">Yes</button>
+                                <button className=" py-2 w-[210px] bg-slate-200 hover:bg-slate-300 stone-700 hover:text-stone-100 duration-120 ease-in cursor-pointer" onClick={() => setIsDeleteAccountForm(false)}>No</button>
+                            </div>
+                        </form>
+                        </>
+                    }
                     {isChangePasswordForm &&
                         <form className="flex flex-col gap-2.5 w-100" onSubmit={handleUpdatePassword}>
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-2 mt-2.5">
                                 <label htmlFor="current-password" className="text-gray-500 text-sm">Current password</label>
                                 <input
                                     className="w-50 border-b-1 border-dotted outline-none border-gray-900"

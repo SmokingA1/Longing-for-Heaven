@@ -50,7 +50,7 @@ class Product(Base, TimestampMixin):
     cart_items: Mapped[list["CartItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
 
 
-class SizeEnum(PyEnum):
+class SizeEnum(str, PyEnum):
     M = "m"
     L = "l"
     XL = "xl"
@@ -61,7 +61,7 @@ class Size(Base, TimestampMixin):
     __tablename__ = "sizes"
 
     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
-    name: Mapped[SizeEnum] = mapped_column(Enum(SizeEnum, name="sizeenum"), nullable=False)
+    name: Mapped[SizeEnum] = mapped_column(Enum(SizeEnum, name="sizeenum"), nullable=False, unique=True)
 
     products: Mapped[list["ProductSize"]] = relationship(back_populates="size", cascade="all, delete-orphan") # продукты связаные с этим размером
 
@@ -92,15 +92,26 @@ class ProductImage(Base, TimestampMixin):
     product: Mapped["Product"] = relationship(back_populates="images")
 
 
-# under the most intereset magic xd
+# under the most intereset magic xd ORDERS
 class StatusEnum(PyEnum):
     PENDING = "pending"
     PAID = "paid"
-    PROCESSING = "processing"
     SHIPPED = "shipped"
+    DELIVERED = "delivered"
     CANCELLED = "cancelled"
     RETURNED = "returned"
     
+
+class PaymentStatusEnum(PyEnum):
+    PENDING = "pending"
+    PAID = "paid"
+    REFUNDED = "refunded"
+
+
+class PaymentMethodEnum(PyEnum):
+    CARD = "card"
+    COD = "cod"
+
 
 class Order(Base, TimestampMixin):
     __tablename__ = "orders"
@@ -109,6 +120,12 @@ class Order(Base, TimestampMixin):
     user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     total_price: Mapped[int] = mapped_column(Integer, nullable=False)  # фиксируем цену на момент заказа
     status: Mapped[StatusEnum] = mapped_column(Enum(StatusEnum, name="statusenum"), default=StatusEnum.PENDING, nullable=False)
+    shipping_country: Mapped[str] = mapped_column(String(50), nullable=False)
+    shipping_city: Mapped[str] = mapped_column(String(50), nullable=False)
+    shipping_street: Mapped[str] = mapped_column(String(255), nullable=False) #post address ?
+    post_index: Mapped[int] = mapped_column(Integer, nullable=False)
+    payment_method: Mapped[PaymentMethodEnum] = mapped_column(Enum(PaymentMethodEnum, name="paymentmethod"), nullable=False, default=PaymentMethodEnum.CARD)
+    payment_status: Mapped[PaymentStatusEnum] = mapped_column(Enum(PaymentStatusEnum, name="paymentstatus"), nullable=False, default=PaymentStatusEnum.PENDING)
 
     user: Mapped["User"] = relationship(back_populates="orders")
     order_items: Mapped[list["OrderItem"]] = relationship(back_populates="order", cascade="all, delete-orphan")
@@ -127,6 +144,12 @@ class OrderItem(Base, TimestampMixin):
     product: Mapped["Product"] = relationship(back_populates="order_items")
 
 
+
+
+
+
+
+# CART CART CART CART ITEM
 class Cart(Base, TimestampMixin):
     __tablename__ = "carts"
 

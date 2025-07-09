@@ -75,6 +75,7 @@ class ProductPublic(ProductBase):
     id: UUID
 
     images: list["ProductImagePublic"]
+    sizes: list["ProductSizePublicS"]
 
     model_config = {"from_attributes": True}
 
@@ -91,7 +92,7 @@ class ProductImageBase(BaseModel):
     photo_url: str = Field(..., min_length=1, max_length=255)
 
 
-class ProductImageCreate(ProductImageBase):
+class ProductImageCreate(ProductImageBase): 
     pass
 
 
@@ -100,6 +101,53 @@ class ProductImagePublic(ProductImageBase):
 
     model_config = {"from_attributes": True}
 
+
+class SizeEnum(str, PyEnum):
+    M = "m"
+    L = "l"
+    XL = "xl"
+    XXL = "xxl"
+
+
+class SizeBase(BaseModel):
+    name: SizeEnum = Field(...)
+
+
+class SizeCreate(SizeBase):
+    pass
+
+
+class SizePublic(SizeBase):
+    id: UUID
+    
+    model_config = {"from_attributes": True}
+
+
+class ProductSizeBase(BaseModel):
+    product_id: UUID
+    size_id: UUID
+    quantity: int = Field(default=0, ge=0)
+
+
+class ProductSizeCreate(ProductSizeBase):
+    pass 
+
+
+class ProductSizePublicP(ProductSizeBase):
+    product: "ProductPublic"
+
+    model_config = {"from_attributes": True}
+
+
+class ProductSizePublicS(ProductSizeBase):
+    size: "SizePublic"
+    
+    model_config = {"from_attributes": True}
+
+
+class ProductSizePublic(ProductSizeBase):
+    model_config = {"from_attributes": True}
+    
 
 class OrderStatus(PyEnum):
     PENDING = "pending"
