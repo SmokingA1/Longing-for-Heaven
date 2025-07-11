@@ -11,7 +11,7 @@ from app.schemas import ProductCreate, ProductUpdate
 from app.utils.logger import logger
 
 async def get_product_by_id(*, db: AsyncSession, product_id: UUID) -> Product:
-    query = select(Product).options(joinedload(Product.images)).where(Product.id == product_id)
+    query = select(Product).options(joinedload(Product.images), joinedload(Product.sizes).joinedload(ProductSize.size)).where(Product.id == product_id)
     result = await db.execute(query)
     db_product = result.scalars().first()
     return db_product
@@ -46,7 +46,8 @@ async def create_product(*, db: AsyncSession, product_create: ProductCreate) -> 
     await db.commit()
     await db.refresh(new_product)
 
-    query = select(Product).where(Product.id == new_product.id).options(joinedload(Product.images))
+    query = select(Product).where(Product.id == new_product.id).options(joinedload(Product.images), joinedload(Product.sizes).joinedload(ProductSize.size))
+    # почему это здесь, к каждому продукту после создания я подтягиваю фотки(по сути пустой масив), размеры(тоже пусто так как нету созданых размеров у только что появившегося) ну и для каждого размера его название size ладно все
     result = await db.execute(query)
     new_product = result.unique().scalars().first()
 

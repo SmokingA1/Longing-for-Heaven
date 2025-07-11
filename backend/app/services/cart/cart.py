@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 
-from app.models import Cart, CartItem, Product
+from app.models import Cart, CartItem, Product, ProductSize
 from app.schemas import CartCreate
 
 
@@ -16,7 +16,7 @@ async def get_carts(
     limit: int = 20,
 ) -> List[Cart]:
     query = select(Cart).options(
-        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload(Product.images)
+        joinedload(Cart.cart_items).options(joinedload(CartItem.product), joinedload(CartItem.size))
     ).offset(offset=offset).limit(limit=limit)
 
     result = await db.execute(query)
@@ -31,7 +31,7 @@ async def get_cart_by_id(
     cart_id: UUID,
 ) -> Cart:
     query = select(Cart).where(Cart.id == cart_id).options(
-        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload(Product.images)
+        joinedload(Cart.cart_items).options(joinedload(CartItem.product), joinedload(CartItem.size))
     )
     result = await db.execute(query)
     db_cart = result.unique().scalars().first()
@@ -44,7 +44,7 @@ async def get_cart_by_user_id(
     user_id: UUID,
 ) -> Cart:
     query = select(Cart).where(Cart.user_id == user_id).options(
-        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload(Product.images)
+        joinedload(Cart.cart_items).options(joinedload(CartItem.product), joinedload(CartItem.size))
     )
     result = await db.execute(query)
     db_cart = result.unique().scalars().first()
@@ -62,7 +62,7 @@ async def get_or_create_cart_by_user_id(*, db: AsyncSession, user_id: UUID) -> C
     await db.refresh(new_cart)
 
     query = select(Cart).where(Cart.id == new_cart.id).options(
-        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload(Product.images)
+        joinedload(Cart.cart_items).options(joinedload(CartItem.product), joinedload(CartItem.size))
     )
     result = await db.execute(query)
     new_cart = result.scalars().first()
@@ -83,7 +83,7 @@ async def create_cart(
 
 
     query = select(Cart).where(Cart.id == new_cart.id).options(
-        joinedload(Cart.cart_items).joinedload(CartItem.product).joinedload(Product.images)
+        joinedload(Cart.cart_items).options(joinedload(CartItem.product), joinedload(CartItem.size))
     )
     result = await db.execute(query)
     new_cart = result.scalars().first()

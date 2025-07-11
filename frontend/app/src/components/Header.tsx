@@ -18,7 +18,7 @@ const Header: React.FC = () => {
 
     return(
         <header className=" w-full flex justify-center py-2">
-            <div id="header-in" className="flex w-full text-sm sm:text-base justify-between sm:w-[600px] md:w-[720px] lg:w-250 xl:w-300 ">
+            <div id="header-in" className="flex w-full text-sm sm:text-base justify-between sm:w-[640px] md:w-[720px] lg:w-250 xl:w-300 ">
                 <div id='l-nav' className="hidden lg:inline lg:w-[350px] xl:w-100">
                     <nav id="l-nav-options" className="h-full w-full flex flex-row lg:items-center items-start xl:pl-0 lg:gap-5 xl:text-[15px]">
                         <Link to="/shop/" className="hover:opacity-80">SHOP</Link>
@@ -27,7 +27,7 @@ const Header: React.FC = () => {
                     </nav>
 
                 </div>
-                <div className="flex items-center justify-start sm:w-[180px] md:w-[240px] lg:hidden ">
+                <div className="flex items-center justify-start sm:w-[200px] md:w-[240px] lg:hidden ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-8">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
@@ -36,7 +36,7 @@ const Header: React.FC = () => {
                     <img src={longingForHeavenTitle} alt="logo" className="xl:w-80"/>
 
                 </div>
-                <div id='r-nav' className="sm:w-[180px] md:w-[240px] lg:w-[350px] xl:w-100">
+                <div id='r-nav' className="sm:w-[200px] md:w-[240px] lg:w-[350px] xl:w-100">
                     <nav id="l-nav-options" className="h-full w-full flex gap-5 justify-end items-center xl:text-[15px]">
                                 {user.email ? (
                                     <div className="flex items-center gap-1 cursor-pointer hover:text-gray-700" onClick={() => dispatch(openSideBar())}>

@@ -14,7 +14,7 @@ async def get_cart_item_by_id(
     cart_item_id: UUID,
 ) -> CartItem:
     query = select(CartItem).options(
-        joinedload(CartItem.product).joinedload(Product.images)
+        joinedload(CartItem.product), joinedload(CartItem.size)
     ).where(CartItem.id == cart_item_id)
     result = await db.execute(query)
     db_cart_item = result.unique().scalars().first()
@@ -29,7 +29,7 @@ async def get_cart_items(
     limit: int = 20,
 ) -> List[CartItem]:
     query = select(CartItem).options(
-        joinedload(CartItem.product).joinedload(Product.images)
+        joinedload(CartItem.product), joinedload(CartItem.size)
     )
 
     query = query.offset(offset=offset).limit(limit=limit)
@@ -48,7 +48,7 @@ async def get_cart_items_by_cart_id(
     limit: int = 20,
 ) -> List[CartItem]:
     query = select(CartItem).options(
-        joinedload(CartItem.product).joinedload(Product.images)
+        joinedload(CartItem.product), joinedload(CartItem.size)
     ).where(CartItem.cart_id == cart_id)
     query = query.offset(offset=offset).limit(limit=limit)
 
@@ -70,7 +70,7 @@ async def create_cart_item(
     await db.refresh(new_cart_item)
 
     query = select(CartItem).where(CartItem.id == new_cart_item.id).options(
-        joinedload(CartItem.product).joinedload(Product.images)
+        joinedload(CartItem.product), joinedload(CartItem.size)
     )
     result = await db.execute(query)
     new_cart_item = result.unique().scalars().first()
@@ -87,8 +87,9 @@ async def create_cart_item_w_cart(
     new_cart_item = CartItem(
         cart_id=cart_id,
         product_id=cart_item_create.product_id,
+        size_id=cart_item_create.size_id,
         quantity=cart_item_create.quantity,
-        price=cart_item_create.price
+        thumbnail=cart_item_create.thumbnail,
     )
 
     db.add(new_cart_item)
@@ -96,7 +97,7 @@ async def create_cart_item_w_cart(
     await db.refresh(new_cart_item)
 
     query = select(CartItem).where(CartItem.id == new_cart_item.id).options(
-        joinedload(CartItem.product).joinedload(Product.images)
+        joinedload(CartItem.product), joinedload(CartItem.size)
     )
     result = await db.execute(query)
     new_cart_item = result.unique().scalars().first()

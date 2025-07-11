@@ -80,6 +80,12 @@ class ProductPublic(ProductBase):
     model_config = {"from_attributes": True}
 
 
+class ProductPublicWithoutSP(ProductBase):
+    id: UUID
+
+    model_config = {"from_attributes": True}
+
+
 class ProductUpdate(BaseModel):
     name: str | None = Field(None, min_length=1, max_length=100)
     description: str | None = Field(None, min_length=1, max_length=255)
@@ -230,8 +236,9 @@ class CartPublic(CartBase):
 class CartItemBase(BaseModel):
     cart_id: UUID
     product_id: UUID
+    size_id: UUID
     quantity: int = Field(default=1, ge=1)
-    price: int = Field(default=0)
+    thumbnail: str = Field(..., min_length=1)
 
 
 class CartItemCreate(CartItemBase):
@@ -240,14 +247,16 @@ class CartItemCreate(CartItemBase):
 
 class CartItemCreateWCart(BaseModel): #without cart
     product_id: UUID
+    size_id: UUID
     quantity: int = Field(default=1, ge=1)
-    price: int = Field(default=0)
+    thumbnail: str = Field(..., min_length=1)
 
 
 class CartItemPublic(CartItemBase):
     id: UUID
 
-    product: "ProductPublic"
+    product: "ProductPublicWithoutSP"
+    size: "SizePublic"
 
     model_config = {"from_attributes": True}
 

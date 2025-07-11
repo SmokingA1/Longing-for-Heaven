@@ -1,18 +1,12 @@
 import { createSlice, type PayloadAction} from "@reduxjs/toolkit";
 import { _NEVER } from "@reduxjs/toolkit/query";
 
-
-interface ProductImage {
-    id: string;
-    product_id: string;
-    photo_url: string;
-}
-
 interface CartItem {
     id: string;
     cart_id: string;
     product_id: string;
-    price: number;
+    size_id: string;
+    thumbnail: string;
     quantity: number;   
     product: {
         id: string,
@@ -20,7 +14,10 @@ interface CartItem {
         description: string,
         price: number,
         stock: number,
-        images: ProductImage[]
+    }
+    size: {
+        id: string,
+        name: string,
     }
 }
 

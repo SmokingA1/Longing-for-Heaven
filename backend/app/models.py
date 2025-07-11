@@ -64,6 +64,7 @@ class Size(Base, TimestampMixin):
     name: Mapped[SizeEnum] = mapped_column(Enum(SizeEnum, name="sizeenum"), nullable=False, unique=True)
 
     products: Mapped[list["ProductSize"]] = relationship(back_populates="size", cascade="all, delete-orphan") # продукты связаные с этим размером
+    cart_items: Mapped[list["CartItem"]] = relationship(back_populates="size", cascade="all, delete-orphan")
 
 
 class ProductSize(Base, TimestampMixin):
@@ -165,12 +166,14 @@ class CartItem(Base, TimestampMixin):
 
     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     cart_id: Mapped[UUID] = mapped_column(ForeignKey("carts.id", ondelete="CASCADE"), nullable=False)
+    size_id: Mapped[UUID] = mapped_column(ForeignKey("sizes.id", ondelete="CASCADE"), nullable=False)
     product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"), nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
-    price: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    # price: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    thumbnail: Mapped[str] = mapped_column(String, nullable=False)
 
     cart: Mapped["Cart"] = relationship(back_populates="cart_items")
     product: Mapped["Product"] = relationship(back_populates="cart_items")
-
+    size: Mapped["Size"] = relationship(back_populates="cart_items")
 
 # Something yet payment, reviews etc.
