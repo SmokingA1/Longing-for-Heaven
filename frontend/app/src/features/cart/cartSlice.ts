@@ -19,6 +19,7 @@ interface CartItem {
         id: string,
         name: string,
     }
+    max_quantity: number;
 }
 
 interface CartState {
@@ -42,7 +43,7 @@ const cartSlice = createSlice({
         incrementQTY: (state, action: PayloadAction<string>) => {
             // state.items = state.items.map((item) => item.id === action.payload ? { ...item, quantity: item.quantity + 1} : item ) //my
             const item = state.cart_items.find(item => item.id === action.payload);
-            if (item && item.quantity < item.product.stock) {
+            if (item && item.quantity < item.max_quantity) {
                 item.quantity += 1;
             }
         },

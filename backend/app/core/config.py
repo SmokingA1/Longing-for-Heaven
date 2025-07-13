@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     
     # Project
     AVATAR_UPLOAD_DIR: ClassVar[str] = 'static/avatars'
+    PRODUCT_UPLOAD_DIR: ClassVar[str] = "static/products"
     PROJECT_NAME: ClassVar[str] = "Longing for Heaven"
 
     # Database

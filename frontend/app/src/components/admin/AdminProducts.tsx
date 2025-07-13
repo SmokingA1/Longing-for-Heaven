@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import api from "../../api";
-import ProductForm from "../ProductForm";
+import ProductForm from "./ProductForm";
 
 interface ProductProps {
     id: string;

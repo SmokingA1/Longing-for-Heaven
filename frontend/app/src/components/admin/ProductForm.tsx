@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // import ProductImageForm from "./ProductImageForm";
-import api from "../api";
+import api from "../../api";
+import ProductImageUploader from "./ProductImageUploader";
 
 interface ProductFormProps {
     isVisible: boolean;
@@ -23,26 +24,36 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
         stock: null,
     })
 
-    // файлики
-    // const [file, setFile] = useState<File>()
+    const [files, setFiles] = useState<File[]>()
 
     const handleCreateProductImage = async (product_id: string) => {
-        try {
-            const response = await api.post("/product-images/create", {
-                product_id: product_id,
-                photo_url: "static/products/herelst.webp"
-            })
-            console.log(response.data);
-        } catch( error: any ) {
-            if (error.response) {
-                console.error("Server error: ", error.response);
-            } else {
-                console.error("Network or other error: ", error);
+        if (!files) return;
+        for (const file of files) {
+
+            try {
+                const formData = new FormData()
+                formData.append('file', file);
+
+                const response = await api.post(`/product-images/upload/${product_id}`, formData, 
+                    {
+                        headers: {
+                        'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                )
+                console.log(response.data);
+            } catch( error: any ) {
+                if (error.response) {
+                    console.error("Server error: ", error.response);
+                } else {
+                    console.error("Network or other error: ", error);
+                }
             }
         }
     }
 
     const handleCreateProduct = async (e: React.FormEvent) => {
+        if (!files) return;
         e.preventDefault();
         try {
             const response = await api.post("/products/create", {
@@ -109,13 +120,15 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
 
                     </div>
 
+                    <div>
 
-                    <div className="w-1/2 flex flex-col gap-2">
-                        <label htmlFor="price-product-field">Enter the price of product.</label>
+                    </div>
+                    <div className="flex w-2/3 items-center justify-center">
+                        <label htmlFor="price-product-field">Price.</label>
 
                         <input 
                             id="price-product-field"
-                            className="px-2 border-b-1 border-dotted border-black w-1/2 text-md sm:text-lg outline-0 rounded-t-md"
+                            className="px-2 border-b-1 border-dotted border-black w-50 text-md sm:text-lg outline-0 rounded-t-md"
                             type="number" 
                             placeholder="Enter price"
                             name="price-product"
@@ -132,10 +145,11 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
 
                             
                         />
-                        <label htmlFor="stock-product-field">Enter the  of products on stockpile.</label>
+
+                        <label htmlFor="stock-product-field" className="ml-5">Quantity on stock.</label>
                         <input 
                             id="stock-product-field"
-                            className="px-2 border-b-1 border-dotted border-black w-1/2 text-md sm:text-lg outline-0 rounded-t-md"
+                            className="px-2 border-b-1 border-dotted  border-black w-50 text-md sm:text-lg outline-0 rounded-t-md"
                             type="number" 
                             placeholder="Enter quantity"
                             name="stock-product"
@@ -153,22 +167,10 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
                         />
 
                     </div>
-
-                    {/* <div className="w-70 h-70 border-1 bg-slate-300 hover:opacity-80 duration-120 shadow-sm  cursor-pointer text-5xl flex rounded-xl items-center justify-center" >
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => {
-                                const f = e.target.files?.[0];
-                                if (f) setFile(f);
-                                }}
-                         />
-                    </div> */}
-                    <div className="size-50 flex justify-center ">
-                    </div>
+                    <ProductImageUploader onSetFiles={setFiles}/>
                     
 
-                    <button className="w-80 py-2 mt-5 bg-indigo-300 rounded-xl ease-in duration-120 cursor-pointer text-white hover:bg-indigo-400">ADD PRODUCT</button>
+                    <button className="w-80 py-2 bg-indigo-300 rounded-xl ease-in duration-120 cursor-pointer text-white hover:bg-indigo-400">ADD PRODUCT</button>
                 </form>
 
             </div>

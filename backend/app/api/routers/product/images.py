@@ -1,8 +1,11 @@
 from typing import List, Any
-from uuid import UUID
+from uuid import UUID, uuid4
+import os
+import shutil
 
-from fastapi import APIRouter, HTTPException, Query, status
+from fastapi import APIRouter, HTTPException, Query, status, UploadFile, File
 
+from app.utils.logger import logger
 from app.schemas import ProductImageCreate, ProductImagePublic, Message
 from app.services.product.image import (
     get_product_im_by_id,
@@ -12,7 +15,7 @@ from app.services.product.image import (
     delete_product_im
 )
 from app.api.deps import SessionDep
-
+from app.core.config import settings
 
 router = APIRouter(prefix="/product-images", tags=["ProductImage"])
 
@@ -80,6 +83,49 @@ async def create_new_product_im(db: SessionDep, product_im_create: ProductImageC
     
     return new_product_image
 
+
+@router.post("/upload/{product_id}", response_model=ProductImagePublic)
+async def upload_new_product_image(db: SessionDep, product_id: UUID, file: UploadFile = File()) -> Any:
+    """
+    Uploadin new product image.
+    """ 
+    file_ext = file.filename.split(".")[-1]
+    unique_filename = f"{uuid4()}.{file_ext}"
+
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    APP_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "..", ".."))
+    # CURRENT PRODUCT .. ROUTERS .. API .. APP
+
+
+    # MAKE PATH TO SAVE FILE
+    product_image_dir = os.path.join(APP_DIR, settings.PRODUCT_UPLOAD_DIR)
+    # product_image_dir = path/to/backend/app/static/products
+
+    # and creating path to file
+    file_path = os.path.join(product_image_dir, unique_filename)
+    logger.info(f"{BASE_DIR}")
+    logger.info(f"{APP_DIR}")
+    logger.info(f"{product_image_dir}")
+    logger.info(f"{file_path}")
+
+    os.makedirs(product_image_dir, exist_ok=True) # creaing path to save images if not exists
+
+
+    # creating file with unique name alias
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    image_url = f"{settings.PRODUCT_UPLOAD_DIR}/{unique_filename}"
+
+    uploaded_pi = await create_product_im(db=db, product_im_create=ProductImageCreate(product_id= product_id, photo_url=image_url))
+
+    if not uploaded_pi:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Something went wrong while creating new product image."
+        )
+    
+    return uploaded_pi
 
 
 @router.delete("/delete/{product_im_id}", response_model=Message)

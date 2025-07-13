@@ -3,9 +3,9 @@ from uuid import UUID
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from sqlalchemy.orm import joinedload
+from sqlalchemy.orm import joinedload, with_loader_criteria
 
-from app.models import Product, ProductSize
+from app.models import Product, ProductSize, ProductImage
 from app.schemas import ProductCreate, ProductUpdate
 
 from app.utils.logger import logger
@@ -26,7 +26,8 @@ async def get_products(
 ) -> List[Product]:
     query = select(Product).options(
         #в каждом Продукте подгружаю изображения, а так же подгружаю размеры продукта, и к каждому размеру продукта я подгружаю название размера то-есть размер
-        joinedload(Product.images),joinedload(Product.sizes).joinedload(ProductSize.size)
+            joinedload(Product.images),
+            joinedload(Product.sizes).joinedload(ProductSize.size)
         )
 
     query = query.offset(offset=offset).limit(limit=limit)

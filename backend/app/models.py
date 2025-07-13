@@ -44,8 +44,8 @@ class Product(Base, TimestampMixin):
     price: Mapped[int] = mapped_column(Integer, nullable=False)
     stock: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
-    sizes: Mapped[list["ProductSize"]] = relationship(back_populates="product", cascade="all, delete-orphan") # Связи с размерами, доступными для этого продукта
-    images: Mapped[list["ProductImage"]] = relationship(back_populates="product", cascade="all, delete-orphan")
+    sizes: Mapped[list["ProductSize"]] = relationship(back_populates="product", cascade="all, delete-orphan", order_by="ProductSize.created_at") # Связи с размерами, доступными для этого продукта
+    images: Mapped[list["ProductImage"]] = relationship(back_populates="product", cascade="all, delete-orphan", order_by="ProductImage.created_at")
     order_items: Mapped[list["OrderItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
     cart_items: Mapped[list["CartItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
 
@@ -169,7 +169,6 @@ class CartItem(Base, TimestampMixin):
     size_id: Mapped[UUID] = mapped_column(ForeignKey("sizes.id", ondelete="CASCADE"), nullable=False)
     product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"), nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
-    # price: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     thumbnail: Mapped[str] = mapped_column(String, nullable=False)
 
     cart: Mapped["Cart"] = relationship(back_populates="cart_items")

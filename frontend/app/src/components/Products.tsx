@@ -60,7 +60,7 @@ const Products: React.FC = () => {
         }
     }
 
-    const handleAddToCart = async ( id: string, size_id: string) => {
+    const handleAddToCart = async ( id: string, size_id: string, maxQuantity: number) => {
         if (!products) return;
 
         const product = products.find(p => p.id === id);
@@ -83,7 +83,7 @@ const Products: React.FC = () => {
                         cart_id: response.data.cart_id,
                         size_id: response.data.size_id,
                         product_id: response.data.product.id,
-                        thumbnail: product.images[0].photo_url,
+                        thumbnail: response.data.thumbnail,
                         quantity: response.data.quantity,
                         product: {
                             id: response.data.product.id,
@@ -95,7 +95,8 @@ const Products: React.FC = () => {
                         size: {
                             id: response.data.size.id,
                             name: response.data.size.name,
-                        }
+                        },
+                        max_quantity: maxQuantity
                     }))
                 }
             } catch (error) {
@@ -120,7 +121,8 @@ const Products: React.FC = () => {
                     size: {
                         id: size_id,
                         name: size.size.name
-                    }
+                    },
+                    max_quantity: maxQuantity
                 }
             )) 
             console.log("added successfully!")
