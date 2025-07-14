@@ -53,11 +53,8 @@ const Product: React.FC<{id: string}> = ({ id }) => {
         [cart.cart_items]
     );
 
-    if (!id) navigate("/");
-
-    
-
-    const handleAddToCart = async () => {
+    const handleAddToCart = async (e: React.FormEvent) => {
+        e.preventDefault();
         if (!product) return;
         const pSize = product.sizes.find(s => s.size_id == selectedSizeID)
         if (!pSize) return; // ✅ проверка
@@ -125,6 +122,10 @@ const Product: React.FC<{id: string}> = ({ id }) => {
     }
 
     useEffect(() => {
+        if (!id) navigate("/");
+    }, [id]);
+
+    useEffect(() => {
         const getProduct = async () => {
             try {
                 const response = await api.get(`/products/${id}`);
@@ -156,7 +157,8 @@ const Product: React.FC<{id: string}> = ({ id }) => {
         if (product?.sizes?.length) {
             for (let pSize of product.sizes) {
                 if (pSize.quantity > 0) {
-                    setSelectedSizeID(product?.sizes[0].size_id)
+                    setSelectedSizeID(pSize.size_id)
+                    break
                 }
                 
             }
@@ -173,7 +175,7 @@ const Product: React.FC<{id: string}> = ({ id }) => {
                     <div id="selector-pictures" className="flex flex-col  max-h-90 overflow-auto items-center ml-5 gap-2.5 w-25 select-none">
                         {
                             product.images.map((image, id) => (
-                                <img className={`w-[81px] h-[90px] cursor-pointer duration-120 ${selectedImageID == id ? "brightness-80" : "hover:brightness-80"}`} src={`http://localhost:8000/${image.photo_url}`} alt="product-image" onClick={() => setSelectedImageID(id)} />
+                                <img key={image.id} className={`w-[81px] h-[90px] cursor-pointer duration-120 ${selectedImageID == id ? "brightness-80" : "hover:brightness-80"}`} src={`http://localhost:8000/${image.photo_url}`} alt="product-image" onClick={() => setSelectedImageID(id)} />
                             )) 
                         }
                     </div>
@@ -214,8 +216,10 @@ const Product: React.FC<{id: string}> = ({ id }) => {
                             ))}
                         </div>
                     </div>
-                    <span className="text-red-400">{product.stock == 0 && 'Not available'}</span>
-                    <form className="w-full flex gap-5" onSubmit={() => console.log("Hello world")}>
+                    {(product.stock === 0 ) && (
+                        <span className="text-red-400">Not available</span>
+                    )}
+                    <form className="w-full flex gap-5" onSubmit={handleAddToCart}>
                         <div className="flex border-1 border-gray-200 gap-2.5 px-2.5">
                             <button type="button" className="text-3xl cursor-pointer" onClick={() => setQuantity((prev) => prev > 1 ? prev-=1 : prev)}>
                                 -
@@ -234,10 +238,10 @@ const Product: React.FC<{id: string}> = ({ id }) => {
                         <button 
                             disabled={productIdsInCart.has(`${product.id}-${selectedSizeID}`) || product.stock === 0 || maxQuantity.current < 1}
                             className={`py-2 bg-slate-300 w-full cursor-pointer duration-120 ease-in
-                                ${productIdsInCart.has(`${product.id}-${selectedSizeID}`) ? "" : "hover:bg-slate-400/70"}
+                                ${productIdsInCart.has(`${product.id}-${selectedSizeID}`) || product.stock === 0 ? "" : "hover:bg-slate-400/70"}
                             `}
-                            onClick={() => handleAddToCart()}
-                        >
+                            type="submit"
+                        >   
                                 {productIdsInCart.has(`${product.id}-${selectedSizeID}`) ? "Already in the cart" : "Add to cart"}
                                 
                         </button>

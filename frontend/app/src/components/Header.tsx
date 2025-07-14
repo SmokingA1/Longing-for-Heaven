@@ -22,8 +22,8 @@ const Header: React.FC = () => {
                 <div id='l-nav' className="hidden lg:inline lg:w-[350px] xl:w-100">
                     <nav id="l-nav-options" className="h-full w-full flex flex-row lg:items-center items-start xl:pl-0 lg:gap-5 xl:text-[15px]">
                         <Link to="/shop/" className="hover:opacity-80">SHOP</Link>
-                        <Link to="/contacts" className="hover:opacity-80">SHIPPING AND PAYMENT</Link>
-                        <Link to="/contacts" className="hover:opacity-80">CONTACS</Link>
+                        <Link to="/shipping-and-payment/" className="hover:opacity-80">SHIPPING AND PAYMENT</Link>
+                        <Link to="/contacts" className="hover:opacity-80">CONTACTS</Link>
                     </nav>
 
                 </div>

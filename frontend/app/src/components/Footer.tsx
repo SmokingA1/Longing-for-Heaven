@@ -6,12 +6,12 @@ const Footer: React.FC = () => {
 
     return(
         <footer id='container-footer' className="w-full h-100 xl:h-90 relative bottom-0 flex justify-center border-t-[1px] border-gray-100 shadow-[0px_-2px_-4px_rgba(0,0,0,0.25)]">
-            <div className="w-85 md:w-125 xl:w-300 flex flex-col md:flex-row md:justify-center items-center md:items-start  gap-5 px-2.5 pt-10 md:pt-20">
+            <div className="w-85 md:w-125 xl:w-300 flex flex-col md:flex-row md:justify-center items-center md:items-start  gap-20 px-2.5 pt-10 md:pt-20">
                 <div className="flex flex-col gap-2.5 items-center xl:justify-start text-sm">
                     <span className="font-medium text-base">NAVIGATE</span>
                     <Link to={'/'}>Home</Link>
                     <Link to={'/shop/'}>Shop</Link>
-                    <span>Shipping and payment</span>
+                    <Link to={'/shipping-and-payment/'}>Shipping and payment</Link>
                     <span>Private policy</span>
                     <Link to={'/contacts'}>Contacts</Link>
                 </div>
