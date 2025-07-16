@@ -1,10 +1,12 @@
-import React, {useEffect, useMemo, useState } from "react";
+import React, {useEffect, useMemo, useRef, useState } from "react";
 import api from "../api";
 // import { useNavigate } from "react-router";
 import {addToCart} from "../features/cart/cartSlice"
 import { useDispatch, useSelector } from "react-redux";
 import { type AppDispatch, type RootState } from "../store";
 import ProductCard from "./ProductCard";
+import Slider from "@mui/material/Slider"
+
 
 interface ProductProps {
     id: string;
@@ -34,12 +36,15 @@ interface ProductSizesProps {
 
 
 const Products: React.FC = () => {
-    const [products, setProducts] = useState<ProductProps[] | null>();
+    const [products, setProducts] = useState<ProductProps[]>([]);
+    const [filteredProducts, setFilteredProducts] = useState<ProductProps[]>([]);
     const dispatch = useDispatch<AppDispatch>();
     const user = useSelector((state: RootState) => state.user);
     const cart = useSelector((state: RootState) => state.cart);
-    // const navigate = useNavigate();
-
+    const [filter, setFilter] = useState<number[]>([0, 100])
+    const minValue = useRef(0);
+    const maxValue = useRef(0);
+    const firstRender = useRef(true);
     const productIdsInCart = useMemo(
         () => new Set(cart.cart_items.map(item => `${item.product_id}-${item.size_id}`)),
         [cart.cart_items]
@@ -130,6 +135,28 @@ const Products: React.FC = () => {
 
     }
 
+    const handleChangePrice = (_: Event, newValue: number | number[]) => {
+        
+        setFilter(newValue as number[]);
+    }
+
+    const handleFilterProducts = () => {
+        const filteredProducts = products.filter((product) => filter[0] <= product.price && product.price <= filter[1])
+        setFilteredProducts(filteredProducts);
+    }
+
+    useEffect(() => {
+        if (products.length && firstRender.current == true) {
+            minValue.current = Math.min(...products.map(product => product.price))
+            maxValue.current = Math.max(...products.map(product => product.price))
+            setFilter([0, maxValue.current])
+            setFilteredProducts(products);
+            firstRender.current = false;
+        }
+    }, [products])
+
+
+
     useEffect(() => {
         getProducts();
     }, [])
@@ -138,7 +165,7 @@ const Products: React.FC = () => {
         <div id="prdoucts-container" className="flex-grow flex w-full justify-center py-20">
             <div id="products-in-container" className="flex w-[340px] sm:w-160 md:w-180 lg:w-250 xl:w-300">
                 <aside className="hidden lg:flex lg:w-80  p-2.5 ">
-                    <div className="flex bg-white h-30 w-full rounded-md border-[0.5px] border-gray-300 px-5 py-5 flex-col gap-2.5 ">
+                    <div className="flex bg-white h-50 w-full rounded-md border-[0.5px] border-gray-300 px-5 py-5 flex-col gap-2.5 ">
                         <span className=" font-normal">Filters</span>
                         <div className="w-full h-[1px] bg-gray-200"></div>
                         <span className="w-full flex justify-between items-center">
@@ -147,12 +174,30 @@ const Products: React.FC = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                             </svg>
                         </span>
+                        <span>
+                            {maxValue.current > 0 &&
+                            <>
+                                <Slider 
+                                    value={filter}
+                                    onChange={handleChangePrice}
+                                    onChangeCommitted={handleFilterProducts}
+                                    valueLabelDisplay="auto"
+                                    min={minValue.current}
+                                    max={maxValue.current}
+                                />
+                                <div className="flex justify-between">
+                                    <span>{minValue.current}</span>
+                                    <span>{maxValue.current}</span>
+                                </div>
+                            </>
+                            }
+                        </span>
                     </div>
 
                 </aside>
                 <main className="w-full flex justify-center sm:w-160 md:w-180 lg:w-170 xl:w-240 ">
                     <article className="h-full w-85 sm:w-160 md:w-160 lg:w-160 xl:w-[960px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 auto-rows-[550px] md:auto-rows-[450px] text-sm">
-                        {products && products.map((product) => (
+                        {filteredProducts && filteredProducts.map((product) => (
                             <ProductCard 
                                 key={product.id}
                                 product={product}
