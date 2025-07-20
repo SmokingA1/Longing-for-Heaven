@@ -118,16 +118,18 @@ class Order(Base, TimestampMixin):
     __tablename__ = "orders"
 
     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
-    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=True)
     total_price: Mapped[int] = mapped_column(Integer, nullable=False)  # фиксируем цену на момент заказа
     status: Mapped[StatusEnum] = mapped_column(Enum(StatusEnum, name="statusenum"), default=StatusEnum.PENDING, nullable=False)
-    shipping_country: Mapped[str] = mapped_column(String(50), nullable=False)
+    receiver_name: Mapped[str] = mapped_column(String(50), nullable=False)
+    receiver_phone: Mapped[str] = mapped_column(String(15), nullable=False)
+    receiver_email: Mapped[str] = mapped_column(String(255), nullable=False)
     shipping_city: Mapped[str] = mapped_column(String(50), nullable=False)
     shipping_street: Mapped[str] = mapped_column(String(255), nullable=False) #post address ?
-    post_index: Mapped[int] = mapped_column(Integer, nullable=False)
     payment_method: Mapped[PaymentMethodEnum] = mapped_column(Enum(PaymentMethodEnum, name="paymentmethod"), nullable=False, default=PaymentMethodEnum.CARD)
     payment_status: Mapped[PaymentStatusEnum] = mapped_column(Enum(PaymentStatusEnum, name="paymentstatus"), nullable=False, default=PaymentStatusEnum.PENDING)
-
+    
+    
     user: Mapped["User"] = relationship(back_populates="orders")
     order_items: Mapped[list["OrderItem"]] = relationship(back_populates="order", cascade="all, delete-orphan")
 

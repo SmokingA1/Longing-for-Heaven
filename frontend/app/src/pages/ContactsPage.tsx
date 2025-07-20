@@ -14,7 +14,7 @@ const ContactsPage: React.FC = () => {
     return(
         <div id="home-layout" className="flex flex-col items-center w-full min-h-screen relative overflow-x-hidden">
             <Header />
-            <Contacts />
+            <Contacts />    
             <Footer />
             <SideBar />
             <SideCart />

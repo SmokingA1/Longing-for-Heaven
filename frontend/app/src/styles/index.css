@@ -103,6 +103,16 @@ body, #root {
     font-weight: 500;
     font-style: normal;
   }
+
+  .webkit-custom::-webkit-scrollbar {
+    background-color: white;
+    width: 6px;
+  }
+
+  .webkit-custom::-webkit-scrollbar-thumb {
+    background-color: rgb(119, 119, 119);
+  }
+
 }
 
 body {

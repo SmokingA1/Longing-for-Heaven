@@ -12,7 +12,7 @@ const LoginPage: React.FC = () => {
 
     return(
         <>
-        <div className="bg-purple-50 w-full h-full flex flex-col gap-5 items-center py-8">
+        <div id="container-login" className="bg-purple-50 w-full h-full flex flex-col gap-5 items-center py-8">
             <img src={longingForHeavenTitle} alt="store logo" className="max-w-9/10" />
             <LoginForm />
         </div>

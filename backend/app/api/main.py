@@ -10,6 +10,7 @@ from app.api.routers.admin import admins
 from app.api.routers.admin import login as admin_login
 from app.api.routers.cart import carts
 from app.api.routers.cart import items as cart_items
+from app.api.routers.np import nova_poshta
 
 router = APIRouter()
 
@@ -23,3 +24,4 @@ router.include_router(admins.router)
 router.include_router(admin_login.router)
 router.include_router(carts.router)
 router.include_router(cart_items.router)
+router.include_router(nova_poshta.router)

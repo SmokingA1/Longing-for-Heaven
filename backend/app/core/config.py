@@ -62,5 +62,7 @@ class Settings(BaseSettings):
     
     FRONTEND_HOST: str
 
+    #Api
+    NOVA_POSHTA_API: str
     
 settings = Settings()

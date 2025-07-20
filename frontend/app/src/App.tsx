@@ -10,6 +10,7 @@ import ProductPage from './pages/ProductPage';
 import ForgotPassword from './pages/ForgotPassword';
 import UserProfilePage from './pages/UserProfilePage';
 import ShippingAndPaymentPage from './pages/ShippingAndPayment';
+import CheckoutPage from './pages/CheckoutPage';
 
 import {  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -60,6 +61,7 @@ function App() {
       <Route path='/contacts' element={<ContactsPage  />}/>
       <Route path='/shop/' element={<ShopPage  />}/>
       <Route path='/shop/:id' element={<ProductPage  />}/>
+      <Route path='/shop/checkout' element={<CheckoutPage />} />
       <Route path='/forgot-password/' element={<ForgotPassword />}/>
       <Route path='/recover-password' element={<ResetPasswordPage /> }/>
       <Route path='/my-profile/' element={<UserProfilePage />} />

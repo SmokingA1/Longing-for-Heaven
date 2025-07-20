@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { type AppDispatch, type RootState } from "../store";
 import { closeSideCart } from "../features/sideBar/sideBarSlice";
 import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { removeFromCart, incrementQTY, decrementQTY } from "../features/cart/cartSlice";
 import api from "../api";
 
@@ -11,6 +11,7 @@ const SideCart: React.FC = () => {
     const sideCart = useSelector((state: RootState) => state.ui);
     const user = useSelector((state: RootState) => state.user);
     const cart = useSelector((state: RootState) => state.cart);
+    const [total, setTotal] = useState<number>(0);
     const [isShow, setIsShow] = useState<boolean>(true);
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
@@ -60,9 +61,23 @@ const SideCart: React.FC = () => {
     }
 
     useEffect(() => {
-        const imggs = cart.cart_items.map((cartItem) => cartItem.thumbnail  );
+        let imggs = undefined;
+        if (cart.cart_items) {
+            imggs = cart.cart_items.map((cartItem) => cartItem.thumbnail  );
+        }
         console.log(imggs)
     }, []);
+
+    useEffect(() => {
+        let total_price: number = 0;
+        if (cart.cart_items) {
+            total_price = cart.cart_items.reduce((summary, cartItem) => summary += cartItem.quantity * cartItem.product.price, 0)
+
+        }
+        setTotal(total_price);
+    }, [cart.cart_items])
+
+    
 
     if (!sideCart.sideCartOpen) return null;
 
@@ -85,10 +100,10 @@ const SideCart: React.FC = () => {
                 </svg>
             </div>
             <div id="cart-items-container" className="flex flex-col mt-10 gap-2.5 overflow-auto max-h-[800px]">
-                { cart.cart_items.length === 0 && 
+                { cart.cart_items && cart.cart_items.length === 0 && 
                     <span className="flex justify-center text-lg"> Your cart is empty...</span>
                 }
-                { cart.cart_items.length > 0 && cart.cart_items.map((cartItem) => (
+                { cart.cart_items && cart.cart_items.length > 0 && cart.cart_items.map((cartItem) => (
                     <div key={cartItem.id} className="w-[350px] h-30 flex">
                         <img src={`http://localhost:8000/${cartItem.thumbnail}`} alt="cart-item" onClick={() => navigate(`/shop/${cartItem.product_id}`)} className="h-[99px] w-[89.1px]"/>
                         <div id="info" className="flex flex-col w-full gap-1.5 pb-2.5 pl-2">
@@ -110,6 +125,17 @@ const SideCart: React.FC = () => {
                         </div>
                     </div>
                 ))}
+                {cart.cart_items && cart.cart_items.length > 0 && (
+                    <div className="w-full h-60 py-5 absolute bottom-0 left-0 flex flex-col gap-2">
+                        <span className="indent-2 text-sm">Shipping cost</span>
+                        <div className="h-px w-full bg-gray-300"></div>
+                        <span className="indent-2">Total price: {total}</span>
+                        <div className="flex flex-col justify-evenly h-full w-full px-5">
+                            <Link to={'/shop/checkout'} className="w-full text-center border-1 py-2 border-gray-400 hover:border-gray-500/90 bg-gray-400 hover:bg-gray-500/90 duration-120 cursor-pointer ease-linear text-white">Checkout</Link>
+                            <button onClick={() => dispatch(closeSideCart())} className="w-full border-[1.5px] py-2 border-gray-400 shadow-sm text-gray-600 hover:bg-gray-400 duration-150 ease-linear cursor-pointer hover:text-white">Continue shopping</button>
+                        </div>
+                    </div>
+                )}
 
             </div>
 

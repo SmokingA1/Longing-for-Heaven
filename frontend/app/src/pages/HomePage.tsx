@@ -7,7 +7,6 @@ import SideCart from "../components/SideCart";
 
 const HomePage: React.FC = () => {
 
-
     useEffect(() => {
 
         document.title = "Home - Longin for Heaven"
