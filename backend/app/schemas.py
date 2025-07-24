@@ -164,12 +164,30 @@ class OrderStatus(PyEnum):
     RETURNED = "returned"
 
 
+class PaymentStatusEnum(PyEnum):
+    PENDING = "pending"
+    PAID = "paid"
+    REFUNDED = "refunded"
+
+
+class PaymentMethodEnum(PyEnum):
+    CARD = "card"
+    COD = "cod"
+
+
 class OrderBase(BaseModel):
     user_id: UUID
     total_price: int = Field(..., ge=0)
     status: OrderStatus = Field(OrderStatus.PENDING)
-
-
+    receiver_name: str = Field(..., min_length=1)
+    receiver_phone: str = Field(..., min_length=10)
+    receiver_email: EmailStr = Field(...)
+    shipping_city: str = Field(..., min_length=1)
+    shipping_street: str = Field(..., min_length=1)
+    payment_method: PaymentMethodEnum = Field(PaymentMethodEnum.CARD)
+    payment_status: PaymentStatusEnum = Field(PaymentStatusEnum.PENDING)
+    
+    
 class OrderCreate(OrderBase):
     pass
 
@@ -191,14 +209,21 @@ class OrderRead(OrderBase):
 class OrderUpdate(BaseModel):
     total_price: int | None = Field(None, ge=0)
     status: OrderStatus | None = Field(None)
+    receiver_name: str | None = Field(None, min_length=1)
+    receiver_phone: str | None = Field(None, min_length=10)
+    receiver_email: EmailStr | None = Field(None)
+    shipping_city: str | None = Field(None, min_length=1)
+    shipping_street: str | None = Field(None, min_length=1)
+    payment_method: PaymentMethodEnum | None = Field(None)
+    payment_status: PaymentStatusEnum | None = Field(None)
 
 
 class OrderItemBase(BaseModel):
     order_id: UUID
     product_id: UUID
+    size_id: UUID
     quantity: int = Field(default=1, ge=1)
-    price: int = Field(default=0)
-
+    thumbnail: str = Field(..., min_length=1)
 
 class OrderItemCreate(OrderItemBase):
     pass
@@ -208,13 +233,13 @@ class OrderItemPublic(OrderItemBase):
     id: UUID
 
     product: "ProductPublic"
+    size: "SizePublic"
 
     model_config = {"from_attributes": True}
 
 
 class OrderItemUpdate(BaseModel):
     quantity: int | None = Field(None, ge=1)
-    price: int | None = Field(None)
 
 
 class CartBase(BaseModel):

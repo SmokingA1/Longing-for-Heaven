@@ -2,6 +2,8 @@ from typing import Any, List
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, status
+import asyncpg
+from sqlalchemy.exc import IntegrityError
 
 from app.schemas import ProductCreate, ProductPublic, ProductUpdate, Message
 from app.services.product.product import (
@@ -53,8 +55,13 @@ async def create_new_product(db: SessionDep, product_create: ProductCreate) -> A
     Creating new product with product_create form.
     """
 
-    new_product = await create_product(db=db, product_create=product_create)
-
+    try:
+        new_product = await create_product(db=db, product_create=product_create)
+    except IntegrityError as e:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Product with this name already exists."
+        )
     if not new_product:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

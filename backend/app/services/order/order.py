@@ -5,13 +5,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 
-from app.models import Order, OrderItem, Product
+from app.models import Order, OrderItem
 from app.schemas import OrderCreate, OrderUpdate
 
 
 async def get_order_by_id(*, db: AsyncSession, order_id: UUID) -> Order:
     query = select(Order).options(
-        joinedload(Order.order_items).joinedload(OrderItem.product).joinedload(Product.images)
+        joinedload(Order.order_items).options(joinedload(OrderItem.product), joinedload(OrderItem.size))
     ).where(Order.id == order_id)
 
     db_order = await db.execute(query)
@@ -27,7 +27,7 @@ async def get_orders(
     query = select(Order)
 
     query = query.options(joinedload
-        (Order.order_items).joinedload(OrderItem.product).joinedload(Product.images)
+        (Order.order_items).options(joinedload(OrderItem.product), joinedload(OrderItem.size))
     )
     query = query.offset(offset=offset).limit(limit=limit)
 
@@ -45,7 +45,7 @@ async def get_orders_by_user_id(
 ) -> List[Order]:
     query = select(Order).where(Order.user_id == user_id)
     query = query.options(
-        joinedload(Order.order_items).joinedload(OrderItem.product).joinedload(Product.images)
+        joinedload(Order.order_items).options(joinedload(OrderItem.product), joinedload(OrderItem.size))
     )
 
     result = await db.execute(query)
@@ -62,7 +62,7 @@ async def create_order(*, db: AsyncSession, order_create: OrderCreate) -> Order:
     await db.refresh(new_order)
 
     query = select(Order).options(
-        joinedload(Order.order_items).joinedload(OrderItem.product).joinedload(Product.images)
+        joinedload(Order.order_items).options(joinedload(OrderItem.product), joinedload(OrderItem.size))
     ).where(Order.id == new_order.id)
     result = await db.execute(query)
     new_order = result.unique().scalars().first()
@@ -77,7 +77,8 @@ async def update_order(*, db: AsyncSession, order_id: UUID, order_update: OrderU
         return None 
     
     for k, v in order_update.dict(exclude_unset=True).items():
-        setattr(db_order, k, v)
+        if v is not None:
+            setattr(db_order, k, v)
 
     await db.commit()
     await db.refresh(db_order)

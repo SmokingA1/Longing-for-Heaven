@@ -5,13 +5,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 
-from app.models import OrderItem, Product
+from app.models import OrderItem
 from app.schemas import OrderItemCreate, OrderItemUpdate
 
 
 async def get_order_item_by_id(*, db: AsyncSession, order_item_id: UUID) -> OrderItem:
     query = select(OrderItem).options(
-        joinedload(OrderItem.product).joinedload(Product.images)
+        joinedload(OrderItem.product), joinedload(OrderItem.size)
     ).where(OrderItem.id == order_item_id)
 
     db_order_item = await db.execute(query)
@@ -27,7 +27,7 @@ async def get_order_items(
     query = select(OrderItem)
 
     query = query.offset(offset=offset).limit(limit=limit).options(
-        joinedload(OrderItem.product).joinedload(Product.images)
+        joinedload(OrderItem.product), joinedload(OrderItem.size)
     )
     result = await db.execute(query)
     db_order_items = result.unique().scalars().all()
@@ -41,7 +41,7 @@ async def get_order_items_by_order_id(
     order_id: UUID,
 ) -> List[OrderItem]:
     query = select(OrderItem).options(
-        joinedload(OrderItem.product).joinedload(Product.images)
+        joinedload(OrderItem.product), joinedload(OrderItem.size)
     ).where(OrderItem.order_id == order_id)
 
     result = await db.execute(query)
@@ -62,7 +62,7 @@ async def create_order_item(
     await db.refresh(new_order_item)
 
     query = select(OrderItem).options(
-        joinedload(OrderItem.product).joinedload(Product.images)
+        joinedload(OrderItem.product), joinedload(OrderItem.size)
     ).where(OrderItem.order_id == new_order_item.id)
     result = await db.execute(query)
     new_order_item = result.unique().scalars().first()
@@ -81,7 +81,8 @@ async def update_order_item_by_id(
         return None
     
     for k, v in order_item_update.dict(exclude_unset=True).items():
-        setattr(db_order_item, k, v)
+        if v is not None:
+            setattr(db_order_item, k, v)    
 
     await db.commit()
     await db.refresh(db_order_item)

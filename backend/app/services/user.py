@@ -66,7 +66,7 @@ async def update_user_by_id(*, db: AsyncSession, user_id: UUID, user_update: Use
     if not db_user: 
         return None
 
-    for k, v in user_update.dict(exclude_unset=True).items():
+    for k, v in user_update.model_dump(exclude_unset=True).items():
         if v is not None:
             setattr(db_user, k, v)
 
