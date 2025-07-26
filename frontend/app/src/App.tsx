@@ -20,6 +20,7 @@ import api from "./api";
 import { type RootState, type AppDispatch } from "./store";
 import ContactsPage from './pages/ContactsPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import UserOrdersPage from './pages/UserOrdersPage';
 
 function App() {
   const user = useSelector((state: RootState) => state.user);
@@ -66,6 +67,7 @@ function App() {
       <Route path='/recover-password' element={<ResetPasswordPage /> }/>
       <Route path='/my-profile/' element={<UserProfilePage />} />
       <Route path='/shipping-and-payment/' element={<ShippingAndPaymentPage />} />
+      <Route path='/my-orders/' element={<UserOrdersPage />} />
     </Routes>
   )
 }

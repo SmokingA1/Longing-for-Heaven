@@ -36,21 +36,24 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
 
     const handleCreateProductImage = async (productID: string) => {
         if (!files) return;
+
+        let delay = 200;
+
         for (const file of files) {
+            await new Promise(resolve => setTimeout(resolve, delay)); // ждем задержку
+            delay += 50;
 
             try {
-                const formData = new FormData()
+                const formData = new FormData();
                 formData.append('file', file);
 
-                const response = await api.post(`/product-images/upload/${productID}`, formData, 
-                    {
-                        headers: {
-                        'Content-Type': 'multipart/form-data'
-                        }
-                    }
-                )
+                const response = await api.post(`/product-images/upload/${productID}`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
                 console.log(response.data);
-            } catch( error: any ) {
+            } catch (error: any) {
                 if (error.response) {
                     console.error("Server error: ", error.response);
                 } else {
@@ -58,7 +61,7 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
                 }
             }
         }
-    }
+    };
 
     const handleCreateProductSize = async (productID: string) => {
         for (const size of sizes) {

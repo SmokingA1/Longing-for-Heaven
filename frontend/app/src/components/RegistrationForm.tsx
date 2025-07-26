@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { PatternFormat } from "react-number-format";
 import api from "../api"
 
@@ -16,7 +16,7 @@ const RegistrationForm: React.FC = () => {
     const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] = useState<boolean>(false);
     
     const [error, setError] = useState<'email' | 'password' | 'confirm-password' | 'phone-number' | 'phone-number-s' | null>(null);
-
+    const navigate = useNavigate();
     const [userRegister, setUserRegister] = useState<UserRegisterInterface>({
         name: "",
         email: "",
@@ -78,6 +78,7 @@ const RegistrationForm: React.FC = () => {
         try {
             const response = await api.post("/carts/create", {"user_id": userId});
             console.log(response.data);
+            navigate("/login");
         } catch (error) {
             console.error("Some error: ", error);
         }
@@ -215,6 +216,8 @@ const RegistrationForm: React.FC = () => {
                     className={`px-2 border-b-1 border-dotted border-black w-full text-lg outline-0 rounded-t-md focus:bg-transparent ${error == "phone-number" && "bg-red-200"} `}
                     type="text"
                     placeholder="Phone number"
+                    name="tel-national"
+                    autoComplete="tel-national"
                     value={userRegister.phoneNumber || ""}
                     onValueChange={(e) => {
                         setUserRegister({ ...userRegister, phoneNumber: e.value });

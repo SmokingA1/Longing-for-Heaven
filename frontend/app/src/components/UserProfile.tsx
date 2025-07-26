@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { type AppDispatch, type RootState } from "../store";
 import { setUser } from "../features/user/userSlice";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import api from "../api";
 import { PatternFormat } from "react-number-format";
 import { clearUser } from "../features/user/userSlice";
@@ -124,7 +124,7 @@ const UserProfile: React.FC = () => {
         console.log("yeah")
     }, [isDeleteAccountForm]);
 
-    if (!user.email) return null;
+    if (!user.id) return null;
 
     return(
         <div id="user-profile-container" className="xl:w-300 h-160 pt-10 flex justify-center">
@@ -157,7 +157,7 @@ const UserProfile: React.FC = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 w-10">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                             </svg>
-                            <span className="hover:text-gray-600">My orders</span>
+                            <Link to={"/my-orders/"} className="hover:text-gray-600">My orders</Link>
                         </div>
                     </div>
                 </div>

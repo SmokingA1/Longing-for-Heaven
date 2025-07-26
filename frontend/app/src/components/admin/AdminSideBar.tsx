@@ -66,7 +66,7 @@ const AdminSideBar: React.FC<SideBarProps> = ({choosenRow, setChoosenRow}) => {
     return(
         <>
   
-        <div id="admin-side-bar" className={` min-w-75 h-full shadow-md relative top-0 left-0 bg-gray-400 p-5 flex-col items-center`}>
+        <div id="admin-side-bar" className={` min-w-75 h-full shadow-md relative top-0 left-0 bg-slate-800 p-5 flex-col items-center text-white`}>
             
             <div id="admin-title" className="w-full flex justify-center flex-col text-sm z-50 mb-5">
                 <div id="" className=" self-center">
@@ -84,7 +84,7 @@ const AdminSideBar: React.FC<SideBarProps> = ({choosenRow, setChoosenRow}) => {
                     key={row}
                     onClick={() => setChoosenRow(row as SideBarProps["choosenRow"])}
                     className={`py-2 px-2.5 w-full text-start relative rounded-sm cursor-pointer transform duration-150 flex gap-2 ${
-                        choosenRow === row ? "bg-gray-300 translate-x-[-4px]" : "hover:bg-gray-300/70 hover:translate-x-[-4px]"
+                        choosenRow === row ? "bg-gray-600 translate-x-[-4px]" : "hover:bg-gray-600/70 hover:translate-x-[-4px]"
                     }`}
                 >
                     {icons[i]}

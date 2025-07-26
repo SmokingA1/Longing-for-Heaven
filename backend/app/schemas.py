@@ -1,7 +1,7 @@
 from pydantic import Field, EmailStr, BaseModel
 from uuid import UUID
 from enum import Enum as PyEnum
-
+from datetime import datetime   
 
 class AdminBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=50, description="Admin name")
@@ -104,7 +104,7 @@ class ProductImageCreate(ProductImageBase):
 
 class ProductImagePublic(ProductImageBase):
     id: UUID
-
+    created_at: datetime
     model_config = {"from_attributes": True}
 
 
@@ -155,7 +155,7 @@ class ProductSizePublic(ProductSizeBase):
     model_config = {"from_attributes": True}
     
 
-class OrderStatus(PyEnum):
+class OrderStatus(str, PyEnum):
     PENDING = "pending"
     PAID = "paid"
     PROCESSING = "processing"
@@ -164,19 +164,19 @@ class OrderStatus(PyEnum):
     RETURNED = "returned"
 
 
-class PaymentStatusEnum(PyEnum):
-    PENDING = "pending"
+class PaymentStatusEnum(str, PyEnum):
+    PENDING = "pending"     
     PAID = "paid"
     REFUNDED = "refunded"
 
 
-class PaymentMethodEnum(PyEnum):
+class PaymentMethodEnum(str, PyEnum):
     CARD = "card"
     COD = "cod"
 
 
 class OrderBase(BaseModel):
-    user_id: UUID
+    user_id: UUID | None
     total_price: int = Field(..., ge=0)
     status: OrderStatus = Field(OrderStatus.PENDING)
     receiver_name: str = Field(..., min_length=1)
@@ -186,7 +186,7 @@ class OrderBase(BaseModel):
     shipping_street: str = Field(..., min_length=1)
     payment_method: PaymentMethodEnum = Field(PaymentMethodEnum.CARD)
     payment_status: PaymentStatusEnum = Field(PaymentStatusEnum.PENDING)
-    
+    created_at: datetime
     
 class OrderCreate(OrderBase):
     pass
@@ -196,6 +196,7 @@ class OrderPublic(OrderBase):
     id: UUID
 
     order_items: list["OrderItemPublic"]
+    number: int
 
     model_config = {"from_attributes": True}
 
@@ -219,7 +220,7 @@ class OrderUpdate(BaseModel):
 
 
 class OrderItemBase(BaseModel):
-    order_id: UUID
+    order_id: UUID 
     product_id: UUID
     size_id: UUID
     quantity: int = Field(default=1, ge=1)
@@ -232,7 +233,7 @@ class OrderItemCreate(OrderItemBase):
 class OrderItemPublic(OrderItemBase):
     id: UUID
 
-    product: "ProductPublic"
+    product: "ProductPublicWithoutSP"
     size: "SizePublic"
 
     model_config = {"from_attributes": True}

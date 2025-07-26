@@ -125,7 +125,7 @@ async def delete_existing_order(
     Deleting existing order by id
     """
 
-    db_order = await get_order_by_id(db=db, order_id=order_id)
+    db_order = await delete_order(db=db, order_id=order_id)
 
     if not db_order:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found!")

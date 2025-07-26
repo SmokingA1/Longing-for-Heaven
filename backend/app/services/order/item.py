@@ -55,7 +55,7 @@ async def create_order_item(
     db: AsyncSession,
     order_item_create: OrderItemCreate,
 ) -> OrderItem:
-    new_order_item = OrderItem(order_item_create.model_dump())
+    new_order_item = OrderItem(**order_item_create.model_dump())
 
     db.add(new_order_item)
     await db.commit()
@@ -63,11 +63,13 @@ async def create_order_item(
 
     query = select(OrderItem).options(
         joinedload(OrderItem.product), joinedload(OrderItem.size)
-    ).where(OrderItem.order_id == new_order_item.id)
+    ).where(OrderItem.id == new_order_item.id)
     result = await db.execute(query)
-    new_order_item = result.unique().scalars().first()
+    res = result.unique().scalars().first()
 
-    return new_order_item
+    return res
+
+
 
 async def update_order_item_by_id(
     *,
@@ -101,6 +103,6 @@ async def delete_order_item_by_id(
         return None
     
     await db.delete(db_order_item)
-    await db.refresh(db_order_item)
+    await db.commit()
 
     return db_order_item

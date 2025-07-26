@@ -2,7 +2,7 @@ from uuid import UUID, uuid4
 from enum import Enum as PyEnum
 
 from sqlalchemy.orm import mapped_column, Mapped, relationship
-from sqlalchemy import ForeignKey, String, Integer, Enum, PrimaryKeyConstraint
+from sqlalchemy import ForeignKey, String, Integer, Enum, PrimaryKeyConstraint, text
 from sqlalchemy.dialects.postgresql import UUID
 
 from app.core.database import Base, TimestampMixin
@@ -44,7 +44,7 @@ class Product(Base, TimestampMixin):
     price: Mapped[int] = mapped_column(Integer, nullable=False)
     stock: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
-    sizes: Mapped[list["ProductSize"]] = relationship(back_populates="product", cascade="all, delete-orphan", order_by="ProductSize.created_at") # Связи с размерами, доступными для этого продукта
+    sizes: Mapped[list["ProductSize"]] = relationship(back_populates="product", cascade="all, delete-orphan", order_by="ProductSize.created_at")
     images: Mapped[list["ProductImage"]] = relationship(back_populates="product", cascade="all, delete-orphan", order_by="ProductImage.created_at")
     order_items: Mapped[list["OrderItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
     cart_items: Mapped[list["CartItem"]] = relationship(back_populates="product", cascade="all, delete-orphan")
@@ -71,8 +71,8 @@ class Size(Base, TimestampMixin):
 class ProductSize(Base, TimestampMixin):
     __tablename__ = "productsizes"
 
-    product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"), nullable=False)
-    size_id: Mapped[UUID] = mapped_column(ForeignKey("sizes.id", ondelete="CASCADE"), nullable=False)
+    product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE", name="fk_products_sizes_product_id"), nullable=False)
+    size_id: Mapped[UUID] = mapped_column(ForeignKey("sizes.id", ondelete="CASCADE", name="fk_products_sizes_sizes_id"), nullable=False)
     quantity: Mapped[int] = mapped_column(default=0, nullable=False)
     
     size: Mapped["Size"] = relationship(back_populates="products")
@@ -88,14 +88,14 @@ class ProductImage(Base, TimestampMixin):
     __tablename__ = "product_images"
     
     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
-    product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"), nullable=False)
+    product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE", name="fk_product_images_product_id"), nullable=False)
     photo_url: Mapped[str] = mapped_column(String(255), nullable=False)
     
     product: Mapped["Product"] = relationship(back_populates="images")
 
 
 # under the most intereset magic xd ORDERS
-class StatusEnum(PyEnum):
+class StatusEnum(str, PyEnum):
     PENDING = "pending"
     PAID = "paid"
     SHIPPED = "shipped"
@@ -104,13 +104,13 @@ class StatusEnum(PyEnum):
     RETURNED = "returned"
     
 
-class PaymentStatusEnum(PyEnum):
+class PaymentStatusEnum(str, PyEnum):
     PENDING = "pending"
     PAID = "paid"
     REFUNDED = "refunded"
 
 
-class PaymentMethodEnum(PyEnum):
+class PaymentMethodEnum(str, PyEnum):
     CARD = "card"
     COD = "cod"
 
@@ -119,9 +119,10 @@ class Order(Base, TimestampMixin):
     __tablename__ = "orders"
 
     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
-    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=True)
+    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE", name="fk_orders_user_id"), nullable=True)
     total_price: Mapped[int] = mapped_column(Integer, nullable=False)
     status: Mapped[StatusEnum] = mapped_column(Enum(StatusEnum, name="statusenum"), default=StatusEnum.PENDING, nullable=False)
+    number: Mapped[int] = mapped_column(Integer, primary_key=False, nullable=False, server_default=text("nextval('order_number_seq')"))
     receiver_name: Mapped[str] = mapped_column(String(50), nullable=False)
     receiver_phone: Mapped[str] = mapped_column(String(15), nullable=False)
     receiver_email: Mapped[str] = mapped_column(String(255), nullable=False)
@@ -139,9 +140,9 @@ class OrderItem(Base, TimestampMixin):
     __tablename__ = "order_items"
 
     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
-    order_id: Mapped[UUID] = mapped_column(ForeignKey("orders.id", ondelete="CASCADE"), nullable=False)
-    product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"), nullable=False)
-    size_id: Mapped[UUID] = mapped_column(ForeignKey("sizes.id", ondelete="CASCADE"), nullable=False)
+    order_id: Mapped[UUID] = mapped_column(ForeignKey("orders.id", ondelete="CASCADE", name="fk_order_items_order_id"), nullable=False)
+    product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE", name="fk_order_items_product_id"), nullable=False)
+    size_id: Mapped[UUID] = mapped_column(ForeignKey("sizes.id", ondelete="CASCADE", name="fk_order_items_sizes_id"), nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
     thumbnail: Mapped[str] = mapped_column(String, nullable=False)
 
@@ -155,7 +156,7 @@ class Cart(Base, TimestampMixin):
     __tablename__ = "carts"
 
     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
-    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE", name="fk_carts_user_id"), nullable=False)
 
     user: Mapped["User"] = relationship(back_populates="carts")
     cart_items: Mapped[list["CartItem"]] = relationship(back_populates="cart", cascade="all, delete-orphan")
@@ -165,9 +166,9 @@ class CartItem(Base, TimestampMixin):
     __tablename__ = "cart_items"
 
     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)
-    cart_id: Mapped[UUID] = mapped_column(ForeignKey("carts.id", ondelete="CASCADE"), nullable=False)
-    size_id: Mapped[UUID] = mapped_column(ForeignKey("sizes.id", ondelete="CASCADE"), nullable=False)
-    product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"), nullable=False)
+    cart_id: Mapped[UUID] = mapped_column(ForeignKey("carts.id", ondelete="CASCADE", name="fk_cart_items_cart_id"), nullable=False)
+    size_id: Mapped[UUID] = mapped_column(ForeignKey("sizes.id", ondelete="CASCADE", name="fk_cart_items_size_id"), nullable=False)
+    product_id: Mapped[UUID] = mapped_column(ForeignKey("products.id", ondelete="CASCADE", name="fk_cart_items_product_id"), nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
     thumbnail: Mapped[str] = mapped_column(String, nullable=False)
 

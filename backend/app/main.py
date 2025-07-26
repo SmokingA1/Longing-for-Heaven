@@ -15,7 +15,7 @@ from contextlib import asynccontextmanager
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("Startup: initializing Redis...")
-    redis_module.init_redis()
+    await redis_module.init_redis()
     if redis_module.redis is not None:
         print("Redis успешно инициализирован")
     else:
