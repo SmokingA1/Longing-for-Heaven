@@ -6,6 +6,8 @@ import { PatternFormat } from "react-number-format";
 import { useNavigate } from "react-router";
 import { decrementQTY, incrementQTY, removeFromCart } from "../features/cart/cartSlice";
 import WarehouseMap from "./WarehouseMap";
+import axios from "axios";
+
 
 interface AdressProps {
     Present: string;
@@ -220,7 +222,7 @@ const Checkout: React.FC = () => {
         const data = {
             user_id: order.user_id,
             total_price: order.total_price,
-            receiver_name:  order.second_name.trim() + " " + order.first_name.trim(),
+            receiver_name:  `${order.second_name.trim()} ${order.first_name.trim()}`,
             receiver_email: order.receiver_email,
             receiver_phone: order.receiver_phone,
             shipping_city: order.shipping_city,
@@ -232,8 +234,8 @@ const Checkout: React.FC = () => {
             console.log(response);
             if (response.status == 200) handleCreateOrderItem(response.data.id);
         } catch ( error: any ) {
-            if (error.response) {
-                console.error("Server error: ", error.response);
+            if (axios.isAxiosError(e)) {
+                console.log("Server error response:", e.response?.data);
             } else {
                 console.error("Network or other error: ", error);
             }
@@ -570,13 +572,13 @@ const Checkout: React.FC = () => {
                         ))}
                     </div>
                     
-                    <div className="w-full h-40 bg-gray-200 flex flex-col justify-evenly px-5 py-2.5    ">
+                    <div className="w-full h-40 bg-gray-300 flex flex-col justify justify-between px-5 py-7.5    ">
                         <span className="text-xl flex justify-between"> Total 
                             <span className="flex items-center">{cart.cart_items.reduce((sum, ci) => sum + ci.quantity * ci.product.price, 0)}
                                     <svg fill="#000000" className="size-3.5" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 423.761 423.761" xmlSpace="preserve"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M342.012,237.535H213.264c12.956-9.977,26.38-19.162,37.94-28.02c2.867-2.19,5.657-4.442,8.411-6.712h82.396 c11.703,0,21.185-9.483,21.185-21.184s-9.481-21.184-21.185-21.184H298.78c5.894-9.026,10.923-18.708,14.623-29.392 c9.528-27.547,4.776-59.267-11.159-83.374C262.057-13.134,179.492-8.639,121.998,21.565c-24.192,12.711-2.778,49.281,21.385,36.587 c28.538-14.992,60.222-21.76,91.431-11.499c21.35,7.019,39.082,26.4,40.932,49.184c2.087,25.827-13.554,47.487-31.599,64.61H81.749 c-11.7,0-21.185,9.484-21.185,21.184c0,11.701,9.484,21.184,21.185,21.184h107.966c-9.859,7.282-19.544,14.78-28.611,23.1 c-3.969,3.652-7.693,7.548-11.195,11.632h-68.16c-11.7,0-21.185,9.481-21.185,21.185c0,11.697,9.484,21.185,21.185,21.185h43.447 c-13.767,38.236-9.431,81.645,21.55,113.604c42.853,44.213,116.362,33.372,166.114,9.132c24.564-11.969,3.073-48.498-21.386-36.588 c-38.515,18.773-109.106,28.839-127.392-22.721c-8.79-24.789-4.176-45.482,7.19-63.422h170.738 c11.703,0,21.185-9.487,21.185-21.185C363.196,247.034,353.715,237.535,342.012,237.535z"></path> </g> </g></svg>
                             </span>
                         </span>
-                        <button className="py-2 w-full text-white bg-gray-400 text-center hover:bg-gray-500/90 duration-120 cursor-pointer ease-linear">
+                        <button className="py-2 w-full text-white bg-gray-500 text-center hover:bg-gray-600 duration-120 cursor-pointer ease-linear">
                             Checkout
                         </button>
                     </div>

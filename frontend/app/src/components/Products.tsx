@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { type AppDispatch, type RootState } from "../store";
 import ProductCard from "./ProductCard";
 import Slider from "@mui/material/Slider"
+import useProducts from "../hooks/useProducts";
 
 
 interface ProductProps {
@@ -35,9 +36,13 @@ interface ProductSizesProps {
 }
 
 
+
+
 const Products: React.FC = () => {
-    const [products, setProducts] = useState<ProductProps[]>([]);
+    const products = useProducts();
     const [filteredProducts, setFilteredProducts] = useState<ProductProps[]>([]);
+    const [quantityPage, setQuantityPage] = useState<number>(1);
+    const [selectedPage, setSelectedPage] = useState(1);
     const dispatch = useDispatch<AppDispatch>();
     const user = useSelector((state: RootState) => state.user);
     const cart = useSelector((state: RootState) => state.cart);
@@ -50,20 +55,13 @@ const Products: React.FC = () => {
         [cart.cart_items]
     );
 
-    
-    const getProducts = async () => {
-        try {
-            const response = await api.get("/products/");
-            setProducts(response.data);
-            console.log(response.data);
-        } catch (error: any) {
-            if (error.response) {
-                console.error("Server error: ", error.response);
-            } else {
-                console.error("Network or other error: ", error);
-            }
-        }
-    }
+    const PRODCUTS_PER_PAGE = 12;
+
+    const paginatedProducts = useMemo(() => {
+        const startIndex = (selectedPage - 1) * PRODCUTS_PER_PAGE;
+        const lastIndex = startIndex + PRODCUTS_PER_PAGE
+        return filteredProducts.slice(startIndex, lastIndex)
+    }, [filteredProducts, selectedPage])
 
     const handleAddToCart = async ( id: string, size_id: string, maxQuantity: number) => {
         if (!products) return;
@@ -155,12 +153,11 @@ const Products: React.FC = () => {
         }
     }, [products])
 
-
-
     useEffect(() => {
-        getProducts();
-    }, [])
-// md:w-180 lg:w-250 xl:w-300
+        setQuantityPage(Math.ceil(filteredProducts.length / PRODCUTS_PER_PAGE))
+    })
+
+    
     return(
         <div id="prdoucts-container" className="flex-grow flex w-full justify-center py-20">
             <div id="products-in-container" className="flex w-[340px] sm:w-160 md:w-180 lg:w-250 xl:w-300">
@@ -195,9 +192,10 @@ const Products: React.FC = () => {
                     </div>
 
                 </aside>
-                <main className="w-full flex justify-center sm:w-160 md:w-180 lg:w-170 xl:w-240 ">
+                <main className="w-full flex flex-col justify-center sm:w-160 md:w-180 lg:w-170 xl:w-240 ">
+                    <h2 className="font-normal text-2xl h-20">Shop</h2>
                     <article className="h-full w-85 sm:w-160 md:w-160 lg:w-160 xl:w-[960px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 auto-rows-[550px] md:auto-rows-[450px] text-sm">
-                        {filteredProducts && filteredProducts.map((product) => (
+                        {paginatedProducts && paginatedProducts.map((product) => (
                             <ProductCard 
                                 key={product.id}
                                 product={product}
@@ -208,6 +206,18 @@ const Products: React.FC = () => {
                             
                         ))}
                     </article>
+                    <section className="flex mt-30 gap-2.5">
+                        { Array.from({length: quantityPage}, (_, index) => (
+                            <button 
+                                key={index}
+                                onClick={() => {setSelectedPage(index+1)}}
+                                className={`py-2.5 px-3.5 rounded-sm cursor-pointer duration-120 border border-slate-800 ${selectedPage == index + 1 ? "bg-slate-800 text-white" : "hover:bg-slate-800 hover:text-white "}`}
+                            >
+                                {index + 1}
+                            </button>
+                        ))
+                        }
+                    </section>
                 </main>
             </div>
             

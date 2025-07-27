@@ -42,26 +42,26 @@ const AdminOrders: React.FC = () => {
 
             <div id="" className="h-full w-full bg-slate-600 rounded-lg p-2.5">
                 <div id="all-orders-container" className="w-full h-full p-2.5 flex flex-col gap-5">
-                    <table id="table-orders" className="w-full divide-y divide-gray-200 shadow-md rounded-t-2xl overflow-hidden">
-                        <thead className="bg-gray-100">
+                    <table id="table-orders" className="w-full divide-y divide-gray-200 shadow-md rounded-lg overflow-hidden">
+                        <thead className="bg-slate-500 text-xs uppercase font-medium text-white">
                             <tr>
-                                <th scope="col" className="border bg-slate-500 border-slate-400 w-20 px-1 py-3 text-center text-xs text-white font-medium uppercase tracking-wider">Number</th>
-                                <th scope="col" className="border bg-slate-500 border-slate-400 w-15 px-1 py-3 text-center text-xs text-white font-medium uppercase tracking-wider">Customer name</th>
-                                <th scope="col" className="border bg-slate-500 border-slate-400 w-15 px-1 py-3 text-center text-xs text-white font-medium uppercase tracking-wider">Date</th>
-                                <th scope="col" className="border bg-slate-500 border-slate-400 w-20 px-1 py-3 text-center text-xs text-white font-medium uppercase tracking-wider">Status</th>
-                                <th scope="col" className="border bg-slate-500 border-slate-400 w-20 px-1 py-3 text-center text-xs text-white font-medium uppercase tracking-wider">Total price</th>
-                                <th scope="col" className="border bg-slate-500 border-slate-400 w-20 px-1 py-3 text-center text-xs text-white font-medium uppercase tracking-wider">Payment status</th>
+                                <th scope="col" className="border border-slate-400 w-20 px-1 py-3 text-center tracking-wider">Number</th>
+                                <th scope="col" className="border border-slate-400 w-15 px-1 py-3 text-center tracking-wider">Customer name</th>
+                                <th scope="col" className="border border-slate-400 w-15 px-1 py-3 text-center tracking-wider">Date</th>
+                                <th scope="col" className="border border-slate-400 w-20 px-1 py-3 text-center tracking-wider">Status</th>
+                                <th scope="col" className="border border-slate-400 w-20 px-1 py-3 text-center tracking-wider">Total price</th>
+                                <th scope="col" className="border border-slate-400 w-20 px-1 py-3 text-center tracking-wider">Payment status</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="text-sm font-medium text-gray-500 uppercase bg-white">
                             {orders.map((order) => (
                             <tr key={order.id} className="cursor-pointer" >
-                                <td scope="col" className="border border-gray-300 w-20 px-1 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">#{String(order.number).padStart(9, "0")}</td>
-                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">{order.receiver_name}</td>
-                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">{(new Date(order.created_at).toLocaleDateString()).replace(/\./g, "/")}</td>
-                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">{order.status}</td>
-                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">{order.total_price}</td>
-                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">{order.payment_status}</td>
+                                <td scope="col" className="border border-gray-300 w-20 px-1 py-3 text-center tracking-wider">#{String(order.number).padStart(9, "0")}</td>
+                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-center tracking-wider">{order.receiver_name}</td>
+                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-center tracking-wider">{(new Date(order.created_at).toLocaleDateString()).replace(/\./g, "/")}</td>
+                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-center tracking-wider">{order.status}</td>
+                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-center tracking-wider">{order.total_price}</td>
+                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-center tracking-wider">{order.payment_status}</td>
                             </tr>
                             ))}
                         </tbody>

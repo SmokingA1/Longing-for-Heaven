@@ -38,35 +38,35 @@ const AdminUsers: React.FC = () => {
     }, [])
 
     return(
-        <div id="container-admin-users" className="w-full px-1 max-h-full sm:px-5 sm:pb-5 flex flex-col gap-5 relative font-medium">
-            <div className="w-full h-10 bg-teal-200 flex justify-center items-center rounded-b-lg relative animate-out-top font-medium">
-                Users administrator panel
+        <div id="container-admin-users" className="w-full px-1 max-h-full sm:px-5 sm:pb-5 flex flex-col gap-5 relative font-medium bg-slate-800">
+            <div className="w-full h-10 bg-slate-600 text-white flex justify-center items-center rounded-b-lg relative animate-out-top font-medium">
+                USERS ADMINISTRATOR PANEL
             </div>
-            <div id="table-users" className="max-w-240 h-full bg-blue-100 rounded-lg p-2.5">
-                <table className="max-w-240 divide-y divide-gray-200 shadow-md rounded-lg overflow-hidden">
-                    <thead className="bg-gray-100">
+            <div id="table-users" className="max-w-240 h-full bg-slate-600 rounded-lg p-2.5">
+                <table className="max-w-240 shadow-md rounded-lg overflow-hidden">
+                    <thead className="bg-slate-500 text-white uppercase font-medium text-xs">
                         <tr>
-                            <th scope="col" className="border border-gray-300 w-28 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">id</th>
-                            <th scope="col" className="border border-gray-300 w-22 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">name</th>
-                            <th scope="col" className="border border-gray-300 w-60 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">email</th>
-                            <th scope="col" className="border border-gray-300 w-25 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">phone_number</th>
-                            <th scope="col" className="border border-gray-300 w-30 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">avatar</th>
-                            <th scope="col" className="border border-gray-300 w-25 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">country</th>
-                            <th scope="col" className="border border-gray-300 w-20 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">city</th>
-                            <th scope="col" className="border border-gray-300 w-20 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">street</th>
+                            <th scope="col" className="text-center border border-slate-400 w-28 px-1 py-3 tracking-wider">id</th>
+                            <th scope="col" className="text-center border border-slate-400 w-22 px-1 py-3 tracking-wider">name</th>
+                            <th scope="col" className="text-center border border-slate-400 w-60 px-1 py-3 tracking-wider">email</th>
+                            <th scope="col" className="text-center border border-slate-400 w-25 px-1 py-3 tracking-wider">phone_number</th>
+                            <th scope="col" className="text-center border border-slate-400 w-30 px-1 py-3 tracking-wider">avatar</th>
+                            <th scope="col" className="text-center border border-slate-400 w-25 px-1 py-3 tracking-wider">country</th>
+                            <th scope="col" className="text-center border border-slate-400 w-20 px-1 py-3 tracking-wider">city</th>
+                            <th scope="col" className="text-center border border-slate-400 w-20 px-1 py-3 tracking-wider">street</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="text-xs font-medium text-gray-500 uppercase bg-white">
                         {users.map((user) => (
                             <tr key={user.id}>
-                                <td scope="col" className="border border-gray-300 w-28 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-white">{user.id}</td>
-                                <td scope="col" className="border border-gray-300 w-22 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-white">{user.name}</td>
-                                <td scope="col" className="border border-gray-300 w-60 px-1 py-3 break-all text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-white">{user.email}</td>
-                                <td scope="col" className="border border-gray-300 w-25 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-white">{user.phone_number}</td>
-                                <td scope="col" className="border border-gray-300 w-30 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-white">{user.avatar_url}</td>
-                                <td scope="col" className="border border-gray-300 w-25 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-white">{user.country}</td>
-                                <td scope="col" className="border border-gray-300 w-20 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-white">{user.city}</td>
-                                <td scope="col" className="border border-gray-300 w-20 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-white">{user.street}</td>
+                                <td scope="col" className="border border-slate-400 w-28 px-1 py-3 text-left tracking-wider">{user.id}</td>
+                                <td scope="col" className="border border-slate-400 w-22 px-1 py-3 text-left tracking-wider">{user.name}</td>
+                                <td scope="col" className="border border-slate-400 w-60 px-1 py-3 break-all text-left tracking-wider">{user.email}</td>
+                                <td scope="col" className="border border-slate-400 w-25 px-1 py-3 text-left tracking-wider">{user.phone_number}</td>
+                                <td scope="col" className="border border-slate-400 w-30 px-1 py-3 text-left tracking-wider">{user.avatar_url}</td>
+                                <td scope="col" className="border border-slate-400 w-25 px-1 py-3 text-left tracking-wider">{user.country}</td>
+                                <td scope="col" className="border border-slate-400 w-20 px-1 py-3 text-left tracking-wider">{user.city}</td>
+                                <td scope="col" className="border border-slate-400 w-20 px-1 py-3 text-left tracking-wider">{user.street}</td>
                             </tr>
                         ))}
                     </tbody>

@@ -70,37 +70,38 @@ const AdminProducts: React.FC = () => {
     
     return(
         <>
-        <div id="container-admin-products" className="w-full px-1 max-h-full sm:px-5 sm:pb-5 flex flex-col gap-5 relative font-medium">
-            <div className="w-full h-10 bg-teal-200 flex justify-center items-center rounded-b-lg relative animate-out-top font-medium">
-                Products administrator panel
+        <div id="container-admin-products" className="w-full px-1 h-full sm:px-5 sm:pb-5 flex flex-col gap-5 relative font-medium bg-slate-800">
+            <div className="w-full h-10 bg-slate-600 text-white flex justify-center items-center rounded-b-lg relative animate-out-top font-medium">
+                PRODUCTS ADMINISTRATOR PANEL
             </div>
-            <div id="content" className="w-full h-full flex gap-5">
-                <div id="all-products-container" className="w-full h-full bg-blue-100 rounded-lg p-2.5 flex flex-col gap-5">
-                    <table id="all-products" className="max-w-200 divide-y divide-gray-200 shadow-md rounded-lg overflow-hidden">
-                        <thead className="bg-gray-100">
+            <div id="content" className="w-full h-full flex flex-1 flex-col justify-end gap-5 p-2.5 bg-slate-600">
+
+                <div id="all-products-container" className="w-full max-h-150 overflow-auto bg-slate-600 rounded-lg flex flex-col gap-5">
+                    <table id="all-products" className="max-fullshadow-md rounded-lg">
+                        <thead className="bg-slate-500 text-white text-xs sticky top-0">
                             <tr>
-                                <th scope="col" className="border border-gray-300 w-50 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                <th scope="col" className="border border-gray-300 w-15 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-                                <th scope="col" className="border border-gray-300 w-15 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
-                                <th scope="col" className="border border-gray-300 w-20 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
-                                <th scope="col" className="border border-gray-300 w-20 px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Options</th>
+                                <th scope="col" className="border border-slate-400 w-50 px-1 py-3 text-center font-medium uppercase tracking-wider">Name</th>
+                                <th scope="col" className="border border-slate-400 w-15 px-1 py-3 text-center font-medium uppercase tracking-wider">Price</th>
+                                <th scope="col" className="border border-slate-400 w-15 px-1 py-3 text-center font-medium uppercase tracking-wider">Stock</th>
+                                <th scope="col" className="border border-slate-400 w-20 px-1 py-3 text-center font-medium uppercase tracking-wider">Image</th>
+                                <th scope="col" className="border border-slate-400 w-20 px-1 py-3 text-center font-medium uppercase tracking-wider">Options</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="text-sm  font-medium text-gray-500 uppercase bg-white">
                             {products.map((product) => (
                             <tr key={product.id} className="cursor-pointer" onClick={() => setProductInfoID(product.id)}>
-                                <td scope="col" className="border border-gray-300 w-50 px-1 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">{product.name}</td>
-                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">{product.price}</td>
-                                <td scope="col" className="border border-gray-300 w-15 px-1 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider bg-white">{product.stock}</td>
-                                <td scope="col" className="border border-gray-300 w-20 px-2.5 py-3 text-gray-500 uppercase tracking-wider bg-white">
+                                <td scope="col" className="border border-slate-400 w-50 px-1 py-3 text-center tracking-wider">{product.name}</td>
+                                <td scope="col" className="border border-slate-400 w-15 px-1 py-3 text-center tracking-wider">{product.price}</td>
+                                <td scope="col" className="border border-slate-400 w-15 px-1 py-3 text-center tracking-wider">{product.stock}</td>
+                                <td align="center" scope="col" className="border border-slate-400 w-20 px-2.5 py-3 tracking-wider bg-white">
                                     {product.images.length > 0 && <img className="size-15" src={`http://localhost:8000/${product.images[0].photo_url}`} alt="img-first-picture" />}
                                 </td>
-                                <td scope="col" className="border border-gray-300 w-30 px-1 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider bg-white" onClick={() => handleRemoveProduct(product.id)}>delete</td>
+                                <td scope="col" className="border border-slate-400 w-30 px-1 py-3 text-left tracking-wider" onClick={() => handleRemoveProduct(product.id)}>delete</td>
                             </tr>
                             ))}
                         </tbody>
                     </table>
-                    <div className="py-2 w-50 text-base text-white bg-gray-400/70 hover:bg-gray-400 duration-120 rounded-lg flex self-center items-center justify-center cursor-pointer" onClick={() => setIsProductFormVisible(true)}>
+                    <div className="py-2 mb-2.5 w-50 text-base text-white bg-gray-400/70 hover:bg-gray-400 duration-120 rounded-lg flex self-center items-center justify-center cursor-pointer" onClick={() => setIsProductFormVisible(true)}>
                         ADD PRODUCT
                     </div>
                 </div>

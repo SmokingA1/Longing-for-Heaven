@@ -54,14 +54,15 @@ function App() {
 
   return (
     <Routes>
-      <Route path='login' element={<LoginPage />}/>
-      <Route path='sign-up' element={<RegistrationPage />}/>
+      <Route path='/login' element={<LoginPage />}/>
+      <Route path='/sign-up' element={<RegistrationPage />}/>
       <Route path='/' element={<HomePage />}/>
       <Route path='/admin' element={<AdminLoginPage />}/>
       <Route path='/admin/page' element={<AdminPage />}/>
       <Route path='/contacts' element={<ContactsPage  />}/>
       <Route path='/shop/' element={<ShopPage  />}/>
       <Route path='/shop/:id' element={<ProductPage  />}/>
+      <Route path='/shop/page:number' element={<ProductPage />} />
       <Route path='/shop/checkout' element={<CheckoutPage />} />
       <Route path='/forgot-password/' element={<ForgotPassword />}/>
       <Route path='/recover-password' element={<ResetPasswordPage /> }/>

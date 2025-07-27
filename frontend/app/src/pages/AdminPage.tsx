@@ -24,13 +24,14 @@ const AdminPage: React.FC = () => {
     })
 
     return(
-        <div id="admin-layout" className="h-full bg-white flex">
+        <div id="admin-layout" className="h-screen bg-slate-800 flex ">
             <AdminSideBar choosenRow={choosenRow} setChoosenRow={setChoosenRow} />
-
-            {choosenRow === "users" && <AdminUsers />}
-            {choosenRow === "products" && <AdminProducts />}
-            {choosenRow === "orders" && <AdminOrders />}
-            {choosenRow === "options" && <AdminOptions />}
+            <div className="flex-1 overflow-hidden">
+                {choosenRow === "users" && <AdminUsers />}
+                {choosenRow === "products" && <AdminProducts />}
+                {choosenRow === "orders" && <AdminOrders />}
+                {choosenRow === "options" && <AdminOptions />}
+            </div>
         </div>
     )
 }

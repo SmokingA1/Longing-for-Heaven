@@ -61,6 +61,7 @@ const ProductForm: React.FC<ProductFormProps> = ({isVisible, setIsVisible}) => {
                 }
             }
         }
+        window.location.reload();
     };
 
     const handleCreateProductSize = async (productID: string) => {

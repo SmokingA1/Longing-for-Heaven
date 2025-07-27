@@ -186,7 +186,6 @@ class OrderBase(BaseModel):
     shipping_street: str = Field(..., min_length=1)
     payment_method: PaymentMethodEnum = Field(PaymentMethodEnum.CARD)
     payment_status: PaymentStatusEnum = Field(PaymentStatusEnum.PENDING)
-    created_at: datetime
     
 class OrderCreate(OrderBase):
     pass
@@ -197,6 +196,7 @@ class OrderPublic(OrderBase):
 
     order_items: list["OrderItemPublic"]
     number: int
+    created_at: datetime
 
     model_config = {"from_attributes": True}
 
